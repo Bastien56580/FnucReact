@@ -13,5 +13,4 @@
 - npm start
 
 ### Prod
-- docker compose up whatever smth like this.
-¯\_(ツ)_/¯
+- docker compose up whatever smth like this. ¯\_(ツ)_/¯
