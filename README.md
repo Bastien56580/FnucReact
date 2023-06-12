@@ -6,7 +6,7 @@
 -   Lesueur Bastien
 -   Calvez Erwan
 -   Lapassas Quentin
--   add your name here, im too lazy to do it.
+-   GUIQUERRO Nathaniel
 
 ## How to start the project
 
