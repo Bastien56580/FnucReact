@@ -3,6 +3,7 @@
 ## Team
 - Linz Pierre
 - Lesueur Bastien
+- Calvez Erwan
 - add your name here, im too lazy to do it.
 
 
