@@ -2,6 +2,7 @@
 
 ## Team
 - Linz Pierre
+- Lesueur Bastien
 - add your name here, im too lazy to do it.
 
 
@@ -13,3 +14,4 @@
 
 ### Prod
 - docker compose up whatever smth like this.
+¯\_(ツ)_/¯
