@@ -15,10 +15,10 @@ export default function SignUp(){
     return(
         <div> 
             <div>
-        <input type="email" placeholder="Email" value={email} onChange={(e)=>handleEmailChange}/>
-        <input type="password" placeholder="Password" value={password} onChange={(e)=>handlePasswordChange}/>
-        <input type="firstname" placeholder="Firstname" value={firstname} onChange={(e)=>handleFirstnameChange}/>
-        <input type="lastname" placeholder="Lastname" value={lastname} onChange={(e)=>handleLastNameChange}/>
+        <input type="email" placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+        <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+        <input type="firstname" placeholder="Firstname" value={firstname} onChange={(e)=>setFirstname(e.target.value)}/>
+        <input type="lastname" placeholder="Lastname" value={lastname} onChange={(e)=>setLastName(e.target.value)}/>
         <input type="submit" value="valider" onClick={handleSubmit} />
     </div>
 

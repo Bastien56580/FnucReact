@@ -2,19 +2,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import $ from 'jquery';
-import Popper from 'popper.js';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Search from "./view/Search/Search"
-
-
-
 
 
 import Login from './view/Login/Login';
+import Register from './view/Register/Register';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path:"/signup",
-    element:<SignUp/>
+    element:<Register/>
   }
  ]);
 
