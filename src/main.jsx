@@ -9,6 +9,7 @@ import {
 
 
 import Login from './view/Login/Login';
+import Profile from './view/Profile/Profile'
 import Register from './view/Register/Register';
 
 const router = createBrowserRouter([
@@ -23,10 +24,12 @@ const router = createBrowserRouter([
   {
     path:"/signup",
     element:<Register/>
+  },
+  {
+    path: "/profile",
+    element: <Profile/>,
   }
  ]);
-
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />,
