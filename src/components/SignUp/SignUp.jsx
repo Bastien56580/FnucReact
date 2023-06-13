@@ -12,29 +12,13 @@ export default function SignUp(){
         alert(`Tu as envoyé email: ${email}, mot de passe : ${password}, prénom : ${firstname} et nom de famille : ${lastname}`)
     }
 
-    const handleEmailChange = (e)=>{
-        setEmail(e.target.value)
-    }
-
-    const handlePasswordChange = (e)=>{
-        setPassword(e.target.value)
-    }
-
-    const handleFirstnameChange = (e)=>{
-        setFirstname(e.target.value)
-    }
-
-    const handleLastNameChange = (e)=>{
-        setLastName(e.target.value)
-    }
-
     return(
         <div> 
             <div>
-        <input type="email" placeholder="Email" value={email} onChange={handleEmailChange}/>
-        <input type="password" placeholder="Password" value={password} onChange={handlePasswordChange}/>
-        <input type="firstname" placeholder="Firstname" value={firstname} onChange={handleFirstnameChange}/>
-        <input type="lastname" placeholder="Lastname" value={lastname} onChange={handleLastNameChange}/>
+        <input type="email" placeholder="Email" value={email} onChange={(e)=> setEmail(e.target.value)}/>
+        <input type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+        <input type="firstname" placeholder="Firstname" value={firstname} onChange={(e)=>setFirstname(e.target.value)}/>
+        <input type="lastname" placeholder="Lastname" value={lastname} onChange={(e)=>setLastName(e.target.value)}/>
         <input type="submit" value="valider" onClick={handleSubmit} />
     </div>
 

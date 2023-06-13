@@ -3,11 +3,13 @@ import SignIn from '../../components/SignIn/SignIn'
 import Navbar from '../../components/Navbar/Navbar'
 
 
+
+
 export default function Login() {
-  return (
-    <div>
-      <Navbar/>
-      <SignIn/>
-    </div>
+  return (<>
+    <Navbar/>
+    <SignIn />
+  </>
+
   )
 }
