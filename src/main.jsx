@@ -15,6 +15,7 @@ import Search from "./view/Search/Search"
 
 
 import Login from './view/Login/Login';
+import Profile from './view/Profile/Profile'
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/signin",
     element: <Login/>,
+  },
+  {
+    path: "/profile",
+    element: <Profile/>,
   }
  ]);
 
