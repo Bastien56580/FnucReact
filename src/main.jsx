@@ -4,6 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+
+import ErrorPage from './view/PageErreur/PageErreur'
 import Login from './view/Login/Login';
 import Profile from './view/Profile/Profile';
 import Register from './view/Register/Register';
@@ -39,7 +41,10 @@ const router = createBrowserRouter([
 	{
 		path: '/admin-clients',
 		element: <AdminClients />,
-	},
+	},{
+		path: '*',
+		element: <ErrorPage />,
+	  },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
