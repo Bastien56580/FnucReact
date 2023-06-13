@@ -73,5 +73,4 @@ export default function BookList() {
 			</tbody>
 		</table>
 	);
-
 }
