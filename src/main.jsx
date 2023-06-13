@@ -5,12 +5,16 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-import Navbar from './components/Navbar/Navbar';
+import Login from './view/Login/Login';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <div>test</div>,
+  },
+  {
+    path: "/signin",
+    element: <Login/>,
   }
  ]);
 
