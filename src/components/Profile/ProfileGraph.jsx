@@ -1,3 +1,4 @@
+
 import './ProfileGraph.scss';
 import toast, { Toaster } from 'react-hot-toast';
 import React, { useEffect, useState } from 'react';
@@ -45,6 +46,7 @@ export default function ProfileGraph() {
 				toast.error(error.response.data.detail);
 			});
 	}, []);
+
 
 	const xData = Object.keys(myData);
 	const yData = Object.values(myData);

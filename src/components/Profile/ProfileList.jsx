@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -5,7 +6,7 @@ import axios from 'axios';
 import mockList from './mock/mockList.json';
 
 export default function ProfileList() {
-    const [myData, setMyData] = useState(mockList);
+    const [myData] = useState(mockList);
     useEffect(() => {
         // Axios request or fetch profile info
         // In the meantime, we are using the mock
