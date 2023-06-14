@@ -11,16 +11,25 @@ export default function Order({ book }) {
 	const tauxTVA = '0.2';
 
 	//all this we get from the form
-	const [quantity, setQuantity] = useState('');
-	const [TVA, setTVA] = useState('');
-	const [HT, setHT] = useState('');
-	const [TTC, setTTC] = useState('');
+	const [quantity, setQuantity] = useState(0);
+	const [TVA, setTVA] = useState(0);
+	const [HT, setHT] = useState(0);
+	const [TTC, setTTC] = useState(0);
 
+
+	//Change the pricing according to the quantity
+	const handleQuantity = (e) => {
+		const newQuantity = parseInt(e.target.value);
+		setQuantity(newQuantity);
+		setTVA(newQuantity * tauxTVA);
+		setHT(newQuantity * price);
+		setTTC(newQuantity * price + newQuantity * price * tauxTVA);
+	};
+
+
+	//handle the post request
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		//here we need to do the post request when the back is ready to post our order,
-		//in the meanwhile there is just an alert
-
 		// Create user data object
 		const orderData = {
 			"id_book": id,
@@ -48,39 +57,21 @@ export default function Order({ book }) {
 
 	return (
 		<div className="container">
-            
+
 			<div className="mt-4">
 				<p>Prix (unité) : {price}</p>
 				<p>Stock : {stock}</p>
 				<p>Taux de TVA : {tauxTVA}</p>
 				<input
-					type="text"
+					type="number"
 					className="form-control mb-2"
 					placeholder="Quantité"
 					value={quantity}
-					onChange={(e) => setQuantity(e.target.value)}
+					onChange={(e) => { handleQuantity(e) }}
 				/>
-				<input
-					type="text"
-					className="form-control mb-2"
-					placeholder="TVA"
-					value={TVA}
-					onChange={(e) => setTVA(e.target.value)}
-				/>
-				<input
-					type="text"
-					className="form-control mb-2"
-					placeholder="HT"
-					value={HT}
-					onChange={(e) => setHT(e.target.value)}
-				/>
-				<input
-					type="text"
-					className="form-control mb-2"
-					placeholder="TTC"
-					value={TTC}
-					onChange={(e) => setTTC(e.target.value)}
-				/>
+				<p>TVA: {TVA}</p>
+				<p>HT: {HT}</p>
+				<p>TTC: {TTC}</p>
 				<input
 					type="submit"
 					className="btn btn-primary"
@@ -88,7 +79,7 @@ export default function Order({ book }) {
 					onClick={handleSubmit}
 				/>
 			</div>
-            <Toaster /> {/* Toast container for displaying messages */}
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }
