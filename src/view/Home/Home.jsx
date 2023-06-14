@@ -1,4 +1,3 @@
-import React from 'react';
 import CategoryList from '../../components/CategoryList/CategotyList';
 import Navbar from '../../components/Navbar/Navbar';
 
