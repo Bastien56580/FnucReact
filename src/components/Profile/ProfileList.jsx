@@ -1,12 +1,12 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import toast, { Toaster } from 'react-hot-toast';
 // Mock list since you don't have a backend to test with yet
 import mockList from './mock/mockList.json';
 
 export default function ProfileList() {
-    const [myData] = useState(mockList);
+    const [myData,setMyData] = useState(mockList);
     useEffect(() => {
         // Axios request or fetch profile info
         // In the meantime, we are using the mock
@@ -21,6 +21,7 @@ export default function ProfileList() {
 			})
 			.catch((error) => {
 				// Handle error response
+                console.log(error);
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
     }, []);
@@ -53,6 +54,7 @@ export default function ProfileList() {
                     </table>
                 </div>
             </div>
+            <Toaster/>
         </div>
     );
 }
