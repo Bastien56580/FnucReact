@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Order({ book }) {
 	const price = book.price;
@@ -19,16 +21,13 @@ export default function Order({ book }) {
 		//here we need to do the post request when the back is ready to post our order,
 		//in the meanwhile there is just an alert
 
-        let current_date = new Date().toLocaleString() + ""
 		// Create user data object
 		const orderData = {
-			id_book: id,
-			id_customer: 0, //TODO : Find user id with authentication system
-			quantity: quantity,
-			order_date: current_date,
+			"id_book": id,
+			"id_customer": 12, //TODO : Find user id with authentication system
+			"quantity": quantity,
 		};
-
-		// Send a POST request to create a user
+		// Send a POST request to create an order
 		axios
 			.post('https://apimysql-1-r1261081.deta.app/orders/', orderData, {
 				withCredentials: true,
@@ -49,6 +48,7 @@ export default function Order({ book }) {
 
 	return (
 		<div className="container">
+            
 			<div className="mt-4">
 				<p>Prix (unité) : {price}</p>
 				<p>Stock : {stock}</p>
@@ -88,6 +88,7 @@ export default function Order({ book }) {
 					onClick={handleSubmit}
 				/>
 			</div>
+            <Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }
