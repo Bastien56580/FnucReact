@@ -56,8 +56,7 @@ export default function Order({ book }) {
 	};
 
 	return (
-		<div className="container">
-
+		<div className="container mt-5 pt-5">
 			<div className="mt-4">
 				<p>Prix (unité) : {price}</p>
 				<p>Stock : {stock}</p>
