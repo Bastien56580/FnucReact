@@ -1,0 +1,13 @@
+name: CI
+on:
+  push:
+    branches: [ "**" ]
+  pull_request:
+    branches: [ "main" ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: docker build . --file Dockerfile --tag fnuc:$(date +%s)
