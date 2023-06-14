@@ -16,12 +16,26 @@ export default function ProfileList() {
 
                 <div className="card-body">
                     <h5 className="card-title text-center">Information du profile :</h5>
-                    <ul className="list-group">
-                        <li className="list-group-item">Nom: {myData.firstname}</li>
-                        <li className="list-group-item">Prénom: {myData.lastname}</li>
-                        <li className="list-group-item">Email: {myData.email}</li>
-                        <li className="list-group-item">Mot de passe: {myData.password}</li>
-                    </ul>
+                    <table className="table">
+                        <tbody>
+                            <tr>
+                                <td className="fw-bold">Nom:</td>
+                                <td>{myData.firstname}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Prénom:</td>
+                                <td>{myData.lastname}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Email:</td>
+                                <td>{myData.email}</td>
+                            </tr>
+                            <tr>
+                                <td className="fw-bold">Mot de passe:</td>
+                                <td>{myData.password}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

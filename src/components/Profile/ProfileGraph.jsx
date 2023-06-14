@@ -26,7 +26,7 @@ export default function ProfileGraph() {
     const barColors = randomColor({ count: xData.length });
 
     return (
-        <div className="container mt-4">
+        <div className="container mt-4 pb-5">
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title text-center">Quels sont les livres que j'ai achetés et en combien d'exemplaires ?</h5>

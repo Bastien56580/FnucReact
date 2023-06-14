@@ -57,28 +57,71 @@ export default function Order({ book }) {
 
 	return (
 		<div className="container mt-5 pt-5">
-			<div className="mt-4">
-				<p>Prix (unité) : {price}</p>
-				<p>Stock : {stock}</p>
-				<p>Taux de TVA : {tauxTVA}</p>
-				<input
-					type="number"
-					className="form-control mb-2"
-					placeholder="Quantité"
-					value={quantity}
-					onChange={(e) => { handleQuantity(e) }}
-				/>
-				<p>TVA: {TVA}</p>
-				<p>HT: {HT}</p>
-				<p>TTC: {TTC}</p>
-				<input
-					type="submit"
-					className="btn btn-primary"
-					value="Valider"
-					onClick={handleSubmit}
-				/>
+			<h2 className="text-center mb-5">Formulaire de commande</h2>
+			<div className="row">
+				<div className="col-md-6">
+					<table className="table">
+						<tbody>
+							<tr>
+								<td className="fw-bold">Prix:</td>
+								<td>{price} €</td>
+							</tr>
+							<tr>
+								<td className="fw-bold">Stock:</td>
+								<td>{stock}</td>
+							</tr>
+							<tr>
+								<td className="fw-bold">Quantité:</td>
+								<td>
+									<label>
+										<input
+											type="number"
+											className="form-control"
+											placeholder="Quantité"
+											value={quantity}
+											onChange={(e) => handleQuantity(e)}
+										/>
+									</label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div className="col-md-6">
+					<table className="table">
+						<tbody>
+							<tr>
+								<td className="fw-bold">Taux de TVA:</td>
+								<td>{tauxTVA}</td>
+							</tr>
+							<tr>
+								<td className="fw-bold">TVA:</td>
+								<td>{TVA}</td>
+							</tr>
+							<tr>
+								<td className="fw-bold">HT:</td>
+								<td>{HT}</td>
+							</tr>
+							<tr>
+								<td className="fw-bold">TTC:</td>
+								<td>{TTC}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div className="row">
+				<div className="col-12 text-center">
+					<input
+						type="submit"
+						className="btn btn-primary"
+						value="Valider"
+						onClick={handleSubmit}
+					/>
+				</div>
 			</div>
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
+
 	);
 }
