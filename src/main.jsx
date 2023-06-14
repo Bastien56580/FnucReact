@@ -12,6 +12,7 @@ import Register from './view/Register/Register';
 import Admin from './view/Admin/Admin';
 import AdminBooks from './view/AdminBooks/AdminBooks';
 import AdminClients from './view/AdminClients/AdminClients';
+import DetailOrder from './view/DetailOrder/DetailOrder'
 
 const router = createBrowserRouter([
 	{
@@ -41,10 +42,15 @@ const router = createBrowserRouter([
 	{
 		path: '/admin-clients',
 		element: <AdminClients />,
-	},{
+	},
+	{
+		path: '/detail-order/:id',
+		element: <DetailOrder />,
+	},
+	{
 		path: '*',
 		element: <ErrorPage />,
-	  },
+	},
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
