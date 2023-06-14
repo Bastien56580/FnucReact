@@ -5,7 +5,8 @@ export default function Search() {
         
 		<div className="Search">
 			<Navbar/>
-            <h1>Acceuil</h1>
+            <h1>Accueil</h1>
 		</div>
+		//test test test
 	);
 }
