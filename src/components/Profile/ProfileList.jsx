@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // Mock list since you don't have a backend to test with yet
 import mockList from './mock/mockList.json';
 
 export default function ProfileList() {
-    const [myData, setMyData] = useState(mockList);
+    const [myData] = useState(mockList);
     useEffect(() => {
         // Axios request or fetch profile info
         // In the meantime, we are using the mock

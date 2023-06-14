@@ -1,6 +1,6 @@
 import "./ProfileGraph.scss"
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 import randomColor from 'randomcolor';
 
@@ -8,7 +8,7 @@ import randomColor from 'randomcolor';
 import mockGraph from './mock/mockGraph.json';
 
 export default function ProfileGraph() {
-    const [myData, setMyData] = useState(mockGraph);
+    const [myData] = useState(mockGraph);
     useEffect(() => {
         // Axios request or fetch graph info and setMyData
         // In the meantime, we are using the mock
@@ -29,7 +29,7 @@ export default function ProfileGraph() {
         <div className="container mt-4 pb-5">
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title text-center">Quels sont les livres que j'ai achetés et en combien d'exemplaires ?</h5>
+                    <h5 className="card-title text-center">{"Quels sont les livres que j'ai achetés et en combien d'exemplaires ?"}</h5>
                     <div className="d-flex justify-content-center">
                         <div className="plot-container">
                             <Plot

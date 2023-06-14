@@ -1,4 +1,3 @@
-import React from 'react';
 import ProfileList from '../../components/Profile/ProfileList.jsx';
 import ProfileGraph from '../../components/Profile/ProfileGraph';
 import Navbar from '../../components/Navbar/Navbar';
