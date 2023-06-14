@@ -1,15 +1,16 @@
 import React from 'react'
-import Navbar from '../../components/Navbar/Navbar'
-export default function BookDetail({book}) {
-      return (<>
-        <Navbar/>
-        <div>
-          <h1>Visuel de détail d'article</h1>
-          <h1>{book.titre}</h1>
-          <h2>{book.description}</h2>
-          <h3>{book.author}</h3>
+export default function BookDetail({ book }) {
+  return (
+    <div className="container">
+      <h1>Détail d'article</h1>
+      <div className="card">
+        <img src={book.cover_url} className="card-img-top" alt="Book Cover" />
+        <div className="card-body">
+          <h5 className="card-title">Titre : {book.title}</h5>
+          <p className="card-text">Résumé : {book.resume}</p>
+          <p className="card-text">Auteur : {book.author}</p>
         </div>
-      </>
-      );
+      </div>
+    </div>
+  );
 }
-    
