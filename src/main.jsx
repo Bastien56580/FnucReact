@@ -84,6 +84,10 @@ const router = createBrowserRouter([
 		path: '*',
 		element: <LazyRoute component={ErrorPage} />,
 	},
+	{
+		path:'/search',
+		element:<Search/>
+	}
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

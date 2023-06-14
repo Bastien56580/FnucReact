@@ -44,7 +44,7 @@ export default function Navbar() {
               className={`nav-item ${activePage === '/' ? 'text-decoration-underline' : ''}`}
             >
               <a className="nav-link text-dark" href="/">
-                Acceuil
+                Accueil
               </a>
             </li>
             {/* Display the 'Profil' link if the user is logged in */}
