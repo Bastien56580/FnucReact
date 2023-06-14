@@ -1,7 +1,7 @@
 import React from 'react'
 export default function BookDetail({ book }) {
   return (
-    <div className="container">
+    <div className="container w-75">
       <h1>Détail d'article</h1>
       <div className="card">
         <img src={book.cover_url} className="card-img-top" alt="Book Cover" />
