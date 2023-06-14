@@ -13,11 +13,12 @@ import Admin from './view/Admin/Admin';
 import AdminBooks from './view/AdminBooks/AdminBooks';
 import AdminClients from './view/AdminClients/AdminClients';
 import DetailOrder from './view/DetailOrder/DetailOrder'
+import Home from './view/Home/Home';
 
 const router = createBrowserRouter([
 	{
 		path: '/',
-		element: <div>test</div>,
+		element: <Home />,
 	},
 	{
 		path: '/signin',
