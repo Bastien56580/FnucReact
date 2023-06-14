@@ -40,10 +40,6 @@ export default function BookList() {
 			});
 	};
 
-
-
-	
-
 	return (
 		<div>
 			<Toaster /> {/* Toast container for displaying messages */}
@@ -55,6 +51,7 @@ export default function BookList() {
 						<th>Résumé</th>
 						<th>Image</th>
 						<th>Prix</th>
+						<th>Stock</th>
 						<th></th>
 						<th>
 							<AddCircleIcon />
@@ -70,6 +67,7 @@ export default function BookList() {
 								<td>{element.summary}</td>
 								<td>{element.coverPage}</td>
 								<td>{element.price}</td>
+								<td>{element.stock}</td>
 								<td>
 									<EditIcon />
 								</td>
