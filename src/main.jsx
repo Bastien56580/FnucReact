@@ -13,6 +13,7 @@ import AdminBooks from './view/AdminBooks/AdminBooks';
 import AdminClients from './view/AdminClients/AdminClients';
 import DetailOrder from './view/DetailOrder/DetailOrder'
 import Home from './view/Home/Home';
+import { Search } from '@mui/icons-material';
 
 const router = createBrowserRouter([
 	{
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
 		path: '*',
 		element: <ErrorPage />,
 	},
+	{
+		path:'/search',
+		element:<Search/>
+	}
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
