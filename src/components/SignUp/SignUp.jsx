@@ -40,10 +40,10 @@ export default function SignUp() {
     <div>
       <div>
         <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type="firstname" placeholder="Firstname" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
-        <input type="lastname" placeholder="Lastname" value={lastname} onChange={(e) => setLastName(e.target.value)} />
-        <input type="submit" value="Submit" onClick={handleSubmit} />
+        <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type="firstname" placeholder="Prenom" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+        <input type="lastname" placeholder="Nom de Famille" value={lastname} onChange={(e) => setLastName(e.target.value)} />
+        <input type="submit" value="Créer un compte" onClick={handleSubmit} />
       </div>
       <Toaster /> {/* Toast container for displaying messages */}
     </div>
