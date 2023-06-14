@@ -1,0 +1,27 @@
+[
+    {
+        "label": "topic 1",
+        "topic_url": "https://fr.wikipedia.org/wiki/Topic",
+        "id": 0
+    },
+    {
+        "label": "topic 2",
+        "topic_url": "https://fr.wikipedia.org/wiki/Topic",
+        "id": 1
+    },
+    {
+        "label": "topic 3",
+        "topic_url": "https://fr.wikipedia.org/wiki/Topic",
+        "id": 2
+    },
+    {
+        "label": "topic 4",
+        "topic_url": "https://fr.wikipedia.org/wiki/Topic",
+        "id": 3
+    },
+    {
+        "label": "topic 5",
+        "topic_url": "https://fr.wikipedia.org/wiki/Topic",
+        "id": 4
+    }
+]
