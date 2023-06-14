@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddBookFormAdmin() {
 	const [title, setTitle] = useState('');
@@ -10,7 +12,33 @@ export default function AddBookFormAdmin() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		alert(`send data`);
+		// Create user data object
+		const userData = {
+			title: title,
+			author: author,
+			resume: resume,
+			cover_url: coverUrl,
+			price: price,
+			stock: stock,
+		};
+
+		// Send a POST request to create a user
+		axios
+			.post('https://apimysql-1-r1261081.deta.app/books/', userData, {
+				withCredentials: true,
+			})
+			.then((response) => {
+				// Handle successful response
+				if (response.data.email) {
+					toast.success('Book created!'); // Display success toast message
+				} else {
+					toast.error(response.data.detail); // Display error toast message with details
+				}
+			})
+			.catch((error) => {
+				// Handle error response
+				toast.error(error.response.data.detail); // Display error toast message with details
+			});
 	};
 
 	return (
@@ -51,8 +79,8 @@ export default function AddBookFormAdmin() {
 				value={stock}
 				onChange={(e) => setStock(e.target.value)}
 			/>
-
 			<input type="submit" value="Valider" onClick={handleSubmit} />
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }

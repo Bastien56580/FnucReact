@@ -54,7 +54,12 @@ export default function BookList() {
 						<th>Stock</th>
 						<th></th>
 						<th>
-							<AddCircleIcon />
+							<AddCircleIcon
+								onClick={() =>
+									(window.location.href =
+										'/admin/books/create')
+								}
+							/>
 						</th>
 					</tr>
 				</thead>
