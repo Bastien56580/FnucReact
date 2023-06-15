@@ -37,13 +37,13 @@ export default function SignUp() {
   }
 
   return (
-    <div>
-      <div>
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type="firstname" placeholder="Prenom" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
-        <input type="lastname" placeholder="Nom de Famille" value={lastname} onChange={(e) => setLastName(e.target.value)} />
-        <input type="submit" value="Créer un compte" onClick={handleSubmit} />
+    <div className="d-flex mt-5 justify-content-center" style={{ height: "100vh" }}>
+      <div className="text-center">
+        <input type="firstname" className="form-control mb-3" placeholder="Prenom" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
+        <input type="lastname" className="form-control mb-3" placeholder="Nom de Famille" value={lastname} onChange={(e) => setLastName(e.target.value)} />
+        <input type="email" className="form-control mb-3" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input type="password" className="form-control mb-3" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <button type="submit" className="btn btn-success" onClick={handleSubmit}>Créer un compte</button>
       </div>
       <Toaster /> {/* Toast container for displaying messages */}
     </div>
