@@ -73,8 +73,8 @@ export default function BookList() {
 							<tr key={element.id}>
 								<td>{element.title}</td>
 								<td>{element.author}</td>
-								<td>{element.summary}</td>
-								<td>{element.coverPage}</td>
+								<td>{element.resume}</td>
+								<td>{element.cover_url}</td>
 								<td>{element.price}</td>
 								<td>{element.stock}</td>
 								<td>

@@ -25,7 +25,7 @@ export default function UpdateBookFormAdmin() {
 				setTitle(response.data.title);
 				setAuthor(response.data.author);
 				setResume(response.data.resume);
-				setCoverUrl(response.data.coverUrl);
+				setCoverUrl(response.data.cover_url);
 				setPrice(response.data.price);
 				setStock(response.data.stock);
 			})
