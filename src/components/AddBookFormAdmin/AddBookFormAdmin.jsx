@@ -10,6 +10,11 @@ export default function AddBookFormAdmin() {
 	const [price, setPrice] = useState(0);
 	const [stock, setStock] = useState(0);
 
+	const handleCancel = (e) => {
+		e.preventDefault();
+		window.location.href = '/admin/books';
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		// Create user data object
@@ -42,45 +47,75 @@ export default function AddBookFormAdmin() {
 	};
 
 	return (
-		<div>
-			<input
-				type="text"
-				placeholder="Titre"
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Auteur"
-				value={author}
-				onChange={(e) => setAuthor(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Résumé"
-				value={resume}
-				onChange={(e) => setResume(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Url de la couverture"
-				value={coverUrl}
-				onChange={(e) => setCoverUrl(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Prix"
-				value={price}
-				onChange={(e) => setPrice(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Stock"
-				value={stock}
-				onChange={(e) => setStock(e.target.value)}
-			/>
-			<input type="submit" value="Valider" onClick={handleSubmit} />
-			<Toaster /> {/* Toast container for displaying messages */}
+		<div className="container">
+			<div className="row">
+				<div className="col-md-6">
+					<h2 className="pt-5 pb-2">Ajouter un livre</h2>
+					<form>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Titre"
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Auteur"
+								value={author}
+								onChange={(e) => setAuthor(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Résumé"
+								value={resume}
+								onChange={(e) => setResume(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Url de la couverture"
+								value={coverUrl}
+								onChange={(e) => setCoverUrl(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Prix"
+								value={price}
+								onChange={(e) => setPrice(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Stock"
+								value={stock}
+								onChange={(e) => setStock(e.target.value)}
+							/>
+						</div>
+						<button className="btn btn-primary" onClick={handleSubmit}>
+							Valider
+						</button>
+						<button className="btn btn-secondary" onClick={handleCancel}>
+							Retour
+						</button>
+					</form>
+					<Toaster /> {/* Toast container for displaying messages */}
+				</div>
+			</div>
 		</div>
 	);
 }

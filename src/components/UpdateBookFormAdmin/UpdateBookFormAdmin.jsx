@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import toast from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 export default function UpdateBookFormAdmin() {
@@ -76,46 +76,76 @@ export default function UpdateBookFormAdmin() {
 	};
 
 	return (
-		<div>
-			<input
-				type="text"
-				placeholder="Titre"
-				value={title}
-				onChange={(e) => setTitle(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Auteur"
-				value={author}
-				onChange={(e) => setAuthor(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Résumé"
-				value={resume}
-				onChange={(e) => setResume(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Url de la couverture"
-				value={coverUrl}
-				onChange={(e) => setCoverUrl(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Prix"
-				value={price}
-				onChange={(e) => setPrice(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Stock"
-				value={stock}
-				onChange={(e) => setStock(e.target.value)}
-			/>
-
-			<input type="submit" value="Valider" onClick={handleSubmit} />
-			<input type="submit" value="Annuler" onClick={handleCancel} />
+		<div className="container">
+			<div className="row">
+				<div className="col-md-6">
+					<h2 className="pt-5 pb-2">Editer un livre</h2>
+					<form>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Titre"
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Auteur"
+								value={author}
+								onChange={(e) => setAuthor(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Résumé"
+								value={resume}
+								onChange={(e) => setResume(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Url de la couverture"
+								value={coverUrl}
+								onChange={(e) => setCoverUrl(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Prix"
+								value={price}
+								onChange={(e) => setPrice(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Stock"
+								value={stock}
+								onChange={(e) => setStock(e.target.value)}
+							/>
+						</div>
+						<button className="btn btn-primary mr-2" onClick={handleSubmit}>
+							Valider
+						</button>
+						<button className="btn btn-secondary" onClick={handleCancel}>
+							Retour
+						</button>
+					</form>
+				</div>
+			</div>
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
+
 	);
 }
