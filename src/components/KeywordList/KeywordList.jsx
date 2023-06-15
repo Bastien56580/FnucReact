@@ -1,6 +1,4 @@
-import React, { useState } from 'react'
-
-
+import { useState } from 'react'
 
 export default function KeywordList({data}) {
   const list = data.map(d => <KeywordItem key={data.indexOf(d)}word={d}/>)

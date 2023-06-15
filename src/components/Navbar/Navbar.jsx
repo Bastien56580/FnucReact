@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Component for the navigation bar
@@ -7,8 +7,8 @@ export default function Navbar() {
   const activePage = window.location.pathname;
 
   // State variables
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State variable for tracking user login status
-  const [isAdmin, setIsAdmin] = useState(false); // State variable for tracking user admin status
+  const [isLoggedIn] = useState(false); // State variable for tracking user login status
+  const [isAdmin] = useState(false); // State variable for tracking user admin status
 
   useEffect(() => {
     // TODO: Perform necessary logic to check if the user is logged in or not
@@ -89,7 +89,7 @@ export default function Navbar() {
                 className={`nav-item ${activePage === '/signup' ? 'text-decoration-underline' : ''}`}
               >
                 <a className="nav-link text-dark" href="/signup">
-                  S'enregistrer
+                  {"S'enregistrer"}
                 </a>
               </li>
             )}
