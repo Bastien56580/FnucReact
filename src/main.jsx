@@ -54,11 +54,11 @@ const router = createBrowserRouter([
 		element: <AdminCreateClient />,
 	},
 	{
-		path: '/admin/books/edit',
+		path: '/admin/books/edit/:id',
 		element: <AdminEditBook />,
 	},
 	{
-		path: '/admin/clients/edit',
+		path: '/admin/clients/edit/:id',
 		element: <AdminEditClient />,
 	},
 	{

@@ -40,6 +40,10 @@ export default function BookList() {
 			});
 	};
 
+	const handleEdit = (id) => {
+		window.location.href = `/admin/books/edit/${id}`;
+	};
+
 	return (
 		<div>
 			<Toaster /> {/* Toast container for displaying messages */}
@@ -74,7 +78,11 @@ export default function BookList() {
 								<td>{element.price}</td>
 								<td>{element.stock}</td>
 								<td>
-									<EditIcon />
+									<EditIcon
+										onClick={() => {
+											handleEdit(element.id);
+										}}
+									/>
 								</td>
 								<td>
 									<DeleteIcon

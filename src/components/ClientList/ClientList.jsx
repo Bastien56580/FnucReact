@@ -25,7 +25,7 @@ export default function ClientList() {
 
 	const handleDelete = (id) => {
 		axios
-			.delete(`https://apimysql-1-r1261081.deta.app/books/${id}`, {
+			.delete(`https://apimysql-1-r1261081.deta.app/customers/${id}`, {
 				withCredentials: true,
 			})
 			.then(() => {
@@ -38,6 +38,10 @@ export default function ClientList() {
 			.catch((error) => {
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
+	};
+
+	const handleEdit = (id) => {
+		window.location.href = `/admin/clients/edit/${id}`;
 	};
 
 	return (
@@ -74,7 +78,11 @@ export default function ClientList() {
 									{element.email}
 								</td>
 								<td key={'update-' + index}>
-									<EditIcon />
+									<EditIcon
+										onClick={() => {
+											handleEdit(element.id);
+										}}
+									/>
 								</td>
 								<td key={'delete-' + index}>
 									<DeleteIcon
