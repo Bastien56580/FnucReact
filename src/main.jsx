@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import React, { lazy, Suspense } from 'react';
+import  { lazy, Suspense } from 'react';
 
 const ErrorPage = lazy(() => import('./view/PageErreur/PageErreur'));
 const Login = lazy(() => import('./view/Login/Login'));
