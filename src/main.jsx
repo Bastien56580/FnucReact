@@ -16,39 +16,39 @@ import Home from './view/Home/Home';
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: '/FnucReact/',
 		element: <Home />,
 	},
 	{
-		path: '/signin',
+		path: '/FnucReact/signin',
 		element: <Login />,
 	},
 	{
-		path: '/signup',
+		path: '/FnucReact/signup',
 		element: <Register />,
 	},
 	{
-		path: '/profile',
+		path: '/FnucReact/profile',
 		element: <Profile />,
 	},
 	{
-		path: '/admin',
+		path: '/FnucReact/admin',
 		element: <Admin />,
 	},
 	{
-		path: '/admin-books',
+		path: '/FnucReact/admin-books',
 		element: <AdminBooks />,
 	},
 	{
-		path: '/admin-clients',
+		path: '/FnucReact/admin-clients',
 		element: <AdminClients />,
 	},
 	{
-		path: '/detail-order/:id',
+		path: '/FnucReact/detail-order/:id',
 		element: <DetailOrder />,
 	},
 	{
-		path: '*',
+		path: '/FnucReact/*',
 		element: <ErrorPage />,
 	},
 ]);
