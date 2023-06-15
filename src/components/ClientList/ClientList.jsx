@@ -4,6 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import '../../css/adminTab.css';
 
 export default function ClientList() {
 	const [clients, setClients] = useState([]);
@@ -45,56 +46,52 @@ export default function ClientList() {
 	};
 
 	return (
-		<>
-			<Toaster /> {/* Toast container for displaying messages */}
-			<table>
-				<thead>
-					<tr>
-						<th>Prénom</th>
-						<th>Nom</th>
-						<th>Mail</th>
-						<th></th>
-						<th>
-							<AddCircleIcon
-								onClick={() =>
-									(window.location.href =
-										'/admin/clients/create')
-								}
-							/>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{clients.map((element, index) => {
-						return (
-							<tr key={element + '-' + index}>
-								<td key={element.firstname + '-' + index}>
-									{element.firstname}
-								</td>
-								<td key={element.lastname + '-' + index}>
-									{element.lastname}
-								</td>
-								<td key={element.email + '-' + index}>
-									{element.email}
-								</td>
-								<td key={'update-' + index}>
-									<EditIcon
-										onClick={() => {
-											handleEdit(element.id);
-										}}
+		<div className="container">
+			<div className="row justify-content-center">
+				<div className="col-md-8">
+					<h2 className="text-center pt-5 pb-2">Listes des clients</h2>
+					<table className="table table-striped">
+						<thead>
+							<tr>
+								<th>Prénom</th>
+								<th>Nom</th>
+								<th>Mail</th>
+								<th></th>
+								<th>
+									<AddCircleIcon
+										onClick={() => (window.location.href = '/admin/clients/create')}
+										className="add-icon"
 									/>
-								</td>
-								<td key={'delete-' + index}>
-									<DeleteIcon
-										onClick={() => handleDelete(element.id)}
-										style={{ cursor: 'pointer' }}
-									/>
-								</td>
+								</th>
 							</tr>
-						);
-					})}
-				</tbody>
-			</table>
-		</>
+						</thead>
+						<tbody>
+							{clients.map((element, index) => {
+								return (
+									<tr key={element + '-' + index}>
+										<td key={element.firstname + '-' + index}>{element.firstname}</td>
+										<td key={element.lastname + '-' + index}>{element.lastname}</td>
+										<td key={element.email + '-' + index}>{element.email}</td>
+										<td key={'update-' + index}>
+											<EditIcon
+												onClick={() => { handleEdit(element.id); }}
+												className="edit-icon"
+											/>
+										</td>
+										<td key={'delete-' + index}>
+											<DeleteIcon
+												onClick={() => handleDelete(element.id)}
+												className="delete-icon"
+											/>
+										</td>
+									</tr>
+								);
+							})}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<Toaster /> {/* Toast container for displaying messages */}
+		</div>
 	);
 }

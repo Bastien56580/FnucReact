@@ -4,6 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import toast, { Toaster } from 'react-hot-toast';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../../css/adminTab.css';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);
@@ -45,56 +46,70 @@ export default function BookList() {
 	};
 
 	return (
-		<div>
-			<Toaster /> {/* Toast container for displaying messages */}
-			<table>
-				<thead>
-					<tr>
-						<th>Titre</th>
-						<th>Auteur</th>
-						<th>Résumé</th>
-						<th>Image</th>
-						<th>Prix</th>
-						<th>Stock</th>
-						<th></th>
-						<th>
-							<AddCircleIcon
-								onClick={() =>
-									(window.location.href =
-										'/admin/books/create')
-								}
-							/>
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{books.map((element, index) => {
-						return (
-							<tr key={element.id}>
-								<td>{element.title}</td>
-								<td>{element.author}</td>
-								<td>{element.resume}</td>
-								<td>{element.cover_url}</td>
-								<td>{element.price}</td>
-								<td>{element.stock}</td>
-								<td>
-									<EditIcon
-										onClick={() => {
-											handleEdit(element.id);
-										}}
+		<div className="container">
+			<div className="row justify-content-center">
+				<div className="col-md-8">
+					<h2 className="text-center pt-5 pb-3">Liste des livres</h2>
+					<table className="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col"><b>Titre</b></th>
+								<th scope="col"><b>Auteur</b></th>
+								<th scope="col"><b>Résumé</b></th>
+								<th scope="col"><b>Image</b></th>
+								<th scope="col"><b>Prix</b></th>
+								<th scope="col"><b>Stock</b></th>
+								<th></th>
+								<th>
+									<AddCircleIcon
+										onClick={() =>
+											(window.location.href = '/admin/books/create')
+										}
+										className="add-icon"
 									/>
-								</td>
-								<td>
-									<DeleteIcon
-										onClick={() => handleDelete(element.id)}
-										style={{ cursor: 'pointer' }} // Add CSS to change cursor on hover
-									/>
-								</td>
+								</th>
 							</tr>
-						);
-					})}
-				</tbody>
-			</table>
+						</thead>
+						<tbody>
+							{books.map((element, index) => {
+								return (
+									<tr key={element.id}>
+										<td>{element.title}</td>
+										<td>{element.author}</td>
+										<td>{element.resume}</td>
+										<td>
+											<img
+												src={element.cover_url}
+												alt="Book Cover"
+												className="img-thumbnail"
+												style={{ maxWidth: '160px', maxHeight: '75px' }}
+											/>
+										</td>
+
+										<td>{element.price}</td>
+										<td>{element.stock}</td>
+										<td>
+											<EditIcon
+												onClick={() => {
+													handleEdit(element.id);
+												}}
+												className="edit-icon"
+											/>
+										</td>
+										<td>
+											<DeleteIcon
+												onClick={() => handleDelete(element.id)}
+												className="delete-icon"
+											/>
+										</td>
+									</tr>
+								);
+							})}
+						</tbody>
+					</table>
+					<Toaster /> {/* Toast container for displaying messages */}
+				</div>
+			</div>
 		</div>
 	);
 }

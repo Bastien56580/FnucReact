@@ -70,34 +70,58 @@ export default function UpdateClientFormAdmin() {
 	};
 
 	return (
-		<div>
-			<input
-				type="text"
-				placeholder="Prénom"
-				value={firstName}
-				onChange={(e) => setFirstName(e.target.value)}
-			/>
-			<input
-				type="text"
-				placeholder="Nom"
-				value={lastName}
-				onChange={(e) => setLastName(e.target.value)}
-			/>
-			<input
-				type="email"
-				placeholder="mail"
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
-			/>
-			<input
-				type="password"
-				placeholder="Mot de passe"
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
-			/>
-
-			<input type="submit" value="Valider" onClick={handleSubmit} />
-			<input type="submit" value="Annuler" onClick={handleCancel} />
+		<div className="container">
+			<div className="row">
+				<div className="col-md-6">
+					<h2 className="pt-5 pb-2">Modifier un client</h2>
+					<form>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Prénom"
+								value={firstName}
+								onChange={(e) => setFirstName(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Nom"
+								value={lastName}
+								onChange={(e) => setLastName(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="email"
+								className="form-control"
+								placeholder="Email"
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="password"
+								className="form-control"
+								placeholder="Mot de passe"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+						</div>
+						<button className="btn btn-primary" onClick={handleSubmit}>
+							Valider
+						</button>
+						<button className="btn btn-secondary" onClick={handleCancel}>
+							Retour
+						</button>
+					</form>
+					<Toaster /> {/* Toast container for displaying messages */}
+				</div>
+			</div>
 		</div>
+
 	);
 }
