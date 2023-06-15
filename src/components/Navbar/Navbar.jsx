@@ -41,18 +41,18 @@ export default function Navbar() {
         <div className="collapse navbar-collapse" id="navbarToggler">
           <ul className="navbar-nav ms-5 me-auto mb-2 mb-lg-0">
             <li
-              className={`nav-item ${activePage === '/' ? 'text-decoration-underline' : ''}`}
+              className={`nav-item ${activePage === '/FnucReact' ? 'text-decoration-underline' : ''}`}
             >
-              <a className="nav-link text-dark" href="/">
+              <a className="nav-link text-dark" href="/FnucReact">
                 Acceuil
               </a>
             </li>
             {/* Display the 'Profil' link if the user is logged in */}
             {isLoggedIn && (
               <li
-                className={`nav-item ${activePage === '/profil' ? 'text-decoration-underline' : ''}`}
+                className={`nav-item ${activePage === '/FnucReact/profil' ? 'text-decoration-underline' : ''}`}
               >
-                <a className="nav-link text-dark" href="/profil">
+                <a className="nav-link text-dark" href="/FnucReact/profil">
                   Profil
                 </a>
               </li>
@@ -60,35 +60,35 @@ export default function Navbar() {
             {/* Display the 'Administration' link if the user is an admin */}
             {isAdmin && (
               <li
-                className={`nav-item ${activePage === '/administration' ? 'text-decoration-underline' : ''}`}
+                className={`nav-item ${activePage === '/FnucReact/administration' ? 'text-decoration-underline' : ''}`}
               >
-                <a className="nav-link text-dark" href="/administration">
+                <a className="nav-link text-dark" href="/FnucReact/administration">
                   Administration
                 </a>
               </li>
             )}
             <li
-              className={`nav-item ${activePage === '/search' ? 'text-decoration-underline' : ''}`}
+              className={`nav-item ${activePage === '/FnucReact/search' ? 'text-decoration-underline' : ''}`}
             >
-              <a className="nav-link text-dark" href="/search">
+              <a className="nav-link text-dark" href="/FnucReact/search">
                 Recherche
               </a>
             </li>
             {/* Display the 'Connexion' and 'S'enregistrer' links if the user is not logged in */}
             {!isLoggedIn && (
               <li
-                className={`nav-item ${activePage === '/signin' ? 'text-decoration-underline' : ''}`}
+                className={`nav-item ${activePage === '/FnucReact/signin' ? 'text-decoration-underline' : ''}`}
               >
-                <a className="nav-link text-dark" href="/signin">
+                <a className="nav-link text-dark" href="/FnucReact/signin">
                   Connexion
                 </a>
               </li>
             )}
             {!isLoggedIn && (
               <li
-                className={`nav-item ${activePage === '/signup' ? 'text-decoration-underline' : ''}`}
+                className={`nav-item ${activePage === '/FnucReact/signup' ? 'text-decoration-underline' : ''}`}
               >
-                <a className="nav-link text-dark" href="/signup">
+                <a className="nav-link text-dark" href="/FnucReact/signup">
                   {"S'enregistrer"}
                 </a>
               </li>
@@ -96,7 +96,7 @@ export default function Navbar() {
             {/* Display the 'Déconnexion' button if the user is logged in */}
             {isLoggedIn && (
               <li className="nav-item">
-                <a className="btn btn-danger" href="/disconnect">
+                <a className="btn btn-danger" href="/FnucReact/disconnect">
                   Déconnexion
                 </a>
               </li>
