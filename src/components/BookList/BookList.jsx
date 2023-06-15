@@ -2,7 +2,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import toast, { Toaster } from 'react-hot-toast';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function BookList() {
@@ -68,7 +68,7 @@ export default function BookList() {
 					</tr>
 				</thead>
 				<tbody>
-					{books.map((element, index) => {
+					{books.map((element) => {
 						return (
 							<tr key={element.id}>
 								<td>{element.title}</td>
