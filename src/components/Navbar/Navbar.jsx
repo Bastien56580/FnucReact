@@ -20,7 +20,7 @@ export default function Navbar() {
       <nav className="navbar navbar-expand-lg navbar-light " style={{ background: '#e3f2fd' }}>
         <a className="navbar-brand" href="/">
           <img
-            src="/fnuc.png"
+            src="/FnucReact/fnuc.png"
             className="navbar-link m-5 mb-0 mt-0"
             style={{ width: '15%', height: '15%' }}
             alt="Fnuc"
