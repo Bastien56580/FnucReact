@@ -24,6 +24,7 @@ const AdminEditClient = lazy(() =>
 const Home = lazy(() => import('./view/Home/Home'));
 const DetailOrder = lazy(() => import('./view/DetailOrder/DetailOrder'));
 import Loading from './view/Loading/Loading';
+import SearchView from './view/SearchView/SearchView';
 
 const LazyRoute = ({ component: Component, ...rest }) => (
 	<Suspense fallback={<Loading />}>
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
 		path: '*',
 		element: <LazyRoute component={ErrorPage} />,
 	},
+	{
+		path:'/search',
+		element:<SearchView/>
+	}
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

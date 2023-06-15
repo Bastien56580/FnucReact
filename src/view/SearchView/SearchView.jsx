@@ -1,12 +1,11 @@
 import Navbar from '../../components/Navbar/Navbar';
-
-export default function Search() {
+import Search from'../../components/Search/Search';
+export default function SearchView() {
 	return (
-        
 		<div className="Search">
 			<Navbar/>
-            <h1>Accueil</h1>
+      		<Search/>
 		</div>
-		//test test test
+		
 	);
 }
