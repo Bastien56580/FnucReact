@@ -25,7 +25,7 @@ export default function Search() {
       {console.log(keywords)}
       <div className="container mt-5">
         <h2>Liste des mots-clés</h2>
-        <table className="table table-striped">
+        <table className="table table-striped table-bordered border-dark table-responsive">
           <thead>
             <tr>
               <th scope="col"></th>

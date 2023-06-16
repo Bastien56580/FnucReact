@@ -17,7 +17,10 @@
 .couleur-5{
     background-color: #ffe4d7;
 }   
-
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #ffcec0; 
+ }
 body{
     background-color: #ffe4d7;
 }

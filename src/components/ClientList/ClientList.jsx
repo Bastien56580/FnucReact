@@ -50,7 +50,7 @@ export default function ClientList() {
 			<div className="row justify-content-center">
 				<div className="col-md-8">
 					<h2 className="text-center pt-5 pb-2">Listes des clients</h2>
-					<table className="table table-striped">
+					<table className="table table-striped table-bordered border-dark table-responsive">
 						<thead>
 							<tr>
 								<th>Prénom</th>
