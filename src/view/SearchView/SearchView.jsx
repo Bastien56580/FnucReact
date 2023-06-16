@@ -1,11 +1,11 @@
 import Navbar from '../../components/Navbar/Navbar';
-import Search from'../../components/Search/Search';
+import Search from '../../components/Search/Search';
 export default function SearchView() {
 	return (
 		<div className="Search">
-			<Navbar/>
-      		<Search/>
+			<Navbar />
+			<Search />
 		</div>
-		
+
 	);
 }
