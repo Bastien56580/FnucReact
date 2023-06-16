@@ -87,7 +87,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path:'/search',
-		element:<SearchView/>
+		element: <LazyRoute component={SearchView}/>
 	}
 ]);
 

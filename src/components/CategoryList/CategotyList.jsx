@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import "../../css/style.css"
 
 // Mock list since you don't have a backend to test with yet
 import mockList from './mock/mockList.json';
@@ -28,10 +29,9 @@ export default function ProfileList() {
     return (
         <div className="container mt-5">
             <h2>Topic List</h2>
-            <table className="table table-striped">
+            <table className="table table-striped table-bordered border-dark table-responsive">
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Topic URL</th>
                     </tr>
@@ -39,14 +39,14 @@ export default function ProfileList() {
                 <tbody>
                     {myData.map((item) => (
                         <tr key={item.id}>
-                            <td>
-                                <strong>{item.id}</strong>
-                            </td>
                             <td>{item.label}</td>
                             <td>
-                                <a href={item.topic_url} target="_blank" rel="noopener noreferrer">
-                                    {item.topic_url}
-                                </a>
+                                <img src={item.topic_url}
+									alt="Topic Cover"
+									className="img-thumbnail"
+									style={{ maxWidth: '160px', maxHeight: '75px' }}>
+
+                                </img>
                             </td>
                         </tr>
                     ))}
