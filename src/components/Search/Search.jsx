@@ -7,7 +7,8 @@ import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 export default function Search() {
   const [keywords, setKeywords] = useState([]);
-  let [selectedKeywords, setSelectedKeywords] = useState([]);
+  const [selectedKeywords, setSelectedKeywords] = useState([]);
+  const [searchValue,setSearchValue] = useState("");
 
   useEffect(() => {
     axios
@@ -38,17 +39,18 @@ export default function Search() {
   }
 
   const handleSubmit = () => { 
-    
+    console.log(searchValue);
   }
 
   return (
     <>
       <div className="container mt-5">
         <h2>Liste des mots-clés</h2>
+        <input type="search" placeholder='Rechercher...' onChange={(e) => setSearchValue(e.target.value)}/>
         <table className="table table-striped">
           <tbody>
-            {keywords.map((item) => (
-              <tr key={item}>
+            {keywords.map((item,index) => (
+              <tr key={index+item}>
                 <td><KeywordItem word={item.label} updateSelectedKeywords={handleSelectedKeywords} /></td>
                 <td>
                   {item.label}
@@ -63,7 +65,7 @@ export default function Search() {
           <option value="with">A la fois</option>
           <option value="without">Sauf</option>
         </select>
-        {<input type="submit" value="Rechercher" onClick={handleSubmit} />}
+        <input type="submit" value="Rechercher" onClick={handleSubmit} />
       </div>
 
     </>
