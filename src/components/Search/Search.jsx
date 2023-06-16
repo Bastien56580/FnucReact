@@ -4,6 +4,7 @@ import toast  from 'react-hot-toast';
 
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
+import SearchIcon from '@mui/icons-material/Search';
 
 export default function Search() {
   const [keywords, setKeywords] = useState([]);
@@ -47,6 +48,13 @@ export default function Search() {
       <div className="container mt-5">
         <h2>Liste des mots-clés</h2>
         <input type="search" placeholder='Rechercher...' onChange={(e) => setSearchValue(e.target.value)}/>
+        <button onClick={handleSubmit}><SearchIcon/></button>
+        <select name="option" id="search-option">
+          <option value="">--Option de recherche--</option>
+          <option value="in">Dans la liste</option>
+          <option value="with">A la fois</option>
+          <option value="without">Sauf</option>
+        </select>
         <table className="table table-striped">
           <tbody>
             {keywords.map((item,index) => (
@@ -59,13 +67,6 @@ export default function Search() {
             ))}
           </tbody>
         </table>
-        <select name="option" id="search-option">
-          <option value="">--Option de recherche--</option>
-          <option value="in">Dans la liste</option>
-          <option value="with">A la fois</option>
-          <option value="without">Sauf</option>
-        </select>
-        <input type="submit" value="Rechercher" onClick={handleSubmit} />
       </div>
 
     </>
