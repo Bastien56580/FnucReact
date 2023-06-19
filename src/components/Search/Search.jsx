@@ -3,9 +3,9 @@ import axios from 'axios';
 import toast from 'react-hot-toast';
 export default function Search() {
   const [keywords, setKeywords] = useState([]);
-  const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
   const [selectedKeywords, setSelectedKeywords] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+  const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
   useEffect(() => {
     axios
