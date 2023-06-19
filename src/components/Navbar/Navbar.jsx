@@ -102,7 +102,7 @@ export default function Navbar() {
 									className="nav-link text-white fw-bold"
 									href="/admin/parameter"
 								>
-									Paramètre
+									Paramètres
 								</a>
 							</li>
 						)}
