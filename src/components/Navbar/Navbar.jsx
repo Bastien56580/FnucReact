@@ -54,7 +54,7 @@ export default function Navbar() {
 								: ''
 								}`}
 						>
-							<a className="nav-link text-white fw-bold" href="/">
+							<a className="nav-link text-white fw-bold lien navbar-link-custom" href="/">
 								Accueil
 							</a>
 						</li>
@@ -67,7 +67,7 @@ export default function Navbar() {
 									}`}
 							>
 								<a
-									className="nav-link text-white fw-bold"
+									className="nav-link text-white lien navbar-link-custom fw-bold"
 									href="/profile"
 								>
 									Profil
@@ -83,7 +83,7 @@ export default function Navbar() {
 									}`}
 							>
 								<a
-									className="nav-link text-white fw-bold"
+									className="nav-link text-white navbar-link-custom lien fw-bold"
 									href="/admin"
 								>
 									Administration
@@ -99,7 +99,7 @@ export default function Navbar() {
 									}`}
 							>
 								<a
-									className="nav-link text-white fw-bold"
+									className="nav-link text-white navbar-link-custom lien fw-bold"
 									href="/admin/parameter"
 								>
 									Paramètres
@@ -114,7 +114,7 @@ export default function Navbar() {
 								}`}
 						>
 							<a
-								className="nav-link text-white fw-bold"
+								className="nav-link text-white navbar-link-custom lien fw-bold"
 								href="/search"
 							>
 								Recherche
@@ -132,7 +132,7 @@ export default function Navbar() {
 									}`}
 							>
 								<a
-									className="nav-link text-white fw-bold"
+									className="nav-link text-white navbar-link-custom lien fw-bold"
 									href="/signin"
 								>
 									Connexion
@@ -147,7 +147,7 @@ export default function Navbar() {
 									}`}
 							>
 								<a
-									className="nav-link text-white fw-bold"
+									className="nav-link text-white navbar-link-custom lien fw-bold"
 									href="/signup"
 								>
 									{"S'enregistrer"}
