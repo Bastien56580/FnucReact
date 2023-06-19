@@ -5,11 +5,11 @@
     }
 
     10% {
-        transform: translate(100px, 200px) rotate(120deg);
+        transform: translate(100px, 200px) rotate(360deg);
     }
 
     20% {
-        transform: translate(500px, -700px) rotate(240deg);
+        transform: translate(500px, -700px) rotate(0deg);
     }
 
     40% {
@@ -18,25 +18,24 @@
     }
 
     50% {
-        transform: translate(100px, -350px) rotate(480deg);
-
+        transform: translate(100px, -350px) rotate(0deg);
     }
 
     60% {
-        transform: translate(555px, -100px) rotate(600deg);
+        transform: translate(555px, -100px) rotate(360deg);
         background: linear-gradient(to right, yellow, green, blue, indigo, violet, red, orange);
     }
 
     70% {
-        transform: translate(-100px, -666px) rotate(720deg);
+        transform: translate(-100px, -666px) rotate(0deg);
     }
 
     80% {
-        transform: translate(1200px, 50px) rotate(840deg);
+        transform: translate(1200px, 50px) rotate(360deg);
     }
 
     100% {
-        transform: translate(-2000px, -2000px) rotate(960deg);
+        transform: translate(1200px, -2000px) rotate(0deg);
         background: linear-gradient(to right, green, blue, indigo, violet, red, orange, yellow);
     }
 }
@@ -52,6 +51,6 @@
 
 .button-move-away {
     animation-name: moveAway;
-    animation-duration: 1.2s;
+    animation-duration: 0.8s;
     animation-fill-mode: forwards;
 }
