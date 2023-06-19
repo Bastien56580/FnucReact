@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css'
 import jwt_decode from "jwt-decode";
 
 export default function Order({ book }) {
@@ -124,7 +123,6 @@ export default function Order({ book }) {
 				<div>
 					<input
 						type="submit"
-						className="btn btn-custom-primary"
 						value="Valider"
 						onClick={handleSubmit}
 					/>

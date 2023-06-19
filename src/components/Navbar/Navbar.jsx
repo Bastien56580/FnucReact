@@ -44,29 +44,30 @@ export default function Navbar() {
 				<a href="/" className="navbar__menu--link">
 					Accueil
 				</a>
-				<a href="/profile" className="navbar__menu--link">
+				{isLoggedIn && (<a href="/profile" className="navbar__menu--link">
 					Profil
-				</a>
-				<a href="/admin" className="navbar__menu--link">
+				</a>)}
+				{isAdmin && (<a href="/admin" className="navbar__menu--link">
 					Administration
-				</a>
-				<a href="/admin/parameter" className="navbar__menu--link">
+				</a>)}
+				{isAdmin && (<a href="/admin/parameter" className="navbar__menu--link">
 					Paramètres
-				</a>
+				</a>)}
 				<a href="/search" className="navbar__menu--link">
 					Recherche
 				</a>
 			</div>
 			<div className="navbar__login">
-				<a href="/signin" className="navbar__login--link">
+			{!isLoggedIn && (<a href="/signin" className="navbar__login--link">
 					Connexion
-				</a>
-				<a href="/signup" className="navbar__login--link">
+				</a>)}
+				{!isLoggedIn && (<a href="/signup" className="navbar__login--link">
 					Inscription
-				</a>
+				</a>)}
+				{isLoggedIn && (
 				<a href="/disconnect" className="navbar__login--link">
 					Déconnexion
-				</a>
+				</a>)}
 			</div>
 		</nav>
 		// <nav className="navbar navbar-expand-lg navbar-light couleur-4">
