@@ -10,23 +10,24 @@ import Navbar from '../../components/Navbar/Navbar';
 import mockB from "./mock/mockBook.json";
 
 export default function DetailOrder() {
+    const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
     const [myData, setMyData] = useState(mockB);
     const { id } = useParams(); // Récupération de la valeur 'id' depuis l'URL
     useEffect(() => {
         // Axios request or fetch the book from the id info and setMyData
         // In the meantime, we are using the mock
         axios
-			.get('https://apimysql-1-r1261081.deta.app/books/'+id, {
-				withCredentials: true,
-			})
-			.then((response) => {
-				// Handle successful response
-				setMyData(response.data);
-			})
-			.catch((error) => {
-				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
-			});
+            .get(baseUrl + '/books/' + id, {
+                withCredentials: true,
+            })
+            .then((response) => {
+                // Handle successful response
+                setMyData(response.data);
+            })
+            .catch((error) => {
+                // Handle error response
+                toast.error(error.response.data.detail); // Display error toast message with details
+            });
 
     }, [id]);
 
@@ -43,7 +44,7 @@ export default function DetailOrder() {
                     </div>
                 </div>
             </div>
-            <Toaster/>
+            <Toaster />
         </div>
 
     );

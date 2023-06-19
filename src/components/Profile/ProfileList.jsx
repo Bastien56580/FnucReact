@@ -6,24 +6,25 @@ import toast, { Toaster } from 'react-hot-toast';
 import mockList from './mock/mockList.json';
 
 export default function ProfileList() {
-    const [myData,setMyData] = useState(mockList);
+    const [myData, setMyData] = useState(mockList);
+    const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
     useEffect(() => {
         // Axios request or fetch profile info
         // In the meantime, we are using the mock
-        
+
         axios
-			.get('https://apimysql-1-r1261081.deta.app/customers/12', { //TODO : Change 12 to customer id
-				withCredentials: true,
-			})
-			.then((response) => {
-				// Handle successful response
-				setMyData(response.data);
-			})
-			.catch((error) => {
-				// Handle error response
+            .get(baseUrl + '/customers/12', { //TODO : Change 12 to customer id
+                withCredentials: true,
+            })
+            .then((response) => {
+                // Handle successful response
+                setMyData(response.data);
+            })
+            .catch((error) => {
+                // Handle error response
                 console.log(error);
-				toast.error(error.response.data.detail); // Display error toast message with details
-			});
+                toast.error(error.response.data.detail); // Display error toast message with details
+            });
     }, []);
 
     return (
@@ -54,7 +55,7 @@ export default function ProfileList() {
                     </table>
                 </div>
             </div>
-            <Toaster/>
+            <Toaster />
         </div>
     );
 }

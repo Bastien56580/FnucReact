@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 
 const ErrorPage = lazy(() => import('./view/PageErreur/PageErreur'));
 const Login = lazy(() => import('./view/Login/Login'));
@@ -25,6 +25,11 @@ const Home = lazy(() => import('./view/Home/Home'));
 const DetailOrder = lazy(() => import('./view/DetailOrder/DetailOrder'));
 import Loading from './view/Loading/Loading';
 import SearchView from './view/SearchView/SearchView';
+import Parameter from './view/Parameter/Parameter'
+
+import { setReactAppBackURL } from "./script/env";
+
+setReactAppBackURL();
 
 const LazyRoute = ({ component: Component, ...rest }) => (
 	<Suspense fallback={<Loading />}>
@@ -78,6 +83,10 @@ const router = createBrowserRouter([
 		element: <LazyRoute component={AdminEditClient} />,
 	},
 	{
+		path: '/admin/parameter/',
+		element: <LazyRoute component={Parameter} />,
+	},
+	{
 		path: '/detail-order/:id',
 		element: <LazyRoute component={DetailOrder} />,
 	},
@@ -86,8 +95,8 @@ const router = createBrowserRouter([
 		element: <LazyRoute component={ErrorPage} />,
 	},
 	{
-		path:'/search',
-		element: <LazyRoute component={SearchView}/>
+		path: '/search',
+		element: <LazyRoute component={SearchView} />
 	}
 ]);
 

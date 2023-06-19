@@ -8,6 +8,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastName] = useState("");
+  const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ export default function SignUp() {
     };
 
     // Send a POST request to create a user
-    axios.post('https://apimysql-1-r1261081.deta.app/customers/', userData, { withCredentials: true })
+    axios.post(baseUrl + '/customers/', userData, { withCredentials: true })
       .then(response => {
         // Handle successful response
         if (response.data.email) {
