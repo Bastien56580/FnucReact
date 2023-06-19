@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SwitchEnv } from './script/SwitchEnv';
+import '../../css/style.css';
 
 const SwitchBack = () => {
     const [currentValue, setCurrentValue] = useState(
@@ -13,10 +14,14 @@ const SwitchBack = () => {
 
     return (
         <div className="container mt-4">
-            <h3>Connecté à : {currentValue}</h3>
-            <button className="btn btn-primary mt-3" onClick={handleSwitch}>
-                Changer de back
-            </button>
+            <div className="card">
+                <div className="card-body">
+                    <h5 className="card-title">Connecté à : {currentValue == "https://apimysql-1-r1261081.deta.app" ? 'mySQL' : 'MongoDB'}</h5>
+                    <button className="btn btn-custom-primary mt-3" onClick={handleSwitch}>
+                        Changer de back
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
