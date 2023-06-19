@@ -13,8 +13,6 @@ export default function UpdateClientFormAdmin() {
 	const { id } = useParams();
 
 	useEffect(() => {
-		// Axios request or fetch the book from the id info and setMyData
-		// In the meantime, we are using the mock
 		axios
 			.get(baseUrl + '/customers/' + id, {
 				withCredentials: true,
