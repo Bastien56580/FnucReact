@@ -10,7 +10,7 @@ export default function Parameter() {
             <div className="container">
                 <div className='row'>
                     <div className='col-md-6 mt-5 mb-3'>
-                        <h1>Paramètre :</h1>
+                        <h1>Paramètres :</h1>
                     </div>
                 </div>
                 <div className="row">

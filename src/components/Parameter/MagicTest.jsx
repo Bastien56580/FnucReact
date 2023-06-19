@@ -33,16 +33,19 @@ const MagicTest = () => {
     }, []);
 
     return (
-        <div className="card">
-            <div className="card-body">
-                {renderButton && (
-                    <button
-                        id="magic-button"
-                        className="btn btn-magic mt-3"
-                    >
-                        Lancer les tests
-                    </button>
-                )}
+        <div className="container mt-4">
+            <div className="card">
+                <div className="card-body">
+                    <h5 className="card-title">Dernier coverage : 97.21%</h5>
+                    {renderButton && (
+                        <button
+                            id="magic-button"
+                            className="btn btn-magic mt-3"
+                        >
+                            Lancer les tests
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     );
