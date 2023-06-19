@@ -8,10 +8,11 @@ import '../../css/adminTab.css';
 
 export default function KeywordList2() {
 	const [keywords, setKeywords] = useState([]);
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	useEffect(() => {
 		axios
-			.get('https://apimysql-1-r1261081.deta.app/keywords/', {
+			.get(baseUrl + '/keywords/', {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -26,7 +27,7 @@ export default function KeywordList2() {
 
 	const handleDelete = (id) => {
 		axios
-			.delete(`https://apimysql-1-r1261081.deta.app/keywords/${id}`, {
+			.delete(baseUrl + `/keywords/${id}`, {
 				withCredentials: true,
 			})
 			.then(() => {
