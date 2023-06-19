@@ -11,15 +11,22 @@ const Register = lazy(() => import('./view/Register/Register'));
 const Admin = lazy(() => import('./view/Admin/Admin'));
 const AdminBooks = lazy(() => import('./view/AdminBooks/AdminBooks'));
 const AdminClients = lazy(() => import('./view/AdminClients/AdminClients'));
+const AdminKeywords = lazy(() => import('./view/AdminKeywords/AdminKeywords'));
 const AdminCreateBook = lazy(() =>
 	import('./view/AdminCreateBook/AdminCreateBook')
 );
 const AdminCreateClient = lazy(() =>
 	import('./view/AdminCreateClient/AdminCreateClient')
 );
+const AdminCreateKeyword = lazy(() =>
+	import('./view/AdminCreateKeyword/AdminCreateKeyword')
+);
 const AdminEditBook = lazy(() => import('./view/AdminEditBook/AdminEditBook'));
 const AdminEditClient = lazy(() =>
 	import('./view/AdminEditClient/AdminEditClient')
+);
+const AdminEditKeyword = lazy(() =>
+	import('./view/AdminEditKeyword/AdminEditKeyword')
 );
 const Home = lazy(() => import('./view/Home/Home'));
 const DetailOrder = lazy(() => import('./view/DetailOrder/DetailOrder'));
@@ -62,6 +69,10 @@ const router = createBrowserRouter([
 		element: <LazyRoute component={AdminClients} />,
 	},
 	{
+		path: '/admin/keywords',
+		element: <LazyRoute component={AdminKeywords} />,
+	},
+	{
 		path: '/admin/books/create',
 		element: <LazyRoute component={AdminCreateBook} />,
 	},
@@ -70,12 +81,20 @@ const router = createBrowserRouter([
 		element: <LazyRoute component={AdminCreateClient} />,
 	},
 	{
+		path: '/admin/keywords/create',
+		element: <LazyRoute component={AdminCreateKeyword} />,
+	},
+	{
 		path: '/admin/books/edit/:id',
 		element: <LazyRoute component={AdminEditBook} />,
 	},
 	{
 		path: '/admin/clients/edit/:id',
 		element: <LazyRoute component={AdminEditClient} />,
+	},
+	{
+		path: '/admin/keywords/edit/:id',
+		element: <LazyRoute component={AdminEditKeyword} />,
 	},
 	{
 		path: '/detail-order/:id',

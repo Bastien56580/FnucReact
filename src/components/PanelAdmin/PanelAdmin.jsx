@@ -23,7 +23,7 @@ export default function PanelAdmin() {
 					</a>
 				</div>
 				<div className="col-md-4">
-					<a href="#" className="btn btn-light btn-block mb-3">
+					<a href="/admin/keywords" className="btn btn-light btn-block mb-3">
 						<img
 							src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.thebluediamondgallery.com%2Fhandwriting%2Fimages%2Findex.jpg&f=1&nofb=1&ipt=895a5a415c8059a24cbbfce6f7442dcbc3e7d98fe0be52fde5c3716632c5db89&ipo=images"
 							alt="indexation"
