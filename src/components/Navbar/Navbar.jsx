@@ -49,11 +49,10 @@ export default function Navbar() {
 						{' '}
 						{/* Add mx-auto class */}
 						<li
-							className={`nav-item ${
-								activePage === '/'
-									? 'text-decoration-underline'
-									: ''
-							}`}
+							className={`nav-item ${activePage === '/'
+								? 'text-decoration-underline'
+								: ''
+								}`}
 						>
 							<a className="nav-link text-white fw-bold" href="/">
 								Accueil
@@ -62,11 +61,10 @@ export default function Navbar() {
 						{/* Display the 'Profil' link if the user is logged in */}
 						{isLoggedIn && (
 							<li
-								className={`nav-item ${
-									activePage === '/profile'
-										? 'text-decoration-underline'
-										: ''
-								}`}
+								className={`nav-item ${activePage === '/profile'
+									? 'text-decoration-underline'
+									: ''
+									}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"
@@ -79,11 +77,10 @@ export default function Navbar() {
 						{/* Display the 'Administration' link if the user is an admin */}
 						{isAdmin && (
 							<li
-								className={`nav-item ${
-									activePage === '/admin'
-										? 'text-decoration-underline'
-										: ''
-								}`}
+								className={`nav-item ${activePage === '/admin'
+									? 'text-decoration-underline'
+									: ''
+									}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"
@@ -93,12 +90,28 @@ export default function Navbar() {
 								</a>
 							</li>
 						)}
-						<li
-							className={`nav-item ${
-								activePage === '/search'
+
+						{isAdmin && (
+							<li
+								className={`nav-item ${activePage === '/admin/parameter'
 									? 'text-decoration-underline'
 									: ''
-							}`}
+									}`}
+							>
+								<a
+									className="nav-link text-white fw-bold"
+									href="/admin/parameter"
+								>
+									Paramètre
+								</a>
+							</li>
+						)}
+
+						<li
+							className={`nav-item ${activePage === '/search'
+								? 'text-decoration-underline'
+								: ''
+								}`}
 						>
 							<a
 								className="nav-link text-white fw-bold"
@@ -113,11 +126,10 @@ export default function Navbar() {
 						{/* Display the 'Connexion' and 'S'enregistrer' links if the user is not logged in */}
 						{!isLoggedIn && (
 							<li
-								className={`nav-item ${
-									activePage === '/signin'
-										? 'text-decoration-underline'
-										: ''
-								}`}
+								className={`nav-item ${activePage === '/signin'
+									? 'text-decoration-underline'
+									: ''
+									}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"
@@ -129,11 +141,10 @@ export default function Navbar() {
 						)}
 						{!isLoggedIn && (
 							<li
-								className={`nav-item ${
-									activePage === '/signup'
-										? 'text-decoration-underline'
-										: ''
-								}`}
+								className={`nav-item ${activePage === '/signup'
+									? 'text-decoration-underline'
+									: ''
+									}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"

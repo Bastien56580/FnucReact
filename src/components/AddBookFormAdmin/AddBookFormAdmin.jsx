@@ -3,6 +3,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddBookFormAdmin() {
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 	const [title, setTitle] = useState('');
 	const [author, setAuthor] = useState('');
 	const [resume, setResume] = useState('');
@@ -14,7 +15,6 @@ export default function AddBookFormAdmin() {
 		e.preventDefault();
 		window.location.href = '/admin/books';
 	};
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		// Create user data object
@@ -29,7 +29,7 @@ export default function AddBookFormAdmin() {
 
 		// Send a POST request to create a user
 		axios
-			.post('https://apimysql-1-r1261081.deta.app/books/', userData, {
+			.post(baseUrl + '/books/', userData, {
 				withCredentials: true,
 			})
 			.then((response) => {

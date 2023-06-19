@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
 export default function UpdateBookFormAdmin() {
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 	const [title, setTitle] = useState('');
 	const [author, setAuthor] = useState('');
 	const [resume, setResume] = useState('');
@@ -17,7 +18,7 @@ export default function UpdateBookFormAdmin() {
 		// Axios request or fetch the book from the id info and setMyData
 		// In the meantime, we are using the mock
 		axios
-			.get('https://apimysql-1-r1261081.deta.app/books/' + id, {
+			.get(baseUrl + '/books/' + id, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -50,7 +51,7 @@ export default function UpdateBookFormAdmin() {
 		// Send a POST request to create a user
 		axios
 			.patch(
-				`https://apimysql-1-r1261081.deta.app/books/${id}`,
+				baseUrl + `/books/${id}`,
 				userData,
 				{
 					withCredentials: true,
