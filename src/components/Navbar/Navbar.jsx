@@ -1,20 +1,30 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/style.css';
-
 // Component for the navigation bar
 export default function Navbar() {
 	// Get the active page URL
 	const activePage = window.location.pathname;
 
 	// State variables
-	const [isLoggedIn] = useState(true); // State variable for tracking user login status
-	const [isAdmin] = useState(true); // State variable for tracking user admin status
+	const [isLoggedIn,setIsLoggedIn] = useState(false); // State variable for tracking user login status
+	const [isAdmin] = useState(false); // State variable for tracking user admin status
 
 	useEffect(() => {
-		// TODO: Perform necessary logic to check if the user is logged in or not
-		// Update the isLoggedIn and isAdmin variables accordingly using setIsLoggedIn and setIsAdmin setters.
+		
+		if(sessionStorage.getItem("token")) {
+			setIsLoggedIn(true);
+			//TODO : wait the backend to implement admin state in login to verify if the current user is admin or not
+			// then we will be able to check the token to see if the user is or not admin and set the setter to it.
+
+		}
+
 	}, []);
+
+	const HandleDisconnect = () => {
+		sessionStorage.removeItem('token');
+		window.location.replace('/');
+	};
 
 	return (
 		<div>
@@ -49,10 +59,11 @@ export default function Navbar() {
 						{' '}
 						{/* Add mx-auto class */}
 						<li
-							className={`nav-item ${activePage === '/'
-								? 'text-decoration-underline'
-								: ''
-								}`}
+							className={`nav-item ${
+								activePage === '/'
+									? 'text-decoration-underline'
+									: ''
+							}`}
 						>
 							<a className="nav-link text-white fw-bold" href="/">
 								Accueil
@@ -61,10 +72,11 @@ export default function Navbar() {
 						{/* Display the 'Profil' link if the user is logged in */}
 						{isLoggedIn && (
 							<li
-								className={`nav-item ${activePage === '/profile'
-									? 'text-decoration-underline'
-									: ''
-									}`}
+								className={`nav-item ${
+									activePage === '/profile'
+										? 'text-decoration-underline'
+										: ''
+								}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"
@@ -77,10 +89,11 @@ export default function Navbar() {
 						{/* Display the 'Administration' link if the user is an admin */}
 						{isAdmin && (
 							<li
-								className={`nav-item ${activePage === '/admin'
-									? 'text-decoration-underline'
-									: ''
-									}`}
+								className={`nav-item ${
+									activePage === '/admin'
+										? 'text-decoration-underline'
+										: ''
+								}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"
@@ -90,13 +103,13 @@ export default function Navbar() {
 								</a>
 							</li>
 						)}
-
 						{isAdmin && (
 							<li
-								className={`nav-item ${activePage === '/admin/parameter'
-									? 'text-decoration-underline'
-									: ''
-									}`}
+								className={`nav-item ${
+									activePage === '/admin/parameter'
+										? 'text-decoration-underline'
+										: ''
+								}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"
@@ -106,12 +119,12 @@ export default function Navbar() {
 								</a>
 							</li>
 						)}
-
 						<li
-							className={`nav-item ${activePage === '/search'
-								? 'text-decoration-underline'
-								: ''
-								}`}
+							className={`nav-item ${
+								activePage === '/search'
+									? 'text-decoration-underline'
+									: ''
+							}`}
 						>
 							<a
 								className="nav-link text-white fw-bold"
@@ -126,10 +139,11 @@ export default function Navbar() {
 						{/* Display the 'Connexion' and 'S'enregistrer' links if the user is not logged in */}
 						{!isLoggedIn && (
 							<li
-								className={`nav-item ${activePage === '/signin'
-									? 'text-decoration-underline'
-									: ''
-									}`}
+								className={`nav-item ${
+									activePage === '/signin'
+										? 'text-decoration-underline'
+										: ''
+								}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"
@@ -141,10 +155,11 @@ export default function Navbar() {
 						)}
 						{!isLoggedIn && (
 							<li
-								className={`nav-item ${activePage === '/signup'
-									? 'text-decoration-underline'
-									: ''
-									}`}
+								className={`nav-item ${
+									activePage === '/signup'
+										? 'text-decoration-underline'
+										: ''
+								}`}
 							>
 								<a
 									className="nav-link text-white fw-bold"
@@ -158,7 +173,7 @@ export default function Navbar() {
 							<li className="nav-item">
 								<a
 									className="btn btn-danger mr-5"
-									href="/disconnect"
+									onClick={HandleDisconnect}
 								>
 									Déconnexion
 								</a>
