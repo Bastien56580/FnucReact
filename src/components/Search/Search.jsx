@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function Search() {
@@ -41,46 +38,56 @@ export default function Search() {
 	};
 
 	const handleSubmit = () => {
-		console.log(searchValue,selectedKeywords);
+		console.log(searchValue, selectedKeywords);
 	};
 
 	return (
-		<>
-			<div className="container mt-5">
+		<div>
+			<div className="container col-md-6 mt-5">
 				<h2>Liste des mots-clés</h2>
-				<input
-					type="search"
-					placeholder="Rechercher..."
-					onChange={(e) => setSearchValue(e.target.value)}
-				/>
-				<button onClick={handleSubmit}>
-					<SearchIcon />
-				</button>
-				<select name="option" id="search-option">
+				<div className="d-flex align-items-center">
+					<input
+						type="search"
+						placeholder="Rechercher..."
+						className="me-1 form-control"
+						onChange={(e) => setSearchValue(e.target.value)}
+					/>
+					<button onClick={handleSubmit} className="btn btn-outline-dark">
+						<SearchIcon />
+					</button>
+				</div>
+				<select name="option" id="search-option" className="form-select mt-2">
 					<option value="">--Option de recherche--</option>
-					<option value="in">Dans la liste</option>
-					<option value="with">A la fois</option>
-					<option value="without">Sauf</option>
+					<option value="in">OU</option>
+					<option value="with">ET</option>
+					<option value="without">SAUF</option>
 				</select>
-        <div className='row'>
-				{keywords.map((item, index) => {
-          return (
-            <>
-            {
-              index % 3 === 0 &&  <div className="w-100" key={"sep"+item.label+index}></div>
-            }
-            <div className='col' style={{display: 'flex', margin: '15px'}}>
-              <KeywordItem key={item.label + index} word={item.label} updateSelectedKeywords={handleSelectedKeywords}/>
-            </div>
-            </>
-        )
-        
-					
-				})}
-        
+
+				<div className='row'>
+					{keywords.map((item, index) => {
+						return (
+							<>
+								{
+									index % 3 === 0 && <div className="w-100" key={"sep" + item.label + index}></div>
+								}
+								<div className='col' style={{ display: 'flex', margin: '15px' }}>
+									<div className="container">
+										<ul className="list-group">
+											<li className="list-group-item">
+												<KeywordItem key={item.label + index} word={item.label} updateSelectedKeywords={handleSelectedKeywords} />
+											</li>
+										</ul>
+									</div>
+								</div>
+							</>
+						)
+
+
+					})}
+
+				</div>
 			</div>
-      </div>
-		</>
+		</div>
 	);
 }
 
@@ -95,11 +102,10 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 	};
 
 	return (
-		<>
-			<button onClick={handleOnClick}>
-				{checked ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
-			</button>
-      <p>{word}</p>
-		</>
+		<div>
+			<input id={word} name={word} type="checkbox" className="form-check-input me-2" onClick={handleOnClick} />
+			<label for={word}>{word}</label>
+		</div>
 	);
 }
+
