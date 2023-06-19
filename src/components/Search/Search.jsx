@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import toast  from 'react-hot-toast';
+import toast from 'react-hot-toast';
 export default function Search() {
   const [keywords, setKeywords] = useState([]);
+  const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
   useEffect(() => {
     axios
-      .get('https://apimysql-1-r1261081.deta.app/keywords/', {
+      .get(baseUrl + '/keywords/', {
         withCredentials: true,
       })
       .then((response) => {

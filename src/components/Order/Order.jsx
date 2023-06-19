@@ -3,6 +3,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function Order({ book }) {
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 	const price = book.price;
 	const stock = book.stock;
 	const id = book.id;
@@ -38,7 +39,7 @@ export default function Order({ book }) {
 		};
 		// Send a POST request to create an order
 		axios
-			.post('https://apimysql-1-r1261081.deta.app/orders/', orderData, {
+			.post(baseUrl + '/orders/', orderData, {
 				withCredentials: true,
 			})
 			.then((response) => {

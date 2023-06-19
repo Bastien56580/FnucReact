@@ -8,6 +8,7 @@ export default function UpdateClientFormAdmin() {
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	const { id } = useParams();
 
@@ -15,7 +16,7 @@ export default function UpdateClientFormAdmin() {
 		// Axios request or fetch the book from the id info and setMyData
 		// In the meantime, we are using the mock
 		axios
-			.get('https://apimysql-1-r1261081.deta.app/customers/' + id, {
+			.get(baseUrl + '/customers/' + id, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -43,7 +44,7 @@ export default function UpdateClientFormAdmin() {
 		// Send a POST request to create a user
 		axios
 			.patch(
-				`https://apimysql-1-r1261081.deta.app/customers/${id}`,
+				baseUrl + `/customers/${id}`,
 				userData,
 				{
 					withCredentials: true,

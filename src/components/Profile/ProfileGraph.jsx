@@ -8,10 +8,11 @@ import axios from 'axios';
 
 export default function ProfileGraph() {
 	const [myData, setMyData] = useState({});
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	useEffect(() => {
 		axios
-			.get('https://apimysql-1-r1261081.deta.app/customers/12/orders') //TODO : Change 12 to user id
+			.get(baseUrl + '/customers/12/orders') //TODO : Change 12 to user id
 			.then((response) => {
 				const orders = response.data;
 				const bookTitles = {};
