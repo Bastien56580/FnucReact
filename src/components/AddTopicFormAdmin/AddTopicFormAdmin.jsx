@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css'
 
 export default function AddBookFormAdmin() {
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css'
 
 export default function UpdateTopicFormAdmin() {
 	const [topic, setTopic] = useState('');

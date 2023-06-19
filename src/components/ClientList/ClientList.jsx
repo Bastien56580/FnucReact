@@ -4,7 +4,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
-import '../../css/adminTab.css';
 import mockClient from './mock/mockClient.json';
 
 export default function ClientList() {
@@ -66,13 +65,11 @@ export default function ClientList() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row justify-content-center">
-				<div className="col-md-8">
-					<h2 className="text-center pt-5 pb-2">
-						Listes des clients
-					</h2>
-					<table className="table table-striped table-bordered border-dark table-responsive">
+		<div>
+			<div>
+				<div>
+					<h2>Listes des clients</h2>
+					<table>
 						<thead>
 							<tr>
 								<th>Prénom</th>

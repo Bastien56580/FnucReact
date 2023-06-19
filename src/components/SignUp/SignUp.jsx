@@ -13,8 +13,8 @@ export default function SignUp() {
 
   const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+	const handleSubmit = (e) => {
+		e.preventDefault();
 
     // Create user data object
     const userData = {

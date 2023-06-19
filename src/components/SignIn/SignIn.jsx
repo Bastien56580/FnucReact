@@ -62,7 +62,6 @@ export default function SignIn() {
 				</div>
 				<button
 					type="submit"
-					className="btn btn-success"
 					onClick={handleSubmit}
 				>
 					Valider

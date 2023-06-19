@@ -33,29 +33,27 @@ export default function ProfileList() {
 	}, []);
 
 	return (
-		<div className="container mt-4">
-			<div className="card">
-				<div className="card-body">
-					<h5 className="card-title text-center">
-						Information du profile :
-					</h5>
-					<table className="table">
+		<div>
+			<div>
+				<div>
+					<h5>Information du profile :</h5>
+					<table>
 						{myData !== '' ? (
 							<tbody>
 								<tr>
-									<td className="fw-bold">Nom:</td>
+									<td>Nom:</td>
 									<td>{myData.firstname}</td>
 								</tr>
 								<tr>
-									<td className="fw-bold">Prénom:</td>
+									<td>Prénom:</td>
 									<td>{myData.lastname}</td>
 								</tr>
 								<tr>
-									<td className="fw-bold">Email:</td>
+									<td>Email:</td>
 									<td>{myData.email}</td>
 								</tr>
 								<tr>
-									<td className="fw-bold">Total dépensé :</td>
+									<td>Total dépensé :</td>
 									<td>{myData.cumulative_sales}</td>
 								</tr>
 							</tbody>
