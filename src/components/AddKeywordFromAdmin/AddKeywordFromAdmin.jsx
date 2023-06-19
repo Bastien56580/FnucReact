@@ -4,8 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
-
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	const handleCancel = (e) => {
 		e.preventDefault();
@@ -18,9 +17,13 @@ export default function AddKeywordFormAdmin() {
 		// Send a POST request to create a user
 		if (keyword) {
 			axios
-				.post(baseUrl + '/keywords/', { 'label': keyword }, {
-					withCredentials: true,
-				})
+				.post(
+					baseUrl + '/keywords/',
+					{ label: keyword },
+					{
+						withCredentials: true,
+					}
+				)
 				.then((response) => {
 					// Handle successful response
 					if (response.status === 200) {
@@ -34,36 +37,30 @@ export default function AddKeywordFormAdmin() {
 					toast.error(error.response.data.detail); // Display error toast message with details
 				});
 		} else {
-			toast.error('Veuillez remplire le champ')
+			toast.error('Veuillez remplire le champ');
 		}
 	};
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-6">
-					<h2 className="pt-5 pb-2">Ajouter un mot clé</h2>
+		<div>
+			<div>
+				<div>
+					<h2>Ajouter un mot clé</h2>
 					<form>
-						<div className="mb-3">
+						<div>
 							<input
 								type="text"
-								className="form-control"
 								placeholder="Mot Clé"
 								value={keyword}
 								onChange={(e) => setKeyword(e.target.value)}
 							/>
 						</div>
-						<button className="btn btn-primary" onClick={handleSubmit}>
-							Valider
-						</button>
-						<button className="btn btn-secondary" onClick={handleCancel}>
-							Retour
-						</button>
+						<button onClick={handleSubmit}>Valider</button>
+						<button onClick={handleCancel}>Retour</button>
 					</form>
 					<Toaster /> {/* Toast container for displaying messages */}
 				</div>
 			</div>
 		</div>
-
 	);
 }

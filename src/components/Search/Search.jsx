@@ -5,7 +5,6 @@ import toast from 'react-hot-toast';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import SearchIcon from '@mui/icons-material/Search';
-import { right } from '@popperjs/core';
 
 export default function Search() {
 	const [keywords, setKeywords] = useState([]);
@@ -47,7 +46,7 @@ export default function Search() {
 
 	return (
 		<>
-			<div className="container mt-5">
+			<div>
 				<h2>Liste des mots-clés</h2>
 				<input
 					type="search"
@@ -57,30 +56,32 @@ export default function Search() {
 				<button onClick={handleSubmit}>
 					<SearchIcon />
 				</button>
-				<select name="option" id="search-option">
+				<select name="option">
 					<option value="">--Option de recherche--</option>
 					<option value="in">Dans la liste</option>
 					<option value="with">A la fois</option>
 					<option value="without">Sauf</option>
 				</select>
-        <div className='row'>
-				{keywords.map((item, index) => {
-          return (
-            <>
-            {
-              index % 3 === 0 &&  <div className="w-100" key={"sep"+item.label+index}></div>
-            }
-            <div className='col' style={{display: 'flex', margin: '15px'}}>
-              <KeywordItem key={item.label + index} word={item.label} />
-            </div>
-            </>
-        )
-        
-					
-				})}
-        
+				<div>
+					{keywords.map((item, index) => {
+						return (
+							<>
+								{index % 3 === 0 && (
+									<div key={'sep' + item.label + index}></div>
+								)}
+								<div
+									style={{ display: 'flex', margin: '15px' }}
+								>
+									<KeywordItem
+										key={item.label + index}
+										word={item.label}
+									/>
+								</div>
+							</>
+						);
+					})}
+				</div>
 			</div>
-      </div>
 		</>
 	);
 }
@@ -100,7 +101,7 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 			<button onClick={handleOnClick}>
 				{checked ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
 			</button>
-      <p>{word}</p>
+			<p>{word}</p>
 		</>
 	);
 }

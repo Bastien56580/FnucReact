@@ -8,7 +8,7 @@ export default function UpdateClientFormAdmin() {
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	const { id } = useParams();
 
@@ -41,13 +41,9 @@ export default function UpdateClientFormAdmin() {
 
 		// Send a POST request to create a user
 		axios
-			.patch(
-				baseUrl + `/customers/${id}`,
-				userData,
-				{
-					withCredentials: true,
-				}
-			)
+			.patch(baseUrl + `/customers/${id}`, userData, {
+				withCredentials: true,
+			})
 			.then((response) => {
 				console.log(response);
 				// Handle successful response
@@ -69,58 +65,49 @@ export default function UpdateClientFormAdmin() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-6">
-					<h2 className="pt-5 pb-2">Modifier un client</h2>
+		<div>
+			<div>
+				<div>
+					<h2>Modifier un client</h2>
 					<form>
-						<div className="mb-3">
+						<div>
 							<input
 								type="text"
-								className="form-control"
 								placeholder="Prénom"
 								value={firstName}
 								onChange={(e) => setFirstName(e.target.value)}
 							/>
 						</div>
-						<div className="mb-3">
+						<div>
 							<input
 								type="text"
-								className="form-control"
 								placeholder="Nom"
 								value={lastName}
 								onChange={(e) => setLastName(e.target.value)}
 							/>
 						</div>
-						<div className="mb-3">
+						<div>
 							<input
 								type="email"
-								className="form-control"
 								placeholder="Email"
 								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 							/>
 						</div>
-						<div className="mb-3">
+						<div>
 							<input
 								type="password"
-								className="form-control"
 								placeholder="Mot de passe"
 								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
-						<button className="btn btn-primary" onClick={handleSubmit}>
-							Valider
-						</button>
-						<button className="btn btn-secondary" onClick={handleCancel}>
-							Retour
-						</button>
+						<button onClick={handleSubmit}>Valider</button>
+						<button onClick={handleCancel}>Retour</button>
 					</form>
 					<Toaster /> {/* Toast container for displaying messages */}
 				</div>
 			</div>
 		</div>
-
 	);
 }

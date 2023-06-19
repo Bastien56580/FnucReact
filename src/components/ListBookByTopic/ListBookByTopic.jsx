@@ -1,7 +1,6 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../css/adminTab.css';
 
 export default function ListBookByTopic(topicId) {
 	const [books, setBooks] = useState([]);
@@ -31,23 +30,23 @@ export default function ListBookByTopic(topicId) {
 	};
 
 	return (
-		<div className="container">
-			<div className="row justify-content-center">
-				<div className="col-md-8">
-					<h2 className="text-center pt-5 pb-3">Liste des livres</h2>
-					<table className="table table-striped table-bordered border-dark table-responsive">
+		<div>
+			<div>
+				<div>
+					<h2>Liste des livres</h2>
+					<table>
 						<thead>
 							<tr>
-								<th scope="col">
+								<th>
 									<b>Titre</b>
 								</th>
-								<th scope="col">
+								<th>
 									<b>Auteur</b>
 								</th>
-								<th scope="col">
+								<th>
 									<b>Image</b>
 								</th>
-								<th scope="col">
+								<th>
 									<b>Prix</b>
 								</th>
 							</tr>
@@ -67,11 +66,6 @@ export default function ListBookByTopic(topicId) {
 											<img
 												src={element.cover_url}
 												alt="Book Cover"
-												className="img-thumbnail"
-												style={{
-													maxWidth: '160px',
-													maxHeight: '75px',
-												}}
 											/>
 										</td>
 

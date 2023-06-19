@@ -8,7 +8,7 @@ import '../../css/adminTab.css';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	useEffect(() => {
 		axios
@@ -47,26 +47,38 @@ export default function BookList() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row justify-content-center">
-				<div className="col-md-8">
-					<h2 className="text-center pt-5 pb-3">Liste des livres</h2>
-					<table className="table table-striped table-bordered border-dark table-responsive">
+		<div>
+			<div>
+				<div>
+					<h2>Liste des livres</h2>
+					<table>
 						<thead>
 							<tr>
-								<th scope="col"><b>Titre</b></th>
-								<th scope="col"><b>Auteur</b></th>
-								<th scope="col"><b>Résumé</b></th>
-								<th scope="col"><b>Image</b></th>
-								<th scope="col"><b>Prix</b></th>
-								<th scope="col"><b>Stock</b></th>
+								<th>
+									<b>Titre</b>
+								</th>
+								<th>
+									<b>Auteur</b>
+								</th>
+								<th>
+									<b>Résumé</b>
+								</th>
+								<th>
+									<b>Image</b>
+								</th>
+								<th>
+									<b>Prix</b>
+								</th>
+								<th>
+									<b>Stock</b>
+								</th>
 								<th></th>
 								<th>
 									<AddCircleIcon
 										onClick={() =>
-											(window.location.href = '/admin/books/create')
+											(window.location.href =
+												'/admin/books/create')
 										}
-										className="add-icon"
 									/>
 								</th>
 							</tr>
@@ -82,8 +94,6 @@ export default function BookList() {
 											<img
 												src={element.cover_url}
 												alt="Book Cover"
-												className="img-thumbnail"
-												style={{ maxWidth: '160px', maxHeight: '75px' }}
 											/>
 										</td>
 
@@ -94,13 +104,13 @@ export default function BookList() {
 												onClick={() => {
 													handleEdit(element.id);
 												}}
-												className="edit-icon"
 											/>
 										</td>
 										<td>
 											<DeleteIcon
-												onClick={() => handleDelete(element.id)}
-												className="delete-icon"
+												onClick={() =>
+													handleDelete(element.id)
+												}
 											/>
 										</td>
 									</tr>
