@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css'
+import '../../css/style.css';
 
 export default function UpdateKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
 	const { id } = useParams();
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	useEffect(() => {
 		axios
@@ -31,7 +31,7 @@ export default function UpdateKeywordFormAdmin() {
 		axios
 			.patch(
 				baseUrl + `/keywords/${id}`,
-				{ 'label': keyword },
+				{ label: keyword },
 				{
 					withCredentials: true,
 				}
@@ -57,31 +57,25 @@ export default function UpdateKeywordFormAdmin() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-6">
-					<h2 className="pt-5 pb-2">Modifier un mot clé</h2>
+		<div>
+			<div>
+				<div>
+					<h2>Modifier un mot clé</h2>
 					<form>
-						<div className="mb-3">
+						<div>
 							<input
 								type="text"
-								className="form-control"
 								placeholder="Mot clé"
 								value={keyword}
 								onChange={(e) => setKeyword(e.target.value)}
 							/>
 						</div>
-						<button className="btn btn-custom-primary me-2" onClick={handleSubmit}>
-							Valider
-						</button>
-						<button className="btn btn-custom-primary me-2" onClick={handleCancel}>
-							Retour
-						</button>
+						<button onClick={handleSubmit}>Valider</button>
+						<button onClick={handleCancel}>Retour</button>
 					</form>
 					<Toaster /> {/* Toast container for displaying messages */}
 				</div>
 			</div>
 		</div>
-
 	);
 }

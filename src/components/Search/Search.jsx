@@ -42,52 +42,44 @@ export default function Search() {
 	};
 
 	return (
-		<div>
-			<div className="container col-md-6 mt-5">
+		<>
+			<div>
 				<h2>Liste des mots-clés</h2>
-				<div className="d-flex align-items-center">
-					<input
-						type="search"
-						placeholder="Rechercher..."
-						className="me-1 form-control"
-						onChange={(e) => setSearchValue(e.target.value)}
-					/>
-					<button onClick={handleSubmit} className="btn btn-outline-dark">
-						<SearchIcon />
-					</button>
-				</div>
-				<select name="option" id="search-option" className="form-select mt-2">
+				<input
+					type="search"
+					placeholder="Rechercher..."
+					onChange={(e) => setSearchValue(e.target.value)}
+				/>
+				<button onClick={handleSubmit}>
+					<SearchIcon />
+				</button>
+				<select name="option">
 					<option value="">--Option de recherche--</option>
 					<option value="in">OU</option>
 					<option value="with">ET</option>
 					<option value="without">SAUF</option>
 				</select>
-
-				<div className='row'>
+				<div>
 					{keywords.map((item, index) => {
 						return (
 							<>
-								{
-									index % 3 === 0 && <div className="w-100" key={"sep" + item.label + index}></div>
-								}
-								<div className='col' style={{ display: 'flex', margin: '15px' }}>
-									<div className="container">
-										<ul className="list-group">
-											<li className="list-group-item">
-												<KeywordItem key={item.label + index} word={item.label} updateSelectedKeywords={handleSelectedKeywords} />
-											</li>
-										</ul>
-									</div>
+								{index % 3 === 0 && (
+									<div key={'sep' + item.label + index}></div>
+								)}
+								<div
+									style={{ display: 'flex', margin: '15px' }}
+								>
+									<KeywordItem
+										key={item.label + index}
+										word={item.label}
+									/>
 								</div>
 							</>
-						)
-
-
+						);
 					})}
-
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 
@@ -102,10 +94,11 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 	};
 
 	return (
-		<div>
-			<input id={word} name={word} type="checkbox" className="form-check-input me-2" onClick={handleOnClick} />
-			<label htmlFor={word}>{word}</label>
-		</div>
+		<>
+			<button onClick={handleOnClick}>
+				{checked ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
+			</button>
+			<p>{word}</p>
+		</>
 	);
 }
-

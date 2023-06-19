@@ -8,7 +8,7 @@ import '../../css/adminTab.css';
 
 export default function KeywordList2() {
 	const [keywords, setKeywords] = useState([]);
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	useEffect(() => {
 		axios
@@ -47,19 +47,21 @@ export default function KeywordList2() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row justify-content-center">
-				<div className="col-md-8">
-					<h2 className="text-center pt-5 pb-2">Listes des mots clés</h2>
-					<table className="table table-striped table-bordered border-dark table-responsive">
+		<div>
+			<div>
+				<div>
+					<h2>Listes des mots clés</h2>
+					<table>
 						<thead>
 							<tr>
 								<th>Mot clé</th>
 								<th></th>
 								<th>
 									<AddCircleIcon
-										onClick={() => (window.location.href = '/admin/keywords/create')}
-										className="add-icon"
+										onClick={() =>
+											(window.location.href =
+												'/admin/keywords/create')
+										}
 									/>
 								</th>
 							</tr>
@@ -68,17 +70,21 @@ export default function KeywordList2() {
 							{keywords.map((element, index) => {
 								return (
 									<tr key={element + '-' + index}>
-										<td key={element.label + '-' + index}>{element.label}</td>
+										<td key={element.label + '-' + index}>
+											{element.label}
+										</td>
 										<td key={'update-' + index}>
 											<EditIcon
-												onClick={() => { handleEdit(element.id); }}
-												className="edit-icon"
+												onClick={() => {
+													handleEdit(element.id);
+												}}
 											/>
 										</td>
 										<td key={'delete-' + index}>
 											<DeleteIcon
-												onClick={() => handleDelete(element.id)}
-												className="delete-icon"
+												onClick={() =>
+													handleDelete(element.id)
+												}
 											/>
 										</td>
 									</tr>

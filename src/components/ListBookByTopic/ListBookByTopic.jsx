@@ -1,37 +1,33 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../css/adminTab.css';
-import mockList from './mock/mockbook.json';
 
 export default function ListBookByTopic(topicId) {
 	const [books, setBooks] = useState([]);
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const mock = sessionStorage.getItem('REACT_APP_MOCK');
 
-
 	useEffect(() => {
 		if (mock === 'true') {
-			setBooks(mockList)}
-			else if (mock === 'false'){
-				if (topicId.topicId) {
-					console.log(baseUrl + '/topics/' + topicId.topicId + '/books/');
-					axios
-						// .get(baseUrl + `/topics/${topicId}/books/`, {
-						.get(baseUrl + '/topics/' + topicId.topicId + '/books/', {
-							withCredentials: true,
-						})
-						.then((response) => {
-							// Handle successful response
-							setBooks(response.data);
-						})
-						.catch((error) => {
-							// Handle error response
-							toast.error(error.response.data.detail); // Display error toast message with details 
-		
-						});
-				}
+			setBooks(mockList);
+		} else if (mock === 'false') {
+			if (topicId.topicId) {
+				console.log(baseUrl + '/topics/' + topicId.topicId + '/books/');
+				axios
+					// .get(baseUrl + `/topics/${topicId}/books/`, {
+					.get(baseUrl + '/topics/' + topicId.topicId + '/books/', {
+						withCredentials: true,
+					})
+					.then((response) => {
+						// Handle successful response
+						setBooks(response.data);
+					})
+					.catch((error) => {
+						// Handle error response
+						toast.error(error.response.data.detail); // Display error toast message with details
+					});
 			}
+		}
 	}, [topicId.topicId]);
 
 	const handleDetailBook = (id) => {
@@ -39,23 +35,23 @@ export default function ListBookByTopic(topicId) {
 	};
 
 	return (
-		<div className="container">
-			<div className="row justify-content-center">
-				<div className="col-md-8">
-					<h2 className="text-center pt-5 pb-3">Liste des livres</h2>
-					<table className="table table-striped table-bordered border-dark table-responsive">
+		<div>
+			<div>
+				<div>
+					<h2>Liste des livres</h2>
+					<table>
 						<thead>
 							<tr>
-								<th scope="col">
+								<th>
 									<b>Titre</b>
 								</th>
-								<th scope="col">
+								<th>
 									<b>Auteur</b>
 								</th>
-								<th scope="col">
+								<th>
 									<b>Image</b>
 								</th>
-								<th scope="col">
+								<th>
 									<b>Prix</b>
 								</th>
 							</tr>
@@ -75,11 +71,6 @@ export default function ListBookByTopic(topicId) {
 											<img
 												src={element.cover_url}
 												alt="Book Cover"
-												className="img-thumbnail"
-												style={{
-													maxWidth: '160px',
-													maxHeight: '75px',
-												}}
 											/>
 										</td>
 
