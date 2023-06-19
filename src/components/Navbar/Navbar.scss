@@ -1,0 +1,64 @@
+@import '../../css/constants.scss';
+
+.navbar{
+  width: 100vw;
+  height: 10vh;
+  background-color: $secondary-color;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  &__logo{
+    height: 100%;
+    margin-left: 3%;
+
+    &--image{
+      height: 100%;
+    }
+  }
+
+  &__menu{
+    display: flex;
+    min-width: 40%;
+    column-gap: 7px;
+    &--link{
+      margin: auto;
+      text-decoration: none;
+      color: $background-color;
+
+      &:hover{
+        color: $primary-color;
+        transition: color .3s ease-in .1s;
+      }
+
+      &:active{
+        transform: scaleX(0.8);
+        transition: transform .5S ease-in-out .2s;
+      }
+    }
+
+  }
+
+  &__login{
+    margin-right: 3%;
+    display: flex;
+    min-width: 20%;
+    column-gap: 7px;
+    
+    &--link{
+      margin: auto;
+      text-decoration: none;
+      color: $background-color;
+
+      &:hover{
+        color: $primary-color;
+        transition: color .3s ease-in .1s;
+      }
+
+      &:active{
+        transform: scaleX(0.8);
+        transition: transform .5S ease-in-out .2s;
+      }
+    }
+  }
+}
