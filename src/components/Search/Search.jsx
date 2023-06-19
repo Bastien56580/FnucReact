@@ -104,7 +104,7 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 	return (
 		<div>
 			<input id={word} name={word} type="checkbox" className="form-check-input me-2" onClick={handleOnClick} />
-			<label for={word}>{word}</label>
+			<label htmlFor={word}>{word}</label>
 		</div>
 	);
 }
