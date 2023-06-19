@@ -5,7 +5,6 @@ import toast from 'react-hot-toast';
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import SearchIcon from '@mui/icons-material/Search';
-import { right } from '@popperjs/core';
 
 export default function Search() {
 	const [keywords, setKeywords] = useState([]);
@@ -42,7 +41,7 @@ export default function Search() {
 	};
 
 	const handleSubmit = () => {
-		console.log(searchValue);
+		console.log(searchValue,selectedKeywords);
 	};
 
 	return (
@@ -71,7 +70,7 @@ export default function Search() {
               index % 3 === 0 &&  <div className="w-100" key={"sep"+item.label+index}></div>
             }
             <div className='col' style={{display: 'flex', margin: '15px'}}>
-              <KeywordItem key={item.label + index} word={item.label} />
+              <KeywordItem key={item.label + index} word={item.label} updateSelectedKeywords={handleSelectedKeywords}/>
             </div>
             </>
         )
