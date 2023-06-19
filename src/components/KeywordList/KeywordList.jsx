@@ -11,10 +11,12 @@ function KeywordItem({ word }) {
 	const [checked, setChecked] = useState(false);
 	return (
 		<>
-			<button onClick={() => setChecked(!checked)}>
-				{checked ? '☑' : '☐'}
-			</button>
-			<ul>{word}</ul>
+			<div className="d-table-row">
+				<button onClick={() => setChecked(!checked)}>
+					{checked ? '☑' : '☐'}
+				</button>
+				<ul>{word}</ul>
+			</div>
 		</>
 	);
 }
