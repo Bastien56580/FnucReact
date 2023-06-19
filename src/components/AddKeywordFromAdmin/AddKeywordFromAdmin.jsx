@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 export default function AddKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 
 	const handleCancel = (e) => {
@@ -15,26 +16,26 @@ export default function AddKeywordFormAdmin() {
 		e.preventDefault();
 
 		// Send a POST request to create a user
-		if(keyword) {
-        axios
-			.post('https://apimysql-1-r1261081.deta.app/keywords/', {'label':keyword}, {
-				withCredentials: true,
-			})
-			.then((response) => {
-				// Handle successful response
-				if (response.status === 200) {
-					toast.success('Keyword created!'); // Display success toast message
-				} else {
-					toast.error(response.data.detail); // Display error toast message with details
-				}
-			})
-			.catch((error) => {
-				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
-			});
-        }else {
-            toast.error('Veuillez remplire le champ')
-        }
+		if (keyword) {
+			axios
+				.post(baseUrl + '/keywords/', { 'label': keyword }, {
+					withCredentials: true,
+				})
+				.then((response) => {
+					// Handle successful response
+					if (response.status === 200) {
+						toast.success('Keyword created!'); // Display success toast message
+					} else {
+						toast.error(response.data.detail); // Display error toast message with details
+					}
+				})
+				.catch((error) => {
+					// Handle error response
+					toast.error(error.response.data.detail); // Display error toast message with details
+				});
+		} else {
+			toast.error('Veuillez remplire le champ')
+		}
 	};
 
 	return (
