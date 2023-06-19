@@ -8,10 +8,11 @@ import '../../css/adminTab.css';
 
 export default function ClientList() {
 	const [clients, setClients] = useState([]);
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	useEffect(() => {
 		axios
-			.get('https://apimysql-1-r1261081.deta.app/customers/', {
+			.get(baseUrl + '/customers/', {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -26,7 +27,7 @@ export default function ClientList() {
 
 	const handleDelete = (id) => {
 		axios
-			.delete(`https://apimysql-1-r1261081.deta.app/customers/${id}`, {
+			.delete(baseUrl + `/customers/${id}`, {
 				withCredentials: true,
 			})
 			.then(() => {

@@ -8,10 +8,11 @@ import '../../css/adminTab.css';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	useEffect(() => {
 		axios
-			.get('https://apimysql-1-r1261081.deta.app/books/', {
+			.get(baseUrl + '/books/', {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -26,7 +27,7 @@ export default function BookList() {
 
 	const handleDelete = (id) => {
 		axios
-			.delete(`https://apimysql-1-r1261081.deta.app/books/${id}`, {
+			.delete(baseUrl + `/books/${id}`, {
 				withCredentials: true,
 			})
 			.then(() => {

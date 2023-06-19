@@ -7,6 +7,7 @@ export default function AddClientFormAdmin() {
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 
 	const handleCancel = (e) => {
@@ -26,7 +27,7 @@ export default function AddClientFormAdmin() {
 
 		// Send a POST request to create a user
 		axios
-			.post('https://apimysql-1-r1261081.deta.app/customers/', userData, {
+			.post(baseUrl + '/customers/', userData, {
 				withCredentials: true,
 			})
 			.then((response) => {

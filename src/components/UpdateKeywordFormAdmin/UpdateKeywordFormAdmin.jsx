@@ -6,12 +6,11 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function UpdateKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
 	const { id } = useParams();
+	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	useEffect(() => {
-		// Axios request or fetch the book from the id info and setMyData
-		// In the meantime, we are using the mock
 		axios
-			.get('https://apimysql-1-r1261081.deta.app/keywords/' + id, {
+			.get(baseUrl + '/keywords/' + id, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -30,8 +29,8 @@ export default function UpdateKeywordFormAdmin() {
 		// Send a POST request to create a user
 		axios
 			.patch(
-				`https://apimysql-1-r1261081.deta.app/keywords/${id}`,
-				{'label': keyword},
+				baseUrl + `/keywords/${id}`,
+				{ 'label': keyword },
 				{
 					withCredentials: true,
 				}

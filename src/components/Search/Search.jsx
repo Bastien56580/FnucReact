@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import toast  from 'react-hot-toast';
-
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import SearchIcon from '@mui/icons-material/Search';
-
+import toast from 'react-hot-toast';
 export default function Search() {
   const [keywords, setKeywords] = useState([]);
   const [selectedKeywords, setSelectedKeywords] = useState([]);
-  const [searchValue,setSearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
   useEffect(() => {
     axios
-      .get('https://apimysql-1-r1261081.deta.app/keywords/', {
+      .get(baseUrl + '/keywords/', {
         withCredentials: true,
       })
       .then((response) => {
@@ -27,19 +23,19 @@ export default function Search() {
   }, []);
 
   const removeWord = (word) => {
-  const array = [...selectedKeywords]; // make a separate copy of the array
-  const index = selectedKeywords.indexOf(word)
-  if (index !== -1) {
-    array.splice(index, 1);
-    setSelectedKeywords(array);
-  }
+    const array = [...selectedKeywords]; // make a separate copy of the array
+    const index = selectedKeywords.indexOf(word)
+    if (index !== -1) {
+      array.splice(index, 1);
+      setSelectedKeywords(array);
+    }
   }
 
-  const handleSelectedKeywords = (word,add) => {
+  const handleSelectedKeywords = (word, add) => {
     add ? selectedKeywords.push(word) : removeWord(word);
   }
 
-  const handleSubmit = () => { 
+  const handleSubmit = () => {
     console.log(searchValue);
   }
 
@@ -47,8 +43,8 @@ export default function Search() {
     <>
       <div className="container mt-5">
         <h2>Liste des mots-clés</h2>
-        <input type="search" placeholder='Rechercher...' onChange={(e) => setSearchValue(e.target.value)}/>
-        <button onClick={handleSubmit}><SearchIcon/></button>
+        <input type="search" placeholder='Rechercher...' onChange={(e) => setSearchValue(e.target.value)} />
+        <button onClick={handleSubmit}><SearchIcon /></button>
         <select name="option" id="search-option">
           <option value="">--Option de recherche--</option>
           <option value="in">Dans la liste</option>
@@ -57,8 +53,8 @@ export default function Search() {
         </select>
         <table className="table table-striped">
           <tbody>
-            {keywords.map((item,index) => (
-              <tr key={index+item}>
+            {keywords.map((item, index) => (
+              <tr key={index + item}>
                 <td><KeywordItem word={item.label} updateSelectedKeywords={handleSelectedKeywords} /></td>
                 <td>
                   {item.label}
@@ -73,14 +69,14 @@ export default function Search() {
   )
 }
 
-function KeywordItem({ word,updateSelectedKeywords }) {
+function KeywordItem({ word, updateSelectedKeywords }) {
   const [checked, setChecked] = useState(false);
 
   const handleOnClick = () => {
     setChecked(!checked);
-    checked ? updateSelectedKeywords(word,false) : updateSelectedKeywords(word,true);
+    checked ? updateSelectedKeywords(word, false) : updateSelectedKeywords(word, true);
   }
 
-  return <><button onClick={handleOnClick}>{checked ?  <CheckBoxIcon/>:<CheckBoxOutlineBlankIcon/>}</button></>
+  return <><button onClick={handleOnClick}>{checked ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}</button></>
 }
 
