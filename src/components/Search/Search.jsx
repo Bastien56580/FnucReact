@@ -1,11 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import SearchIcon from '@mui/icons-material/Search';
-
 export default function Search() {
   const [keywords, setKeywords] = useState([]);
   const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
