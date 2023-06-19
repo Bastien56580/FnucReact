@@ -9,7 +9,7 @@ export default function AddKeywordFormAdmin() {
 
 	const handleCancel = (e) => {
 		e.preventDefault();
-		window.location.href = '/admin/keywords';
+		window.location.href = '/admin/indexes';
 	};
 
 	const handleSubmit = (e) => {

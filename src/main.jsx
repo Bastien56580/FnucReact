@@ -11,7 +11,7 @@ const Register = lazy(() => import('./view/Register/Register'));
 const Admin = lazy(() => import('./view/Admin/Admin'));
 const AdminBooks = lazy(() => import('./view/AdminBooks/AdminBooks'));
 const AdminClients = lazy(() => import('./view/AdminClients/AdminClients'));
-const AdminKeywords = lazy(() => import('./view/AdminKeywords/AdminKeywords'));
+const AdminIndexes = lazy(() => import('./view/AdminIndexes/AdminIndexes'));
 const AdminCreateBook = lazy(() =>
 	import('./view/AdminCreateBook/AdminCreateBook')
 );
@@ -21,12 +21,18 @@ const AdminCreateClient = lazy(() =>
 const AdminCreateKeyword = lazy(() =>
 	import('./view/AdminCreateKeyword/AdminCreateKeyword')
 );
+const AdminCreateTopic = lazy(() =>
+	import('./view/AdminCreateTopic/AdminCreateTopic')
+);
 const AdminEditBook = lazy(() => import('./view/AdminEditBook/AdminEditBook'));
 const AdminEditClient = lazy(() =>
 	import('./view/AdminEditClient/AdminEditClient')
 );
 const AdminEditKeyword = lazy(() =>
 	import('./view/AdminEditKeyword/AdminEditKeyword')
+);
+const AdminEditTopic = lazy(() =>
+	import('./view/AdminEditTopic/AdminEditTopic')
 );
 const Home = lazy(() => import('./view/Home/Home'));
 const DetailOrder = lazy(() => import('./view/DetailOrder/DetailOrder'));
@@ -74,8 +80,8 @@ const router = createBrowserRouter([
 		element: <LazyRoute component={AdminClients} />,
 	},
 	{
-		path: '/admin/keywords',
-		element: <LazyRoute component={AdminKeywords} />,
+		path: '/admin/indexes',
+		element: <LazyRoute component={AdminIndexes} />,
 	},
 	{
 		path: '/admin/books/create',
@@ -90,12 +96,20 @@ const router = createBrowserRouter([
 		element: <LazyRoute component={AdminCreateKeyword} />,
 	},
 	{
+		path: '/admin/topics/create',
+		element: <LazyRoute component={AdminCreateTopic} />,
+	},
+	{
 		path: '/admin/books/edit/:id',
 		element: <LazyRoute component={AdminEditBook} />,
 	},
 	{
 		path: '/admin/clients/edit/:id',
 		element: <LazyRoute component={AdminEditClient} />,
+	},
+	{
+		path: '/admin/topics/edit/:id',
+		element: <LazyRoute component={AdminEditTopic} />,
 	},
 	{
 		path: '/admin/keywords/edit/:id',
