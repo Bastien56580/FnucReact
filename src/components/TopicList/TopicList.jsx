@@ -4,11 +4,11 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../css/adminTab.css';
+import './TopicList.scss';
 
 export default function TopicList() {
 	const [topics, setTopics] = useState([]);
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	useEffect(() => {
 		axios
@@ -47,62 +47,62 @@ export default function TopicList() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row justify-content-center">
-				<div className="col-md-8">
-					<h2 className="text-center pt-5 pb-3">Liste des rayons</h2>
-					<table className="table table-striped table-bordered border-dark table-responsive">
-						<thead>
-							<tr>
-								<th scope="col"><b>Rayon</b></th>
-								<th scope="col"><b>Illustration</b></th>
-								<th></th>
-								<th>
-									<AddCircleIcon
-										onClick={() =>
-											(window.location.href = '/admin/topics/create')
-										}
-										className="add-icon"
+		<div className="topicList">
+			<h1 className="topicList__title">Liste des rayons</h1>
+			<table className="topicList__table">
+				<thead>
+					<tr>
+						<th>Rayon</th>
+						<th>Illustration</th>
+						<th></th>
+						<th>
+							<AddCircleIcon
+								onClick={() =>
+									(window.location.href =
+										'/admin/topics/create')
+								}
+								className="add-icon"
+							/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{topics.map((element) => {
+						return (
+							<tr key={element.id}>
+								<td>{element.label}</td>
+								<td>
+									<img
+										src={element.topic_url}
+										alt="Topic Cover"
+										className="img-thumbnail"
+										style={{
+											maxWidth: '160px',
+											maxHeight: '75px',
+										}}
 									/>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{topics.map((element) => {
-								return (
-									<tr key={element.id}>
-										<td>{element.label}</td>
-										<td>
-											<img
-												src={element.topic_url}
-												alt="Topic Cover"
-												className="img-thumbnail"
-												style={{ maxWidth: '160px', maxHeight: '75px' }}
-											/>
-										</td>
+								</td>
 
-										<td>
-											<EditIcon
-												onClick={() => {
-													handleEdit(element.id);
-												}}
-												className="edit-icon"
-											/>
-										</td>
-										<td>
-											<DeleteIcon
-												onClick={() => handleDelete(element.id)}
-												className="delete-icon"
-											/>
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+								<td>
+									<EditIcon
+										onClick={() => {
+											handleEdit(element.id);
+										}}
+										className="edit-icon"
+									/>
+								</td>
+								<td>
+									<DeleteIcon
+										onClick={() => handleDelete(element.id)}
+										className="delete-icon"
+									/>
+								</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }

@@ -4,6 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
+import './ClientList.scss';
 
 export default function ClientList() {
 	const [clients, setClients] = useState([]);
@@ -46,67 +47,55 @@ export default function ClientList() {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Listes des clients</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Prénom</th>
-								<th>Nom</th>
-								<th>Mail</th>
-								<th></th>
-								<th>
-									<AddCircleIcon
-										onClick={() =>
-											(window.location.href =
-												'/admin/clients/create')
-										}
+		<div className="clientList">
+			<h1 className="clientList__title">Listes des clients</h1>
+			<table className="clientList__table">
+				<thead>
+					<tr>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Mail</th>
+						<th></th>
+						<th>
+							<AddCircleIcon
+								onClick={() =>
+									(window.location.href =
+										'/admin/clients/create')
+								}
+							/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{clients.map((element, index) => {
+						return (
+							<tr key={element + '-' + index}>
+								<td key={element.firstname + '-' + index}>
+									{element.firstname}
+								</td>
+								<td key={element.lastname + '-' + index}>
+									{element.lastname}
+								</td>
+								<td key={element.email + '-' + index}>
+									{element.email}
+								</td>
+								<td key={'update-' + index}>
+									<EditIcon
+										onClick={() => {
+											handleEdit(element.id);
+										}}
 									/>
-								</th>
+								</td>
+								<td key={'delete-' + index}>
+									<DeleteIcon
+										onClick={() => handleDelete(element.id)}
+									/>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							{clients.map((element, index) => {
-								return (
-									<tr key={element + '-' + index}>
-										<td
-											key={
-												element.firstname + '-' + index
-											}
-										>
-											{element.firstname}
-										</td>
-										<td
-											key={element.lastname + '-' + index}
-										>
-											{element.lastname}
-										</td>
-										<td key={element.email + '-' + index}>
-											{element.email}
-										</td>
-										<td key={'update-' + index}>
-											<EditIcon
-												onClick={() => {
-													handleEdit(element.id);
-												}}
-											/>
-										</td>
-										<td key={'delete-' + index}>
-											<DeleteIcon
-												onClick={() =>
-													handleDelete(element.id)
-												}
-											/>
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-				</div>
-			</div>
+						);
+					})}
+				</tbody>
+			</table>
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);

@@ -1,0 +1,63 @@
+@import '../../css/constants.scss';
+
+.bookList{
+  &__title{
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  &__table{
+    width: 90%;
+    margin: auto;
+    overflow: scroll;
+    border: 1px solid;
+    @include tableBorderOutside;
+
+    thead{
+      th {
+        @include tableBorderInside;
+        display: table-cell;
+        text-align: center;
+      }
+
+      tr{
+        max-height: 6vh;
+        overflow: hidden;
+        @include tableHeader
+      }
+    }
+
+    tbody{
+      tr{
+        max-height: 6vh;
+        overflow: hidden;
+  
+        &:nth-child(odd){
+          @include tableRowOdd
+        }
+  
+        &:nth-child(even){
+          @include tableRowEven
+        }
+  
+        &:hover{
+          @include tableHoverRow
+        }
+
+        td{
+          @include tableBorderInside;
+          display: table-cell;
+          text-align: center;
+        }
+    }
+    
+      
+    }
+
+    img{
+      max-height: 5vh;
+      width: auto;
+    }
+  }
+}
