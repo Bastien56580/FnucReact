@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import './AddBookFormAdmin.scss';
 
 export default function AddBookFormAdmin() {
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
@@ -47,65 +48,47 @@ export default function AddBookFormAdmin() {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Ajouter un livre</h2>
-					<form>
-						<div>
-							<input
-								type="text"
-								placeholder="Titre"
-								value={title}
-								onChange={(e) => setTitle(e.target.value)}
-							/>
-						</div>
-						<div>
-							<input
-								type="text"
-								placeholder="Auteur"
-								value={author}
-								onChange={(e) => setAuthor(e.target.value)}
-							/>
-						</div>
-						<div>
-							<input
-								type="text"
-								placeholder="Résumé"
-								value={resume}
-								onChange={(e) => setResume(e.target.value)}
-							/>
-						</div>
-						<div>
-							<input
-								type="text"
-								placeholder="Url de la couverture"
-								value={coverUrl}
-								onChange={(e) => setCoverUrl(e.target.value)}
-							/>
-						</div>
-						<div>
-							<input
-								type="text"
-								placeholder="Prix"
-								value={price}
-								onChange={(e) => setPrice(e.target.value)}
-							/>
-						</div>
-						<div>
-							<input
-								type="text"
-								placeholder="Stock"
-								value={stock}
-								onChange={(e) => setStock(e.target.value)}
-							/>
-						</div>
-						<button onClick={handleSubmit}>Valider</button>
-						<button onClick={handleCancel}>Retour</button>
-					</form>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+		<div className="formAddBook">
+			<h2 className="formAddBook__title">Ajouter un livre</h2>
+			<input
+				type="text"
+				placeholder="Titre"
+				value={title}
+				onChange={(e) => setTitle(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="Auteur"
+				value={author}
+				onChange={(e) => setAuthor(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="Résumé"
+				value={resume}
+				onChange={(e) => setResume(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="Url de la couverture"
+				value={coverUrl}
+				onChange={(e) => setCoverUrl(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="Prix"
+				value={price}
+				onChange={(e) => setPrice(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="Stock"
+				value={stock}
+				onChange={(e) => setStock(e.target.value)}
+			/>
+			<input type="submit" onClick={handleSubmit} value="Valider" />
+			<input type="submit" onClick={handleCancel} value="Retour" />
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }
