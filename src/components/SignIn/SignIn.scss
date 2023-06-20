@@ -1,0 +1,26 @@
+@import '../../css/constants.scss';
+
+.signIn{
+  width: 50%;
+  height: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: white;
+  border-radius: 20px;
+
+  &__title{
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  input{
+    width: 90%;
+    margin: auto;
+    &[type="submit"]{
+      width: 50%;
+    }
+  }
+}

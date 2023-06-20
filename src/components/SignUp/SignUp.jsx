@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import './SignUp.scss';
 
 export default function SignUp() {
 	// State variables for form inputs
@@ -39,36 +40,37 @@ export default function SignUp() {
 	};
 
 	return (
-		<div>
-			<div>
-				<input
-					type="firstname"
-					placeholder="Prenom"
-					value={firstname}
-					onChange={(e) => setFirstname(e.target.value)}
-				/>
-				<input
-					type="lastname"
-					placeholder="Nom de Famille"
-					value={lastname}
-					onChange={(e) => setLastName(e.target.value)}
-				/>
-				<input
-					type="email"
-					placeholder="Email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-				<input
-					type="password"
-					placeholder="Mot de passe"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-				<button type="submit" onClick={handleSubmit}>
-					Créer un compte
-				</button>
-			</div>
+		<div className="signUp">
+			<h1 className="signUp__title">Inscription</h1>
+			<input
+				type="firstname"
+				placeholder="Prenom"
+				value={firstname}
+				onChange={(e) => setFirstname(e.target.value)}
+			/>
+			<input
+				type="lastname"
+				placeholder="Nom de Famille"
+				value={lastname}
+				onChange={(e) => setLastName(e.target.value)}
+			/>
+			<input
+				type="email"
+				placeholder="Email"
+				value={email}
+				onChange={(e) => setEmail(e.target.value)}
+			/>
+			<input
+				type="password"
+				placeholder="Mot de passe"
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<input
+				type="submit"
+				onClick={handleSubmit}
+				value="Créer un compte"
+			/>
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
