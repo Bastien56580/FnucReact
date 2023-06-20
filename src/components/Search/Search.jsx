@@ -7,6 +7,7 @@ export default function Search() {
 	const [keywords, setKeywords] = useState([]);
 	const [selectedKeywords, setSelectedKeywords] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
+	const [selectChangeValue, setSelectChangeValue] = useState('');
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	useEffect(() => {
@@ -38,7 +39,26 @@ export default function Search() {
 	};
 
 	const handleSubmit = () => {
-		console.log(searchValue, selectedKeywords);
+		const jsonSearchParam = {
+			searchValue: searchValue,
+			selectedKeywords: selectedKeywords,
+			selectChangeValue: selectChangeValue
+		};
+
+		// axios
+		// 	.get(baseUrl + '/search/', jsonSearchParam, {
+		// 		withCredentials: true,
+		// 	})
+		// 	.then((response) => {
+		// 		// Handle successful response
+		// 		setBooks(response.data);
+		// 	})
+		// 	.catch((error) => {
+		// 		// Handle error response
+		// 		toast.error(error.response.data.detail); // Display error toast message with details
+		// 	});
+
+		console.log(jsonSearchParam);
 	};
 
 	return (
@@ -56,11 +76,15 @@ export default function Search() {
 						<SearchIcon />
 					</button>
 				</div>
-				<select name="option" id="search-option" className="form-select mt-2">
+				<select name="option"
+					id="search-option"
+					className="form-select mt-2"
+					onChange={(e) => setSelectChangeValue(e.target.value)}
+				>
 					<option value="">--Option de recherche--</option>
-					<option value="in">OU</option>
-					<option value="with">ET</option>
-					<option value="without">SAUF</option>
+					<option value="or">OU</option>
+					<option value="in">ET</option>
+					<option value="not_in">SAUF</option>
 				</select>
 
 				<div className='row'>
