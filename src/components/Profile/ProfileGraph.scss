@@ -1,3 +1,15 @@
-.plot-container {
-    width: 100%;
+@import '../../css/constants.scss';
+
+.profilGraph{
+  &__title{
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
+
+  &__graph{
+    text-align: center;
+    width: 100% !important;
+  }
+}
