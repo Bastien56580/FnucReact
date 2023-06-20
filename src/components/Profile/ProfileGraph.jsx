@@ -65,56 +65,44 @@ export default function ProfileGraph() {
 	const barColors = randomColor({ count: xData.length });
 
 	return (
-		<div className="container mt-4">
-			<div className="card">
-				<div className="card-body">
-					<h5 className="card-title text-center">
+		<div className="profilGraph">
+			<h1 className="profilGraph__title">Ma consommation de livres</h1>
+			{myData !== '' ? (
+				<Plot
+					className="profilGraph__graph"
+					data={[
 						{
-							"Quels sont les livres que j'ai achetés et en combien d'exemplaires ?"
-						}
-					</h5>
-					{myData !== '' ? (
-						<div className="d-flex justify-content-center">
-							<div className="plot-container">
-								<Plot
-									data={[
-										{
-											type: 'bar',
-											x: xData,
-											y: yData,
-											marker: {
-												color: barColors,
-											},
-										},
-									]}
-									layout={{
-										autosize: true,
-										height: 500,
-										xaxis: {
-											ticktext: Array.from(
-												{ length: xData.length },
-												() => ''
-											),
-											tickvals: [],
-											title: 'Titre des livres',
-										},
-										yaxis: {
-											title: "Nombre d'exemplaires achetés",
-										},
-									}}
-									config={{
-										responsive: true,
-										displaylogo: false,
-									}}
-									className="w-100"
-								/>
-							</div>
-						</div>
-					) : (
-						<p>Loading</p>
-					)}
-				</div>
-			</div>
+							type: 'bar',
+							x: xData,
+							y: yData,
+							marker: {
+								color: barColors,
+							},
+						},
+					]}
+					layout={{
+						autosize: true,
+						height: 500,
+						xaxis: {
+							ticktext: Array.from(
+								{ length: xData.length },
+								() => ''
+							),
+							tickvals: [],
+							title: 'Titre des livres',
+						},
+						yaxis: {
+							title: "Nombre d'exemplaires achetés",
+						},
+					}}
+					config={{
+						responsive: true,
+						displaylogo: false,
+					}}
+				/>
+			) : (
+				<p>Loading</p>
+			)}
 			<Toaster />
 		</div>
 	);
