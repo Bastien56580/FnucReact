@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import mockClient from './mock/mockClient.json';
+import './ClientList.scss';
 
 export default function ClientList() {
 	const [limit] = useState(10);
@@ -65,73 +66,58 @@ export default function ClientList() {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Listes des clients</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Prénom</th>
-								<th>Nom</th>
-								<th>Mail</th>
-								<th></th>
-								<th>
-									<AddCircleIcon
-										onClick={() =>
-											(window.location.href =
-												'/admin/clients/create')
-										}
-										className="add-icon"
+		<div className="clientList">
+			<h1 className="clientList__title">Listes des clients</h1>
+			<table className="clientList__table">
+				<thead>
+					<tr>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Mail</th>
+						<th></th>
+						<th>
+							<AddCircleIcon
+								onClick={() =>
+									(window.location.href =
+										'/admin/clients/create')
+								}
+							/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{clients.map((element, index) => {
+						return (
+							<tr key={element + '-' + index}>
+								<td key={element.firstname + '-' + index}>
+									{element.firstname}
+								</td>
+								<td key={element.lastname + '-' + index}>
+									{element.lastname}
+								</td>
+								<td key={element.email + '-' + index}>
+									{element.email}
+								</td>
+								<td key={'update-' + index}>
+									<EditIcon
+										onClick={() => {
+											handleEdit(element.id);
+										}}
 									/>
-								</th>
+								</td>
+								<td key={'delete-' + index}>
+									<DeleteIcon
+										onClick={() => handleDelete(element.id)}
+									/>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							{clients.map((element, index) => {
-								return (
-									<tr key={element + '-' + index}>
-										<td
-											key={
-												element.firstname + '-' + index
-											}
-										>
-											{element.firstname}
-										</td>
-										<td
-											key={element.lastname + '-' + index}
-										>
-											{element.lastname}
-										</td>
-										<td key={element.email + '-' + index}>
-											{element.email}
-										</td>
-										<td key={'update-' + index}>
-											<EditIcon
-												onClick={() => {
-													handleEdit(element.id);
-												}}
-												className="edit-icon"
-											/>
-										</td>
-										<td key={'delete-' + index}>
-											<DeleteIcon
-												onClick={() =>
-													handleDelete(element.id)
-												}
-												className="delete-icon"
-											/>
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
+						);
+					})}
+				</tbody>
+			</table>
+			{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
 					{<b className='me-5'>page {(offset/limit) + 1}</b>}
 					{clients.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
-				</div>
-			</div>
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);

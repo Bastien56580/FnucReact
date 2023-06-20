@@ -4,7 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
-import '../../css/adminTab.css';
+import './KeywordList.scss';
 
 export default function KeywordList() {
 	const [keywords, setKeywords] = useState([]);
@@ -47,53 +47,47 @@ export default function KeywordList() {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Listes des mots clés</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Mot clé</th>
-								<th></th>
-								<th>
-									<AddCircleIcon
-										onClick={() =>
-											(window.location.href =
-												'/admin/keywords/create')
-										}
+		<div className="keywordList">
+			<h1 className="keywordList__title">Listes des mots clés</h1>
+			<table className="keywordList__table">
+				<thead>
+					<tr>
+						<th>Mot clé</th>
+						<th></th>
+						<th>
+							<AddCircleIcon
+								onClick={() =>
+									(window.location.href =
+										'/admin/keywords/create')
+								}
+							/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{keywords.map((element, index) => {
+						return (
+							<tr key={element + '-' + index}>
+								<td key={element.label + '-' + index}>
+									{element.label}
+								</td>
+								<td key={'update-' + index}>
+									<EditIcon
+										onClick={() => {
+											handleEdit(element.id);
+										}}
 									/>
-								</th>
+								</td>
+								<td key={'delete-' + index}>
+									<DeleteIcon
+										onClick={() => handleDelete(element.id)}
+									/>
+								</td>
 							</tr>
-						</thead>
-						<tbody>
-							{keywords.map((element, index) => {
-								return (
-									<tr key={element + '-' + index}>
-										<td key={element.label + '-' + index}>
-											{element.label}
-										</td>
-										<td key={'update-' + index}>
-											<EditIcon
-												onClick={() => {
-													handleEdit(element.id);
-												}}
-											/>
-										</td>
-										<td key={'delete-' + index}>
-											<DeleteIcon
-												onClick={() =>
-													handleDelete(element.id)
-												}
-											/>
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-				</div>
-			</div>
+						);
+					})}
+				</tbody>
+			</table>
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);

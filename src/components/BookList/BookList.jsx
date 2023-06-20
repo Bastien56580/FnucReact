@@ -4,6 +4,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './BookList.scss';
 
 export default function BookList() {
 	const [limit] = useState(10);
@@ -54,55 +55,41 @@ export default function BookList() {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Liste des livres</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>
-									<b>Titre</b>
-								</th>
-								<th>
-									<b>Auteur</b>
-								</th>
-								<th>
-									<b>Résumé</b>
-								</th>
-								<th>
-									<b>Image</b>
-								</th>
-								<th>
-									<b>Prix</b>
-								</th>
-								<th>
-									<b>Stock</b>
-								</th>
-								<th></th>
-								<th>
-									<AddCircleIcon
-										onClick={() =>
-											(window.location.href =
-												'/admin/books/create')
-										}
+		<div className="bookList">
+			<h1 className="bookList__title">Liste des livres</h1>
+			<table className="bookList__table">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Auteur</th>
+						<th>Résumé</th>
+						<th>Image</th>
+						<th>Prix</th>
+						<th>Stock</th>
+						<th></th>
+						<th>
+							<AddCircleIcon
+								onClick={() =>
+									(window.location.href =
+										'/admin/books/create')
+								}
+							/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{books.map((element) => {
+						return (
+							<tr key={element.id}>
+								<td>{element.title}</td>
+								<td>{element.author}</td>
+								<td>{element.resume}</td>
+								<td>
+									<img
+										src={element.cover_url}
+										alt="Book Cover"
 									/>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{books.map((element) => {
-								return (
-									<tr key={element.id}>
-										<td>{element.title}</td>
-										<td>{element.author}</td>
-										<td>{element.resume}</td>
-										<td>
-											<img
-												src={element.cover_url}
-												alt="Book Cover"
-											/>
-										</td>
+								</td>
 
 										<td>{element.price}</td>
 										<td>{element.stock}</td>
