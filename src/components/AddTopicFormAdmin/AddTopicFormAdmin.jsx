@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css'
+import './AddTopicFormAdmin.scss';
 
 export default function AddBookFormAdmin() {
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const [topic, setTopic] = useState('');
 	const [topicUrl, setTopicUrl] = useState('');
 
@@ -40,39 +40,23 @@ export default function AddBookFormAdmin() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-6">
-					<h2 className="pt-5 pb-2">Ajouter un rayon</h2>
-					<form>
-						<div className="mb-3">
-							<input
-								type="text"
-								className="form-control"
-								placeholder="Titre"
-								value={topic}
-								onChange={(e) => setTopic(e.target.value)}
-							/>
-						</div>
-						<div className="mb-3">
-							<input
-								type="text"
-								className="form-control"
-								placeholder="Url de la couverture"
-								value={topicUrl}
-								onChange={(e) => setTopicUrl(e.target.value)}
-							/>
-						</div>
-						<button className="btn btn-custom-primary me-2" onClick={handleSubmit}>
-							Valider
-						</button>
-						<button className="btn btn-custom-primary me-2" onClick={handleCancel}>
-							Retour
-						</button>
-					</form>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+		<div className="formAddTopic">
+			<h2 className="formAddTopic__title">Ajouter un rayon</h2>
+			<input
+				type="text"
+				placeholder="Titre"
+				value={topic}
+				onChange={(e) => setTopic(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="Url de la couverture"
+				value={topicUrl}
+				onChange={(e) => setTopicUrl(e.target.value)}
+			/>
+			<input type="submit" value="Valider" onClick={handleSubmit} />
+			<input type="submit" value="Retour" onClick={handleCancel} />
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }
