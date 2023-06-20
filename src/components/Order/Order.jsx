@@ -22,9 +22,9 @@ export default function Order({ book }) {
 	const handleQuantity = (e) => {
 		const newQuantity = parseInt(e.target.value);
 		setQuantity(newQuantity);
-		setTVA(newQuantity * tauxTVA);
-		setHT(newQuantity * price);
-		setTTC(newQuantity * price + newQuantity * price * tauxTVA);
+		setTVA((newQuantity * tauxTVA).toPrecision(4));
+		setHT((newQuantity * price).toPrecision(4));
+		setTTC((newQuantity * price + newQuantity * price * tauxTVA).toPrecision(4));
 	};
 
 
@@ -79,6 +79,8 @@ export default function Order({ book }) {
 											type="number"
 											className="form-control"
 											placeholder="Quantité"
+											min="0"
+											max={stock}
 											value={quantity}
 											onChange={(e) => handleQuantity(e)}
 										/>
