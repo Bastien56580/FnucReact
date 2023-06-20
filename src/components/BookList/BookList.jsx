@@ -4,7 +4,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../css/adminTab.css';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);

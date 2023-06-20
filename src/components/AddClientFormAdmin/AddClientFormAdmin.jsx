@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css';
+import './AddClientFormAdmin.scss';
+
 export default function AddClientFormAdmin() {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
@@ -44,49 +45,35 @@ export default function AddClientFormAdmin() {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Ajouter un client</h2>
-					<form>
-						<div>
-							<input
-								type="text"
-								placeholder="Prénom"
-								value={firstName}
-								onChange={(e) => setFirstName(e.target.value)}
-							/>
-						</div>
-						<div>
-							<input
-								type="text"
-								placeholder="Nom"
-								value={lastName}
-								onChange={(e) => setLastName(e.target.value)}
-							/>
-						</div>
-						<div>
-							<input
-								type="email"
-								placeholder="Mail"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-							/>
-						</div>
-						<div>
-							<input
-								type="password"
-								placeholder="Mot de passe"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-							/>
-						</div>
-						<button onClick={handleSubmit}>Valider</button>
-						<button onClick={handleCancel}>Retour</button>
-					</form>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+		<div className="formAddClient">
+			<h2 className="formAddClient__title">Ajouter un client</h2>
+			<input
+				type="text"
+				placeholder="Prénom"
+				value={firstName}
+				onChange={(e) => setFirstName(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="Nom"
+				value={lastName}
+				onChange={(e) => setLastName(e.target.value)}
+			/>
+			<input
+				type="email"
+				placeholder="Mail"
+				value={email}
+				onChange={(e) => setEmail(e.target.value)}
+			/>
+			<input
+				type="password"
+				placeholder="Mot de passe"
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<input type="submit" onClick={handleSubmit} value="Valider" />
+			<input type="submit" onClick={handleCancel} value="Retour" />
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }

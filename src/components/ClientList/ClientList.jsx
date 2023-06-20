@@ -4,7 +4,6 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
-import '../../css/adminTab.css';
 
 export default function ClientList() {
 	const [clients, setClients] = useState([]);

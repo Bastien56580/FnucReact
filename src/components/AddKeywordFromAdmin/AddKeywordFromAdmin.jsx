@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css';
+import './AddKeywordFromAdmin.scss';
 
 export default function AddKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
@@ -43,25 +43,17 @@ export default function AddKeywordFormAdmin() {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Ajouter un mot clé</h2>
-					<form>
-						<div>
-							<input
-								type="text"
-								placeholder="Mot Clé"
-								value={keyword}
-								onChange={(e) => setKeyword(e.target.value)}
-							/>
-						</div>
-						<button onClick={handleSubmit}>Valider</button>
-						<button onClick={handleCancel}>Retour</button>
-					</form>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+		<div className="formAddKeyword">
+			<h2 className="formAddKeyword__title">Ajouter un mot clé</h2>
+			<input
+				type="text"
+				placeholder="Mot Clé"
+				value={keyword}
+				onChange={(e) => setKeyword(e.target.value)}
+			/>
+			<input type="submit" onClick={handleSubmit} value="Valider" />
+			<input type="submit" onClick={handleCancel} value="Retour" />
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }

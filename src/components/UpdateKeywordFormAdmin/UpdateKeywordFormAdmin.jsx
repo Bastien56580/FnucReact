@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css';
+import './UpdateKeywordFromAdmin.scss';
 
 export default function UpdateKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
@@ -57,25 +57,17 @@ export default function UpdateKeywordFormAdmin() {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Modifier un mot clé</h2>
-					<form>
-						<div>
-							<input
-								type="text"
-								placeholder="Mot clé"
-								value={keyword}
-								onChange={(e) => setKeyword(e.target.value)}
-							/>
-						</div>
-						<button onClick={handleSubmit}>Valider</button>
-						<button onClick={handleCancel}>Retour</button>
-					</form>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+		<div className="formUpdateKeyword">
+			<h2 className="formUpdateKeyword__title">Modifier un mot clé</h2>
+			<input
+				type="text"
+				placeholder="Mot clé"
+				value={keyword}
+				onChange={(e) => setKeyword(e.target.value)}
+			/>
+			<button onClick={handleSubmit}>Valider</button>
+			<button onClick={handleCancel}>Retour</button>
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }
