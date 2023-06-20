@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import './SignUp.scss';
 
 
 export default function SignUp() {
@@ -45,17 +46,39 @@ export default function SignUp() {
       });
   }
 
-  return (
-    <div className="d-flex mt-5 justify-content-center" style={{ height: "100vh" }}>
-      <div className="text-center">
-        <input type="firstname" className="form-control mb-3" placeholder="Prenom" value={firstname} onChange={(e) => setFirstname(e.target.value)} />
-        <input type="lastname" className="form-control mb-3" placeholder="Nom de Famille" value={lastname} onChange={(e) => setLastName(e.target.value)} />
-        <input type="email" className="form-control mb-3" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" className="form-control mb-3" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <input type="password" className="form-control mb-3" placeholder="Confirmez mot de passe" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-        <button type="submit" className="btn btn-success" onClick={handleSubmit}>Créer un compte</button>
-      </div>
-      <Toaster /> {/* Toast container for displaying messages */}
-    </div>
-  );
+	return (
+		<div className="signUp">
+			<h1 className="signUp__title">Inscription</h1>
+			<input
+				type="firstname"
+				placeholder="Prenom"
+				value={firstname}
+				onChange={(e) => setFirstname(e.target.value)}
+			/>
+			<input
+				type="lastname"
+				placeholder="Nom de Famille"
+				value={lastname}
+				onChange={(e) => setLastName(e.target.value)}
+			/>
+			<input
+				type="email"
+				placeholder="Email"
+				value={email}
+				onChange={(e) => setEmail(e.target.value)}
+			/>
+			<input
+				type="password"
+				placeholder="Mot de passe"
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<input
+				type="submit"
+				onClick={handleSubmit}
+				value="Créer un compte"
+			/>
+			<Toaster /> {/* Toast container for displaying messages */}
+		</div>
+	);
 }
