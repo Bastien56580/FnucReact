@@ -1,3 +1,38 @@
 $primary-color: #FF9400;
 $secondary-color: #0F0F32;
 $background-color: #DEDEDE;
+
+@mixin tableRowOdd {
+  color: $secondary-color;
+  background-color: lighten($secondary-color,  80%);
+}
+
+@mixin tableRowEven{
+  color: $secondary-color;
+  background-color: lighten($secondary-color,  90%);
+}
+
+@mixin tableHeader{
+  color: $secondary-color;
+  background-color: lighten($secondary-color,  70%);
+}
+
+@mixin tableActiveRow{
+  color: $primary-color;
+  background-color: lighten($secondary-color,  40%);
+}
+
+@mixin tableHoverRow{
+  color: $secondary-color;
+  background-color: lighten($secondary-color,  60%);
+}
+
+@mixin tableBorderInside{
+  border: 1px solid $secondary-color;
+  border-collapse: collapse;
+}
+
+@mixin tableBorderOutside{
+  border: 2px solid $secondary-color;
+  border-collapse: collapse;
+}
