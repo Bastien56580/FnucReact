@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-
+import '../../css/style.css'
 export default function AddClientFormAdmin() {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
@@ -86,10 +86,10 @@ export default function AddClientFormAdmin() {
 								onChange={(e) => setPassword(e.target.value)}
 							/>
 						</div>
-						<button className="btn btn-primary" onClick={handleSubmit}>
+						<button className="btn btn-custom-primary me-2" onClick={handleSubmit}>
 							Valider
 						</button>
-						<button className="btn btn-secondary" onClick={handleCancel}>
+						<button className="btn btn-custom-primary me-2" onClick={handleCancel}>
 							Retour
 						</button>
 					</form>
