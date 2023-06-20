@@ -2,7 +2,8 @@ import { useState } from 'react';
 import CategoryList from '../../components/CategoryList/CategotyList';
 import Navbar from '../../components/Navbar/Navbar';
 import ListBookByTopic from '../../components/ListBookByTopic/ListBookByTopic';
-import '../../css/main.scss';
+import './Home.scss';
+import BestSeller from '../../components/BestSeller/BestSeller';
 
 export default function Home() {
 	const [topicId, setTopicId] = useState();
@@ -14,6 +15,21 @@ export default function Home() {
 	return (
 		<>
 			<Navbar />
+			<div className="cardList">
+				<div className="cardList__card">
+					<CategoryList handleTopicId={handleTopicId} />
+				</div>
+
+				{topicId ? (
+					<div className="cardList__card">
+						<ListBookByTopic topicId={topicId} />
+					</div>
+				) : (
+					<div className="cardList__card">
+						<BestSeller />
+					</div>
+				)}
+			</div>
 		</>
 
 		// <div className="Home">
