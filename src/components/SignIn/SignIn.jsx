@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './SignIn.scss';
 
 export default function SignIn() {
 	const [login, setLogin] = useState('');
@@ -10,28 +11,22 @@ export default function SignIn() {
 	};
 
 	return (
-		<div>
-			<form>
-				<div>
-					<input
-						type="email"
-						placeholder="Email"
-						value={login}
-						onChange={(e) => setLogin(e.target.value)}
-					/>
-				</div>
-				<div className="mb-3">
-					<input
-						type="password"
-						placeholder="Mot de passe"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-				</div>
-				<button type="submit" onClick={handleSubmit}>
-					Valider
-				</button>
-			</form>
+		<div className="signIn">
+			<h1 className="signIn__title">Connexion</h1>
+			<input
+				type="email"
+				placeholder="Email"
+				value={login}
+				onChange={(e) => setLogin(e.target.value)}
+			/>
+
+			<input
+				type="password"
+				placeholder="Mot de passe"
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<input type="submit" onClick={handleSubmit} value="Se connecter" />
 		</div>
 	);
 }
