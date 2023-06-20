@@ -1,0 +1,34 @@
+[
+    {
+        "id": "1",
+        "label": "JAVA"
+    },
+    {
+        "id": "2",
+        "label": "C++"
+    },
+    {
+        "id": "3",
+        "label": "TALEND"
+    },
+    {
+        "id": "4",
+        "label": "C"
+    },
+    {
+        "id": "5",
+        "label": "JAVASCRIPT"
+    },
+    {
+        "id": "6",
+        "label": "HTML"
+    },
+    {
+        "id": "7",
+        "label": "CSS"
+    },
+    {
+        "id": "8",
+        "label": "TYPESCRIPT"
+    }
+]

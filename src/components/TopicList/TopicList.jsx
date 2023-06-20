@@ -5,12 +5,17 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../css/adminTab.css';
+import mockTopic from './mock/mockTopic.json'
 
 export default function TopicList() {
 	const [topics, setTopics] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const mock = sessionStorage.getItem("REACT_APP_MOCK");
 
 	useEffect(() => {
+		if (mock === "true") {
+			setTopics(mockTopic);
+		}else {
 		axios
 			.get(baseUrl + '/topics/', {
 				withCredentials: true,
@@ -23,6 +28,7 @@ export default function TopicList() {
 				// Handle error response
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
+		}
 	}, []);
 
 	const handleDelete = (id) => {

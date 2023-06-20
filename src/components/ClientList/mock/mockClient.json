@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "firstname": "Erwan",
+        "lastname": "C",
+        "email": "erwan@kaz.bzh"
+    },
+    {
+        "id": "2",
+        "firstname": "Quentin",
+        "lastname": "L",
+        "email": "Quentin@cgi.com"
+    },
+    {
+        "id": "3",
+        "firstname": "Nath",
+        "lastname": "G",
+        "email": "nath@mediamag.fr"
+    },
+    {
+        "id": "4",
+        "firstname": "Pierre",
+        "lastname": "L",
+        "email": "pierre@capgemini.com"
+    },
+    {
+        "id": "5",
+        "firstname": "Basten",
+        "lastname": "L",
+        "email": "bastien@icones.fr"
+    }
+]

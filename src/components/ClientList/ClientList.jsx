@@ -5,12 +5,17 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import '../../css/adminTab.css';
+import mockClient from './mock/mockClient.json'
 
 export default function ClientList() {
 	const [clients, setClients] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const mock = sessionStorage.getItem("REACT_APP_MOCK");
 
 	useEffect(() => {
+		if (mock === "true") {
+			setClients(mockClient);
+		}else {
 		axios
 			.get(baseUrl + '/customers/', {
 				withCredentials: true,
@@ -23,6 +28,8 @@ export default function ClientList() {
 				// Handle error response
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
+		}
+
 	}, []);
 
 	const handleDelete = (id) => {

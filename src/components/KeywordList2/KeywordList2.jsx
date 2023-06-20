@@ -5,12 +5,18 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import '../../css/adminTab.css';
+import mockKeyword from './mock/mockKeyword.json'
 
 export default function KeywordList2() {
 	const [keywords, setKeywords] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const mock = sessionStorage.getItem("REACT_APP_MOCK");
+
 
 	useEffect(() => {
+		if (mock === "true") {
+			setKeywords(mockKeyword);
+		}else {
 		axios
 			.get(baseUrl + '/keywords/', {
 				withCredentials: true,
@@ -23,6 +29,7 @@ export default function KeywordList2() {
 				// Handle error response
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
+		}
 	}, []);
 
 	const handleDelete = (id) => {
