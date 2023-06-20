@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import mockList from './mock/mockList.json';
+import './ProfilList.scss';
 
 export default function ProfileList() {
 	const [myData, setMyData] = useState('');
@@ -29,40 +30,36 @@ export default function ProfileList() {
 	}, []);
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h5>Information du profile :</h5>
-					<table>
-						{myData !== '' ? (
-							<tbody>
-								<tr>
-									<td>Nom:</td>
-									<td>{myData.firstname}</td>
-								</tr>
-								<tr>
-									<td>Prénom:</td>
-									<td>{myData.lastname}</td>
-								</tr>
-								<tr>
-									<td>Email:</td>
-									<td>{myData.email}</td>
-								</tr>
-								<tr>
-									<td>Total dépensé :</td>
-									<td>{myData.cumulative_sales}</td>
-								</tr>
-							</tbody>
-						) : (
-							<tbody>
-								<tr>
-									<td>Loading</td>
-								</tr>
-							</tbody>
-						)}
-					</table>
-				</div>
-			</div>
+		<div className="profil">
+			<h1 className="profil__title">Information du profil</h1>
+			<table className="profil__table">
+				{myData !== '' ? (
+					<tbody>
+						<tr>
+							<td>Nom:</td>
+							<td>{myData.firstname}</td>
+						</tr>
+						<tr>
+							<td>Prénom:</td>
+							<td>{myData.lastname}</td>
+						</tr>
+						<tr>
+							<td>Email:</td>
+							<td>{myData.email}</td>
+						</tr>
+						<tr>
+							<td>Total dépensé :</td>
+							<td>{myData.cumulative_sales}</td>
+						</tr>
+					</tbody>
+				) : (
+					<tbody>
+						<tr>
+							<td>Loading</td>
+						</tr>
+					</tbody>
+				)}
+			</table>
 			<Toaster />
 		</div>
 	);
