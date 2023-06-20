@@ -1,6 +1,7 @@
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import './ListBookByTopic.scss';
 
 export default function ListBookByTopic(topicId) {
 	const [books, setBooks] = useState([]);
@@ -35,54 +36,42 @@ export default function ListBookByTopic(topicId) {
 	};
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h2>Liste des livres</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>
-									<b>Titre</b>
-								</th>
-								<th>
-									<b>Auteur</b>
-								</th>
-								<th>
-									<b>Image</b>
-								</th>
-								<th>
-									<b>Prix</b>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{books.map((element) => {
-								return (
-									<tr
-										key={element.id}
-										onClick={() => {
-											handleDetailBook(element.id);
-										}}
-									>
-										<td>{element.title}</td>
-										<td>{element.author}</td>
-										<td>
-											<img
-												src={element.cover_url}
-												alt="Book Cover"
-											/>
-										</td>
+		<div className="listBook">
+			<h1 className="listBook__title">Liste des livres</h1>
+			<table className="listBook__table">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Auteur</th>
+						<th>Image</th>
+						<th>Prix</th>
+					</tr>
+				</thead>
+				<tbody>
+					{books.map((element) => {
+						return (
+							<tr
+								key={element.id}
+								onClick={() => {
+									handleDetailBook(element.id);
+								}}
+							>
+								<td>{element.title}</td>
+								<td>{element.author}</td>
+								<td>
+									<img
+										src={element.cover_url}
+										alt="Book Cover"
+									/>
+								</td>
 
-										<td>{element.price}</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+								<td>{element.price}</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }
