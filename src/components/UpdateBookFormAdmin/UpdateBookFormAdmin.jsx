@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
+import '../../css/style.css'
 
 export default function UpdateBookFormAdmin() {
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
@@ -134,10 +135,10 @@ export default function UpdateBookFormAdmin() {
 								onChange={(e) => setStock(e.target.value)}
 							/>
 						</div>
-						<button className="btn btn-primary mr-2" onClick={handleSubmit}>
+						<button className="btn btn-custom-primary me-2" onClick={handleSubmit}>
 							Valider
 						</button>
-						<button className="btn btn-secondary" onClick={handleCancel}>
+						<button className="btn btn-custom-primary me-2" onClick={handleCancel}>
 							Retour
 						</button>
 					</form>

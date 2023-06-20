@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import '../../css/style.css'
 
 export default function UpdateTopicFormAdmin() {
 	const [topic, setTopic] = useState('');
@@ -87,10 +88,10 @@ export default function UpdateTopicFormAdmin() {
 								onChange={(e) => setTopicUrl(e.target.value)}
 							/>
 						</div>
-						<button className="btn btn-primary" onClick={handleSubmit}>
+						<button className="btn btn-custom-primary me-2" onClick={handleSubmit}>
 							Valider
 						</button>
-						<button className="btn btn-secondary" onClick={handleCancel}>
+						<button className="btn btn-custom-primary me-2" onClick={handleCancel}>
 							Retour
 						</button>
 					</form>

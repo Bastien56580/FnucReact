@@ -41,8 +41,8 @@
 }
 
 .btn-magic {
-    background-color: #ff7f57;
-    border-color: #f93a1f;
+    background-color: #0F0F32;
+    border-color: #0F0F32;
     color: white;
     transition: transform 0.3s ease-in-out;
     pointer-events: none;
