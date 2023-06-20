@@ -2,7 +2,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../css/adminTab.css';
-import mockList from './mock/mockBook.json';
+import mockList from './mock/mockbook.json';
 
 export default function ListBookByTopic(topicId) {
 	const [books, setBooks] = useState([]);
