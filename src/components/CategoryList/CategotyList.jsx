@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import './CategoryList.scss';
 
 // Mock list since you don't have a backend to test with yet
 import mockList from './mock/mockList.json';
@@ -30,9 +31,9 @@ export default function ProfileList(handleTopicId) {
 	}, []);
 
 	return (
-		<div>
-			<h2>Topic List</h2>
-			<table>
+		<div className="categoryList">
+			<h1 className="categoryList__title">Topic List</h1>
+			<table className="categoryList__table">
 				<thead>
 					<tr>
 						<th>Name</th>
