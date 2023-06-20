@@ -8,6 +8,7 @@ import BookDetail from '../../components/BookDetail/BookDetail.jsx';
 import Navbar from '../../components/Navbar/Navbar';
 
 import mockB from './mock/mockBook.json';
+import './DetailOrder.scss';
 
 export default function DetailOrder() {
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
@@ -40,21 +41,9 @@ export default function DetailOrder() {
 		<div className="DetailOrder">
 			<Navbar />
 			{myData !== '' ? (
-				<div className="container">
-					<div className="row">
-						<div className="col-md-6">
-							<BookDetail book={myData} />
-						</div>
-						{token ? (
-							<>
-								<div className="col-md-6">
-									<Order book={myData} />
-								</div>
-							</>
-						) : (
-							<></>
-						)}
-					</div>
+				<div className="card">
+					<BookDetail book={myData} />
+					token ? (<Order book={myData} />)
 				</div>
 			) : (
 				<p>Loading</p>

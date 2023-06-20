@@ -1,0 +1,64 @@
+@import '../../css/constants.scss';
+
+.order {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+	&__title {
+		width: fit-content;
+		margin: auto;
+		margin-bottom: 10px;
+		margin-top: 10px;
+	}
+
+	&__content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+		&__table {
+			width: 35vw;
+      height: 20vh;
+			margin: auto;
+			overflow: scroll;
+			border: 1px solid;
+			@include tableBorderOutside;
+
+			thead {
+				th {
+					@include tableBorderInside;
+					display: table-cell;
+					text-align: center;
+				}
+
+				tr {
+					max-height: 6vh;
+					overflow: hidden;
+					@include tableHeader;
+				}
+			}
+
+			tbody {
+				tr {
+					max-height: 6vh;
+					overflow: hidden;
+
+					&:nth-child(odd) {
+						@include tableRowOdd;
+					}
+
+					&:nth-child(even) {
+						@include tableRowEven;
+					}
+
+					td {
+						@include tableBorderInside;
+						display: table-cell;
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}
