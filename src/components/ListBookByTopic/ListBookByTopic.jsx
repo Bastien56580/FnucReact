@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import mockList from './mock/mockbook.json';
 import './ListBookByTopic.scss';
-import mockList from './mock/mockList.json';
+import mockList from './mock/mockbook.json';
 
 export default function ListBookByTopic(topicId) {
 	const [books, setBooks] = useState([]);
