@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import '../../css/style.css'
 
 export default function Order({ book }) {
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
@@ -117,7 +118,7 @@ export default function Order({ book }) {
 				<div className="col-12 text-center">
 					<input
 						type="submit"
-						className="btn btn-primary"
+						className="btn btn-custom-primary"
 						value="Valider"
 						onClick={handleSubmit}
 					/>
