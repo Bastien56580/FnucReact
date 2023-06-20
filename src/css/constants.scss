@@ -1,6 +1,6 @@
 $primary-color: #FF9400;
 $secondary-color: #0F0F32;
-$background-color: #DEDEDE;
+$background-color: rgb(245, 245, 255);
 
 @mixin tableRowOdd {
   color: $secondary-color;
