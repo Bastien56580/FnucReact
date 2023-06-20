@@ -1,0 +1,28 @@
+@import '../../css/constants.scss';
+
+.bookDetail{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &__title{
+    color: $secondary-color;
+    text-align: center;
+  }
+
+  &__content{
+    display: flex;
+    width: 80%;
+    margin: auto;
+
+    img{
+      height: 40vh;
+      width: auto;
+      margin-right: 5%;
+    }
+
+    &--detail{
+      color: $secondary-color;
+    }
+  }
+}

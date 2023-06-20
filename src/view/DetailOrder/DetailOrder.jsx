@@ -7,52 +7,45 @@ import Order from '../../components/Order/Order.jsx';
 import BookDetail from '../../components/BookDetail/BookDetail.jsx';
 import Navbar from '../../components/Navbar/Navbar';
 
-import mockB from "./mock/mockBook.json";
+import mockB from './mock/mockBook.json';
+import './DetailOrder.scss';
 
 export default function DetailOrder() {
-    const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
-    const mock = sessionStorage.getItem("REACT_APP_MOCK");
-    const [myData, setMyData] = useState("");
-    const { id } = useParams(); // Récupération de la valeur 'id' depuis l'URL
-    useEffect(() => {
-        if (mock === "true") {
-            setMyData(mockB);
-        } else {
-            axios
-                .get(baseUrl + '/books/' + id, {
-                    withCredentials: true,
-                })
-                .then((response) => {
-                    // Handle successful response
-                    setMyData(response.data);
-                })
-                .catch((error) => {
-                    // Handle error response
-                    toast.error(error.response.data.detail); // Display error toast message with details
-                });
-        }
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
+	const mock = sessionStorage.getItem('REACT_APP_MOCK');
+	const [myData, setMyData] = useState('');
+	const { id } = useParams(); // Récupération de la valeur 'id' depuis l'URL
+	useEffect(() => {
+		if (mock === 'true') {
+			setMyData(mockB);
+		} else {
+			axios
+				.get(baseUrl + '/books/' + id, {
+					withCredentials: true,
+				})
+				.then((response) => {
+					// Handle successful response
+					setMyData(response.data);
+				})
+				.catch((error) => {
+					// Handle error response
+					toast.error(error.response.data.detail); // Display error toast message with details
+				});
+		}
+	}, [id]);
 
-    }, [id]);
-
-    return (
-        <div className="DetailOrder">
-            <Navbar />
-            {myData !== "" ? (
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-6">
-                            <BookDetail book={myData} />
-                        </div>
-                        <div className="col-md-6">
-                            <Order book={myData} />
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                <p>Loading</p>
-            )}
-            <Toaster />
-        </div>
-    );
-
+	return (
+		<div className="DetailOrder">
+			<Navbar />
+			{myData !== '' ? (
+				<div className="card">
+					<BookDetail book={myData} />
+					<Order book={myData} />
+				</div>
+			) : (
+				<p>Loading</p>
+			)}
+			<Toaster />
+		</div>
+	);
 }

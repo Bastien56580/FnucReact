@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
+import './Order.scss';
 
 export default function Order({ book }) {
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
@@ -57,11 +58,11 @@ export default function Order({ book }) {
 	};
 
 	return (
-		<div>
-			<h2>Formulaire de commande</h2>
-			<div>
+		<div className="order">
+			<h1 className="order__title">Formulaire de commande</h1>
+			<div className="order__content">
 				<div>
-					<table>
+					<table className="order__content__table">
 						<tbody>
 							<tr>
 								<td>Prix:</td>
@@ -74,23 +75,31 @@ export default function Order({ book }) {
 							<tr>
 								<td>Quantité:</td>
 								<td>
-									<label>
-										<input
-											type="number"
-											placeholder="Quantité"
-											min="0"
-											max={stock}
-											value={quantity}
-											onChange={(e) => handleQuantity(e)}
-										/>
-									</label>
+									<input
+										type="number"
+										placeholder="Quantité"
+										min="0"
+										max={stock}
+										value={quantity}
+										onChange={(e) => handleQuantity(e)}
+									/>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input
+										type="submit"
+										value="Valider"
+										onClick={handleSubmit}
+									/>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div>
-					<table>
+					<table className="order__content__table">
 						<tbody>
 							<tr>
 								<td>Taux de TVA:</td>
@@ -110,15 +119,6 @@ export default function Order({ book }) {
 							</tr>
 						</tbody>
 					</table>
-				</div>
-			</div>
-			<div>
-				<div>
-					<input
-						type="submit"
-						value="Valider"
-						onClick={handleSubmit}
-					/>
 				</div>
 			</div>
 			<Toaster /> {/* Toast container for displaying messages */}

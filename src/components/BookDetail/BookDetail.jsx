@@ -1,11 +1,12 @@
+import './BookDetail.scss';
 export default function BookDetail({ book }) {
 	return (
-		<div>
-			<h1>{"Détail d'article"}</h1>
-			<div>
+		<div className="bookDetail">
+			<h1 className="bookDetail__title">{"Détail d'article"}</h1>
+			<div className="bookDetail__content">
 				<img src={book.cover_url} alt="Book Cover" />
-				<div>
-					<h5>Titre : {book.title}</h5>
+				<div className="bookDetail__content--detail">
+					<p>Titre : {book.title}</p>
 					<p>Résumé : {book.resume}</p>
 					<p>Auteur : {book.author}</p>
 				</div>
