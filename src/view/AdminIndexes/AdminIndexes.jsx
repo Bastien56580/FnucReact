@@ -1,5 +1,5 @@
 import Navbar from '../../components/Navbar/Navbar';
-import KeywordList from '../../components/KeywordList2/KeywordList2';
+import KeywordList from '../../components/KeywordList/KeywordList';
 import TopicList from '../../components/TopicList/TopicList';
 
 export default function AdminIndexes() {

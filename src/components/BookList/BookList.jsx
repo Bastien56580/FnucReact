@@ -117,7 +117,5 @@ export default function BookList() {
 					{books.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 					<Toaster /> {/* Toast container for displaying messages */}
 				</div>
-			</div>
-		</div>
 	);
 }

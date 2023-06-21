@@ -22,7 +22,7 @@ export default function PanelAdmin() {
 				</a>
 			</div>
 			<div className="panelAdmin__card">
-				<a href="/admin/keywords">
+				<a href="/admin/indexes">
 					<img
 						src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.thebluediamondgallery.com%2Fhandwriting%2Fimages%2Findex.jpg&f=1&nofb=1&ipt=895a5a415c8059a24cbbfce6f7442dcbc3e7d98fe0be52fde5c3716632c5db89&ipo=images"
 						alt="indexation"
