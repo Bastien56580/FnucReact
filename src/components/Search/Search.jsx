@@ -8,9 +8,11 @@ export default function Search() {
 	const [limit] = useState(9);
 	const [offset, setOffset] = useState(0);
 	const [keywords, setKeywords] = useState([]);
+	const [data, setData] = useState([]);
 	const [selectedKeywords, setSelectedKeywords] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
+	const [operator, setOperator] = useState('and');
 
 	useEffect(() => {
 		axios
@@ -41,63 +43,96 @@ export default function Search() {
 	};
 
 	const handleSubmit = () => {
-		console.log(searchValue, selectedKeywords);
+		let filter = `operator=${operator}`;
+		selectedKeywords.forEach((element, index) => {
+			filter += `&keyword${index + 1}=${element}`;
+		});
+		axios
+			.get(
+				baseUrl + `/books/?${filter}&limit=${limit}&offset=${offset}`,
+				{
+					withCredentials: true,
+				}
+			)
+			.then((response) => {
+				// Handle successful response
+				setData(response.data);
+			})
+			.catch((error) => {
+				// Handle error response
+				toast.error(error.response.data.detail); // Display error toast message with details
+			});
+		console.log(data);
 	};
 
 	return (
-		<div className="search">
-			<h2 className="search__title">Liste des mots-clés</h2>
-			<div className="search__searchbar">
-				<input
-					type="search"
-					placeholder="Rechercher..."
-					onChange={(e) => setSearchValue(e.target.value)}
-				/>
-				<button onClick={handleSubmit}>
-					<SearchIcon />
-				</button>
-				<select name="option" id="search-option">
-					<option value="">--Option de recherche--</option>
-					<option value="in">OU</option>
-					<option value="with">ET</option>
-					<option value="without">SAUF</option>
-				</select>
-			</div>
+		<>
+			<div className="search">
+				<h2 className="search__title">Liste des mots-clés</h2>
+				<div className="search__searchbar">
+					<input
+						type="search"
+						placeholder="Rechercher..."
+						onChange={(e) => setSearchValue(e.target.value)}
+					/>
+					<button onClick={handleSubmit}>
+						<SearchIcon />
+					</button>
+					<select
+						name="option"
+						id="search-option"
+						onChange={(e) => {
+							setOperator(e.target.value);
+						}}
+					>
+						<option value="or">OU</option>
+						<option value="and" selected>
+							ET
+						</option>
+						<option value="not">SAUF</option>
+					</select>
+				</div>
 
-			<div className="search__listKeyword">
-				{keywords.map((item, index) => {
-					return (
-						<>
-							{/* {index % 3 === 0 && (
+				<div className="search__listKeyword">
+					{keywords.map((item, index) => {
+						return (
+							<>
+								{/* {index % 3 === 0 && (
 								<div key={'sep' + item.label + index}></div>
 							)} */}
-							<KeywordItem
-								key={item.label + index}
-								word={item.label}
-								updateSelectedKeywords={handleSelectedKeywords}
-							/>
-						</>
-					);
-				})}
+								<KeywordItem
+									key={item.label + index}
+									word={item}
+									updateSelectedKeywords={
+										handleSelectedKeywords
+									}
+								/>
+							</>
+						);
+					})}
+				</div>
+				<div className="search__pagination">
+					{offset != 0 ? (
+						<button onClick={() => setOffset(offset - limit)}>
+							Page Précédente
+						</button>
+					) : (
+						<button disabled>Page Précédente</button>
+					)}
+					{<b>page {offset / limit + 1}</b>}
+					{keywords.length >= limit ? (
+						<button onClick={() => setOffset(offset + limit)}>
+							Page Suivante
+						</button>
+					) : (
+						<button disabled>Page Suivante</button>
+					)}
+				</div>
 			</div>
-			<div className="search__pagination">
-				{offset != 0 ? (
-					<button onClick={() => setOffset(offset - limit)}>
-						Page Précédente
-					</button>
-				) : (
-					<button disabled>Page Précédente</button>
-				)}
-				{<b>page {offset / limit + 1}</b>}
-				{keywords.length >= limit ? (
-					<button onClick={() => setOffset(offset + limit)}>
-						Page Suivante
-					</button>
-				) : (
-					<button disabled>Page Suivante</button>
-				)}
+			<div className="result">
+				{/* Créer un composant de résultat ici */}
 			</div>
-		</div>
+		</>
 	);
 }
 
@@ -107,21 +142,20 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 	const handleOnClick = () => {
 		setChecked(!checked);
 		checked
-			? updateSelectedKeywords(word, false)
-			: updateSelectedKeywords(word, true);
+			? updateSelectedKeywords(word.id, false)
+			: updateSelectedKeywords(word.id, true);
 	};
 
 	return (
 		<div className="keyword">
 			<input
-				id={word}
-				name={word}
+				name={word.label}
 				type="checkbox"
 				className="keyword__input"
 				onClick={handleOnClick}
 			/>
-			<label htmlFor={word} className="keyword__label">
-				{word}
+			<label htmlFor={word.label} className="keyword__label">
+				{word.label}
 			</label>
 		</div>
 	);
