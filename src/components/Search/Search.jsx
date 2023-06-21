@@ -62,30 +62,6 @@ export default function Search() {
 					<option value="with">ET</option>
 					<option value="without">SAUF</option>
 				</select>
-				<div>
-					{keywords.map((item, index) => {
-						return (
-							<>
-								{index % 3 === 0 && (
-									<div key={'sep' + item.label + index}></div>
-								)}
-								<div
-									style={{ display: 'flex', margin: '15px' }}
-								>
-									<KeywordItem
-										key={item.label + index}
-										word={item.label}
-										updateSelectedKeywords={handleSelectedKeywords}
-										
-									/>
-								</div>
-							</>
-						);
-					})}
-				</div>
-				{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
-					{<b className='me-5'>page {(offset/limit) + 1}</b>}
-					{keywords.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 			</div>
 
 			<div className="search__listKeyword">
