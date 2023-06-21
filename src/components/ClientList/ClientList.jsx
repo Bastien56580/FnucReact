@@ -21,7 +21,7 @@ export default function ClientList() {
 		} else {
 			
 			axios
-				.get(baseUrl + '/customers/', {
+				.get(baseUrl + `/customers?limit=${limit}&offset=${offset}`, {
 					withCredentials: true,
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ export default function ClientList() {
 					); // Display error toast message with details
 				});
 		}
-	}, []);
+	}, [offset]);
 
 	const handleDelete = (id) => {
 		axios
