@@ -8,7 +8,7 @@ import './BookList.scss';
 
 export default function BookList() {
 	const [limit] = useState(10);
-	const [offset,setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 	const [books, setBooks] = useState([]);
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
@@ -23,13 +23,14 @@ export default function BookList() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
+				toast.error(
+					error.response.data.message || error.response.data.detail
+				); // Display error toast message with details
 			});
 	}, [offset]);
 
 	const handleDelete = (id) => {
-		let token = sessionStorage.getItem("token")
-
+		let token = sessionStorage.getItem('token');
 
 		axios
 			.delete(baseUrl + `/books/${id}`, {
@@ -46,7 +47,9 @@ export default function BookList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
+				toast.error(
+					error.response.data.message || error.response.data.detail
+				); // Display error toast message with details
 			});
 	};
 
@@ -91,31 +94,43 @@ export default function BookList() {
 									/>
 								</td>
 
-										<td>{element.price}</td>
-										<td>{element.stock}</td>
-										<td>
-											<EditIcon
-												onClick={() => {
-													handleEdit(element.id);
-												}}
-											/>
-										</td>
-										<td>
-											<DeleteIcon
-												onClick={() =>
-													handleDelete(element.id)
-												}
-											/>
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
-					{<b className='me-5'>page {(offset/limit) + 1}</b>}
-					{books.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
+								<td>{element.price}</td>
+								<td>{element.stock}</td>
+								<td>
+									<EditIcon
+										onClick={() => {
+											handleEdit(element.id);
+										}}
+									/>
+								</td>
+								<td>
+									<DeleteIcon
+										onClick={() => handleDelete(element.id)}
+									/>
+								</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+			<div className="search__pagination">
+				{offset != 0 ? (
+					<button onClick={() => setOffset(offset - limit)}>
+						Page Précédente
+					</button>
+				) : (
+					<button disabled>Page Précédente</button>
+				)}
+				{<b>page {offset / limit + 1}</b>}
+				{books.length >= limit ? (
+					<button onClick={() => setOffset(offset + limit)}>
+						Page Suivante
+					</button>
+				) : (
+					<button disabled>Page Suivante</button>
+				)}
+			</div>{' '}
+			<Toaster /> {/* Toast container for displaying messages */}
+		</div>
 	);
 }

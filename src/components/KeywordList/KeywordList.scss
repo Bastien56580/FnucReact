@@ -60,4 +60,12 @@
       width: auto;
     }
   }
+
+  &__pagination{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+  }
 }

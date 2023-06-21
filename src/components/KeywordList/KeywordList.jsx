@@ -8,7 +8,7 @@ import './KeywordList.scss';
 
 export default function KeywordList() {
 	const [limit] = useState(10);
-	const [offset,setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 	const [keywords, setKeywords] = useState([]);
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
@@ -23,12 +23,14 @@ export default function KeywordList() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
+				toast.error(
+					error.response.data.detail || error.response.data.message
+				); // Display error toast message with details
 			});
 	}, [offset]);
 
 	const handleDelete = (id) => {
-		let token = sessionStorage.getItem("token")
+		let token = sessionStorage.getItem('token');
 		axios
 			.delete(baseUrl + `/keywords/${id}`, {
 				withCredentials: true,
@@ -44,7 +46,9 @@ export default function KeywordList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.detail ||error.response.data.message); // Display error toast message with details
+				toast.error(
+					error.response.data.detail || error.response.data.message
+				); // Display error toast message with details
 			});
 	};
 
@@ -94,9 +98,23 @@ export default function KeywordList() {
 					})}
 				</tbody>
 			</table>
-			{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
-					{<b className='me-5'>page {(offset/limit) + 1}</b>}
-					{keywords.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
+			<div className="search__pagination">
+				{offset != 0 ? (
+					<button onClick={() => setOffset(offset - limit)}>
+						Page Précédente
+					</button>
+				) : (
+					<button disabled>Page Précédente</button>
+				)}
+				{<b>page {offset / limit + 1}</b>}
+				{keywords.length >= limit ? (
+					<button onClick={() => setOffset(offset + limit)}>
+						Page Suivante
+					</button>
+				) : (
+					<button disabled>Page Suivante</button>
+				)}
+			</div>
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);

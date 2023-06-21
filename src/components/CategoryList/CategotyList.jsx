@@ -8,7 +8,7 @@ import mockList from './mock/mockList.json';
 
 export default function ProfileList(handleTopicId) {
 	const [limit] = useState(10);
-	const [offset,setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 	const [myData, setMyData] = useState('');
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const mock = sessionStorage.getItem('REACT_APP_MOCK');
@@ -67,9 +67,23 @@ export default function ProfileList(handleTopicId) {
 					)}
 				</tbody>
 			</table>
-			{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
-					{<b className='me-5'>page {(offset/limit) + 1}</b>}
-					{myData.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
+			<div className="search__pagination">
+				{offset != 0 ? (
+					<button onClick={() => setOffset(offset - limit)}>
+						Page Précédente
+					</button>
+				) : (
+					<button disabled>Page Précédente</button>
+				)}
+				{<b>page {offset / limit + 1}</b>}
+				{myData.length >= limit ? (
+					<button onClick={() => setOffset(offset + limit)}>
+						Page Suivante
+					</button>
+				) : (
+					<button disabled>Page Suivante</button>
+				)}
+			</div>{' '}
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
