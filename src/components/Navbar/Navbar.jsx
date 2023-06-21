@@ -3,10 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt_decode from "jwt-decode";
 import './Navbar.scss';
 
+
+
+
+
 // Component for the navigation bar
 export default function Navbar() {
 	// Get the active page URL
 	const activePage = window.location.pathname;
+
+
 
 	// State variables
 	const [isLoggedIn,setIsLoggedIn] = useState(false); // State variable for tracking user login status
@@ -65,7 +71,7 @@ export default function Navbar() {
 					Inscription
 				</a>)}
 				{isLoggedIn && (
-				<a href="/disconnect" className="navbar__login--link">
+				<a onClick={HandleDisconnect} className="navbar__login--link">
 					Déconnexion
 				</a>)}
 			</div>
