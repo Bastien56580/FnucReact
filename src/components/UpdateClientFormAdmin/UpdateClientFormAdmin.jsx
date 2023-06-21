@@ -9,6 +9,8 @@ export default function UpdateClientFormAdmin() {
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [role, setRole] = useState('');
+
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 	const token = sessionStorage.getItem("token");
 
@@ -42,12 +44,14 @@ export default function UpdateClientFormAdmin() {
 			firstname: firstName,
 			lastname: lastName,
 			password: password,
+			id:id,
+			role:role
 		};
 
 		// Send a POST request to create a user
 		axios
 			.patch(
-				baseUrl + `/customers/${id}`,
+				baseUrl + `/customers/`,
 				userData,
 				{
 					withCredentials: true,
@@ -102,6 +106,12 @@ export default function UpdateClientFormAdmin() {
 				placeholder="Mot de passe"
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="user ou admin"
+				value={role}
+				onChange={(e) => setRole(e.target.value)}
 			/>
 			<input type="submit" onClick={handleSubmit} value="Valider" />
 			<input type="submit" onClick={handleCancel} value="Retour" />

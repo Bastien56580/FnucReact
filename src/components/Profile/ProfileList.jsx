@@ -15,7 +15,7 @@ export default function ProfileList() {
 			let token = sessionStorage.getItem('token');
 
 			axios
-				.get(baseUrl + '/customers/' + token.id, {
+				.get(baseUrl + '/customers/current', {
 					withCredentials: true,
 					headers: {
 						Authorization: `Bearer ${token}`,
