@@ -1,0 +1,17 @@
+@import '../../css/constants.scss';
+
+.bestseller {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  h1{
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  &__image{
+    height: 70vh;
+    width: auto;
+    margin: auto;
+  }
+}

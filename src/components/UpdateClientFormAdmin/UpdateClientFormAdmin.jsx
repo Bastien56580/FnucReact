@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css'
+import './UpdateClientFromAdmin.scss';
 
 export default function UpdateClientFormAdmin() {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [role, setRole] = useState('');
+
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 	const token = sessionStorage.getItem("token");
 
@@ -42,12 +44,14 @@ export default function UpdateClientFormAdmin() {
 			firstname: firstName,
 			lastname: lastName,
 			password: password,
+			id:id,
+			role:role
 		};
 
 		// Send a POST request to create a user
 		axios
 			.patch(
-				baseUrl + `/customers/${id}`,
+				baseUrl + `/customers/`,
 				userData,
 				{
 					withCredentials: true,
@@ -77,58 +81,41 @@ export default function UpdateClientFormAdmin() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-6">
-					<h2 className="pt-5 pb-2">Modifier un client</h2>
-					<form>
-						<div className="mb-3">
-							<input
-								type="text"
-								className="form-control"
-								placeholder="Prénom"
-								value={firstName}
-								onChange={(e) => setFirstName(e.target.value)}
-							/>
-						</div>
-						<div className="mb-3">
-							<input
-								type="text"
-								className="form-control"
-								placeholder="Nom"
-								value={lastName}
-								onChange={(e) => setLastName(e.target.value)}
-							/>
-						</div>
-						<div className="mb-3">
-							<input
-								type="email"
-								className="form-control"
-								placeholder="Email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-							/>
-						</div>
-						<div className="mb-3">
-							<input
-								type="password"
-								className="form-control"
-								placeholder="Mot de passe"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-							/>
-						</div>
-						<button className="btn btn-custom-primary me-2" onClick={handleSubmit}>
-							Valider
-						</button>
-						<button className="btn btn-custom-primary me-2" onClick={handleCancel}>
-							Retour
-						</button>
-					</form>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+		<div className="formUpdateClient">
+			<h2 className="formUpdateClient__title">Modifier un client</h2>
+			<input
+				type="text"
+				placeholder="Prénom"
+				value={firstName}
+				onChange={(e) => setFirstName(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="Nom"
+				value={lastName}
+				onChange={(e) => setLastName(e.target.value)}
+			/>
+			<input
+				type="email"
+				placeholder="Email"
+				value={email}
+				onChange={(e) => setEmail(e.target.value)}
+			/>
+			<input
+				type="password"
+				placeholder="Mot de passe"
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<input
+				type="text"
+				placeholder="user ou admin"
+				value={role}
+				onChange={(e) => setRole(e.target.value)}
+			/>
+			<input type="submit" onClick={handleSubmit} value="Valider" />
+			<input type="submit" onClick={handleCancel} value="Retour" />
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
-
 	);
 }

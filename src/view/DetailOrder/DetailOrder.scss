@@ -1,0 +1,13 @@
+@import '../../css/constants.scss';
+
+.card{
+  width: 80%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-radius: 20px;
+  background-color: $background-color;
+  margin: 2% auto;
+}

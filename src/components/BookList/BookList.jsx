@@ -4,13 +4,13 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../../css/adminTab.css';
+import './BookList.scss';
 
 export default function BookList() {
 	const [limit] = useState(10);
-	const [offset,setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 	const [books, setBooks] = useState([]);
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	useEffect(() => {
 		axios
@@ -23,13 +23,14 @@ export default function BookList() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
+				toast.error(
+					error.response.data.message || error.response.data.detail
+				); // Display error toast message with details
 			});
 	}, [offset]);
 
 	const handleDelete = (id) => {
-		let token = sessionStorage.getItem("token")
-
+		let token = sessionStorage.getItem('token');
 
 		axios
 			.delete(baseUrl + `/books/${id}`, {
@@ -46,7 +47,9 @@ export default function BookList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
+				toast.error(
+					error.response.data.message || error.response.data.detail
+				); // Display error toast message with details
 			});
 	};
 
@@ -55,73 +58,79 @@ export default function BookList() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row justify-content-center">
-				<div className="col-md-8">
-					<h2 className="text-center pt-5 pb-3">Liste des livres</h2>
-					<table className="table table-striped table-bordered border-dark table-responsive">
-						<thead>
-							<tr>
-								<th scope="col"><b>Titre</b></th>
-								<th scope="col"><b>Auteur</b></th>
-								<th scope="col"><b>Résumé</b></th>
-								<th scope="col"><b>Image</b></th>
-								<th scope="col"><b>Prix</b></th>
-								<th scope="col"><b>Stock</b></th>
-								<th></th>
-								<th>
-									<AddCircleIcon
-										onClick={() =>
-											(window.location.href = '/admin/books/create')
-										}
-										className="add-icon"
+		<div className="bookList">
+			<h1 className="bookList__title">Liste des livres</h1>
+			<table className="bookList__table">
+				<thead>
+					<tr>
+						<th>Titre</th>
+						<th>Auteur</th>
+						<th>Résumé</th>
+						<th>Image</th>
+						<th>Prix</th>
+						<th>Stock</th>
+						<th></th>
+						<th>
+							<AddCircleIcon
+								onClick={() =>
+									(window.location.href =
+										'/admin/books/create')
+								}
+							/>
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{books.map((element) => {
+						return (
+							<tr key={element.id}>
+								<td>{element.title}</td>
+								<td>{element.author}</td>
+								<td>{element.resume}</td>
+								<td>
+									<img
+										src={element.cover_url}
+										alt="Book Cover"
 									/>
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							{books.map((element) => {
-								return (
-									<tr key={element.id}>
-										<td>{element.title}</td>
-										<td>{element.author}</td>
-										<td>{element.resume}</td>
-										<td>
-											<img
-												src={element.cover_url}
-												alt="Book Cover"
-												className="img-thumbnail"
-												style={{ maxWidth: '160px', maxHeight: '75px' }}
-											/>
-										</td>
+								</td>
 
-										<td>{element.price}</td>
-										<td>{element.stock}</td>
-										<td>
-											<EditIcon
-												onClick={() => {
-													handleEdit(element.id);
-												}}
-												className="edit-icon"
-											/>
-										</td>
-										<td>
-											<DeleteIcon
-												onClick={() => handleDelete(element.id)}
-												className="delete-icon"
-											/>
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
-					{<b className='me-5'>page {(offset/limit) + 1}</b>}
-					{books.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+								<td>{element.price}</td>
+								<td>{element.stock}</td>
+								<td>
+									<EditIcon
+										onClick={() => {
+											handleEdit(element.id);
+										}}
+									/>
+								</td>
+								<td>
+									<DeleteIcon
+										onClick={() => handleDelete(element.id)}
+									/>
+								</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+			<div className="search__pagination">
+				{offset != 0 ? (
+					<button onClick={() => setOffset(offset - limit)}>
+						Page Précédente
+					</button>
+				) : (
+					<button disabled>Page Précédente</button>
+				)}
+				{<b>page {offset / limit + 1}</b>}
+				{books.length >= limit ? (
+					<button onClick={() => setOffset(offset + limit)}>
+						Page Suivante
+					</button>
+				) : (
+					<button disabled>Page Suivante</button>
+				)}
+			</div>{' '}
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
 }

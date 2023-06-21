@@ -1,29 +1,25 @@
 import { useState } from 'react';
 import { SwitchMock } from './script/SwitchMock';
-import '../../css/style.css';
+import './EnableMock.scss';
 
 const EnableMock = () => {
-    const [mock, setMock] = useState(
-        sessionStorage.getItem('REACT_APP_MOCK')
-    );
+	const [mock, setMock] = useState(sessionStorage.getItem('REACT_APP_MOCK'));
 
-    const handleSwitch = () => {
-        SwitchMock();
-        setMock(sessionStorage.getItem('REACT_APP_MOCK'));
-    };
+	const handleSwitch = () => {
+		SwitchMock();
+		setMock(sessionStorage.getItem('REACT_APP_MOCK'));
+	};
 
-    return (
-        <div className="container mt-4">
-            <div className="card">
-                <div className="card-body">
-                    <h5 className="card-title">Les mock sont : {mock == "true" ? 'Activés' : 'Désactivés'}</h5>
-                    <button className="btn btn-custom-primary mt-3" onClick={handleSwitch}>
-                        Activer / Désactiver les mocks
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
+	return (
+		<div className="switchMock">
+			<h2 className="switchMock__title">
+				Les mock sont : {mock == 'true' ? 'Activés' : 'Désactivés'}
+			</h2>
+			<button onClick={handleSwitch} className="switchMock__button">
+				Activer / Désactiver les mocks
+			</button>
+		</div>
+	);
 };
 
 export default EnableMock;

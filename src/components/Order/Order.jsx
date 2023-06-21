@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css'
 import jwt_decode from "jwt-decode";
+import './Order.scss';
 
 export default function Order({ book }) {
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const price = book.price;
 	const stock = book.stock;
 	const id = book.id;
@@ -19,7 +19,6 @@ export default function Order({ book }) {
 	const [HT, setHT] = useState(0);
 	const [TTC, setTTC] = useState(0);
 
-
 	//Change the pricing according to the quantity
 	const handleQuantity = (e) => {
 		const newQuantity = parseInt(e.target.value);
@@ -28,7 +27,6 @@ export default function Order({ book }) {
 		setHT((newQuantity * price).toFixed(2));
 		setTTC((newQuantity * price + newQuantity * price * tauxTVA).toFixed(2));
 	};
-
 
 	//handle the post request
 	const handleSubmit = (e) => {
@@ -67,74 +65,70 @@ export default function Order({ book }) {
 	};
 
 	return (
-		<div className="container mt-5 pt-5">
-			<h2 className="text-center mb-5">Formulaire de commande</h2>
-			<div className="row">
-				<div className="col-md-6">
-					<table className="table">
+		<div className="order">
+			<h1 className="order__title">Formulaire de commande</h1>
+			<div className="order__content">
+				<div>
+					<table className="order__content__table">
 						<tbody>
 							<tr>
-								<td className="fw-bold">Prix:</td>
+								<td>Prix:</td>
 								<td>{price} €</td>
 							</tr>
 							<tr>
-								<td className="fw-bold">Stock:</td>
+								<td>Stock:</td>
 								<td>{stock}</td>
 							</tr>
 							<tr>
-								<td className="fw-bold">Quantité:</td>
+								<td>Quantité:</td>
 								<td>
-									<label>
-										<input
-											type="number"
-											className="form-control"
-											placeholder="Quantité"
-											min="0"
-											max={stock}
-											value={quantity}
-											onChange={(e) => handleQuantity(e)}
-										/>
-									</label>
+									<input
+										type="number"
+										placeholder="Quantité"
+										min="0"
+										max={stock}
+										value={quantity}
+										onChange={(e) => handleQuantity(e)}
+									/>
+								</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<input
+										type="submit"
+										value="Valider"
+										onClick={handleSubmit}
+									/>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-				<div className="col-md-6">
-					<table className="table">
+				<div>
+					<table className="order__content__table">
 						<tbody>
 							<tr>
-								<td className="fw-bold">Taux de TVA:</td>
+								<td>Taux de TVA:</td>
 								<td>{tauxTVA}</td>
 							</tr>
 							<tr>
-								<td className="fw-bold">TVA:</td>
+								<td>TVA:</td>
 								<td>{TVA}</td>
 							</tr>
 							<tr>
-								<td className="fw-bold">HT:</td>
+								<td>HT:</td>
 								<td>{HT}</td>
 							</tr>
 							<tr>
-								<td className="fw-bold">TTC:</td>
+								<td>TTC:</td>
 								<td>{TTC}</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<div className="row">
-				<div className="col-12 text-center">
-					<input
-						type="submit"
-						className="btn btn-custom-primary"
-						value="Valider"
-						onClick={handleSubmit}
-					/>
-				</div>
-			</div>
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
-
 	);
 }

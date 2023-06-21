@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css'
+import './UpdateKeywordFromAdmin.scss';
 
 export default function UpdateKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
 	const { id } = useParams();
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	useEffect(() => {
 		axios
@@ -27,12 +27,12 @@ export default function UpdateKeywordFormAdmin() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		let token = sessionStorage.getItem("token");
+		let token = sessionStorage.getItem('token');
 		// Send a POST request to create a user
 		axios
 			.patch(
 				baseUrl + `/keywords/${id}`,
-				{ 'label': keyword },
+				{ label: keyword },
 				{
 					withCredentials: true,
 					headers: {
@@ -46,12 +46,14 @@ export default function UpdateKeywordFormAdmin() {
 				if (response.status === 200) {
 					toast.success('Keyword updated!'); // Display success toast message
 				} else {
-					toast.error(response.data.detail || response.data.message ); // Display error toast message with details
+					toast.error(response.data.detail || response.data.message); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
+				toast.error(
+					error.response.data.detail || error.response.data.message
+				); // Display error toast message with details
 			});
 	};
 
@@ -61,31 +63,17 @@ export default function UpdateKeywordFormAdmin() {
 	};
 
 	return (
-		<div className="container">
-			<div className="row">
-				<div className="col-md-6">
-					<h2 className="pt-5 pb-2">Modifier un mot clé</h2>
-					<form>
-						<div className="mb-3">
-							<input
-								type="text"
-								className="form-control"
-								placeholder="Mot clé"
-								value={keyword}
-								onChange={(e) => setKeyword(e.target.value)}
-							/>
-						</div>
-						<button className="btn btn-custom-primary me-2" onClick={handleSubmit}>
-							Valider
-						</button>
-						<button className="btn btn-custom-primary me-2" onClick={handleCancel}>
-							Retour
-						</button>
-					</form>
-					<Toaster /> {/* Toast container for displaying messages */}
-				</div>
-			</div>
+		<div className="formUpdateKeyword">
+			<h2 className="formUpdateKeyword__title">Modifier un mot clé</h2>
+			<input
+				type="text"
+				placeholder="Mot clé"
+				value={keyword}
+				onChange={(e) => setKeyword(e.target.value)}
+			/>
+			<input type="submit" onClick={handleSubmit} value="Valider" />
+			<input type="submit" onClick={handleCancel} value="Retour" />
+			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
-
 	);
 }

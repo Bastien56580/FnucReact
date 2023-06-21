@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import SearchIcon from '@mui/icons-material/Search';
+import './Search.scss';
 
 export default function Search() {
 	const [limit] = useState(9);
-	const [offset,setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 	const [keywords, setKeywords] = useState([]);
 	const [selectedKeywords, setSelectedKeywords] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
@@ -44,52 +45,57 @@ export default function Search() {
 	};
 
 	return (
-		<div>
-			<div className="container col-md-6 mt-5">
-				<h2>Liste des mots-clés</h2>
-				<div className="d-flex align-items-center">
-					<input
-						type="search"
-						placeholder="Rechercher..."
-						className="me-1 form-control"
-						onChange={(e) => setSearchValue(e.target.value)}
-					/>
-					<button onClick={handleSubmit} className="btn btn-outline-dark">
-						<SearchIcon />
-					</button>
-				</div>
-				<select name="option" id="search-option" className="form-select mt-2">
+		<div className="search">
+			<h2 className="search__title">Liste des mots-clés</h2>
+			<div className="search__searchbar">
+				<input
+					type="search"
+					placeholder="Rechercher..."
+					onChange={(e) => setSearchValue(e.target.value)}
+				/>
+				<button onClick={handleSubmit}>
+					<SearchIcon />
+				</button>
+				<select name="option" id="search-option">
 					<option value="">--Option de recherche--</option>
 					<option value="in">OU</option>
 					<option value="with">ET</option>
 					<option value="without">SAUF</option>
 				</select>
+			</div>
 
-				<div className='row'>
-					{keywords.map((item, index) => {
-						return (
-							<>
-								{
-									index % 3 === 0 && <div className="w-100" key={"sep" + item.label + index}></div>
-								}
-								<div className='col' style={{ display: 'flex', margin: '15px' }}>
-									<div className="container">
-										<ul className="list-group">
-											<li className="list-group-item">
-												<KeywordItem key={item.label + index} word={item.label} updateSelectedKeywords={handleSelectedKeywords} />
-											</li>
-										</ul>
-									</div>
-								</div>
-							</>
-						)
-
-
-					})}
-	{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
-					{<b className='me-5'>page {(offset/limit) + 1}</b>}
-					{keywords.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
-				</div>
+			<div className="search__listKeyword">
+				{keywords.map((item, index) => {
+					return (
+						<>
+							{/* {index % 3 === 0 && (
+								<div key={'sep' + item.label + index}></div>
+							)} */}
+							<KeywordItem
+								key={item.label + index}
+								word={item.label}
+								updateSelectedKeywords={handleSelectedKeywords}
+							/>
+						</>
+					);
+				})}
+			</div>
+			<div className="search__pagination">
+				{offset != 0 ? (
+					<button onClick={() => setOffset(offset - limit)}>
+						Page Précédente
+					</button>
+				) : (
+					<button disabled>Page Précédente</button>
+				)}
+				{<b>page {offset / limit + 1}</b>}
+				{keywords.length >= limit ? (
+					<button onClick={() => setOffset(offset + limit)}>
+						Page Suivante
+					</button>
+				) : (
+					<button disabled>Page Suivante</button>
+				)}
 			</div>
 		</div>
 	);
@@ -106,10 +112,17 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 	};
 
 	return (
-		<div>
-			<input id={word} name={word} type="checkbox" className="form-check-input me-2" onClick={handleOnClick} />
-			<label htmlFor={word}>{word}</label>
+		<div className="keyword">
+			<input
+				id={word}
+				name={word}
+				type="checkbox"
+				className="keyword__input"
+				onClick={handleOnClick}
+			/>
+			<label htmlFor={word} className="keyword__label">
+				{word}
+			</label>
 		</div>
 	);
 }
-

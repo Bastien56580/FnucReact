@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
-import '../../css/style.css';
+import './CategoryList.scss';
 
 // Mock list since you don't have a backend to test with yet
 import mockList from './mock/mockList.json';
 
 export default function ProfileList(handleTopicId) {
 	const [limit] = useState(10);
-	const [offset,setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 	const [myData, setMyData] = useState('');
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const mock = sessionStorage.getItem('REACT_APP_MOCK');
@@ -33,13 +33,13 @@ export default function ProfileList(handleTopicId) {
 	}, [offset]);
 
 	return (
-		<div className="container mt-5">
-			<h2>Topic List</h2>
-			<table className="table table-striped table-bordered border-dark table-responsive">
+		<div className="categoryList">
+			<h1 className="categoryList__title">Topic List</h1>
+			<table className="categoryList__table">
 				<thead>
 					<tr>
-						<th scope="col">Name</th>
-						<th scope="col">Topic URL</th>
+						<th>Name</th>
+						<th>Topic URL</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,11 +56,6 @@ export default function ProfileList(handleTopicId) {
 									<img
 										src={item.topic_url}
 										alt="Topic Cover"
-										className="img-thumbnail"
-										style={{
-											maxWidth: '160px',
-											maxHeight: '75px',
-										}}
 									/>
 								</td>
 							</tr>
@@ -72,9 +67,23 @@ export default function ProfileList(handleTopicId) {
 					)}
 				</tbody>
 			</table>
-			{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
-					{<b className='me-5'>page {(offset/limit) + 1}</b>}
-					{myData.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
+			<div className="search__pagination">
+				{offset != 0 ? (
+					<button onClick={() => setOffset(offset - limit)}>
+						Page Précédente
+					</button>
+				) : (
+					<button disabled>Page Précédente</button>
+				)}
+				{<b>page {offset / limit + 1}</b>}
+				{myData.length >= limit ? (
+					<button onClick={() => setOffset(offset + limit)}>
+						Page Suivante
+					</button>
+				) : (
+					<button disabled>Page Suivante</button>
+				)}
+			</div>{' '}
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);

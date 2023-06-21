@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import axios from 'axios';
+import './SignIn.scss';
 
 export default function SignIn() {
 	const [login, setLogin] = useState('');
@@ -37,38 +38,22 @@ export default function SignIn() {
 	};
 
 	return (
-		<div
-			className="d-flex mt-5 justify-content-center"
-			style={{ height: '100vh' }}
-		>
-			<form className="text-center">
-				<div className="mb-3">
-					<input
-						type="email"
-						className="form-control"
-						placeholder="Email"
-						value={login}
-						onChange={(e) => setLogin(e.target.value)}
-					/>
-				</div>
-				<div className="mb-3">
-					<input
-						type="password"
-						className="form-control"
-						placeholder="Mot de passe"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-					/>
-				</div>
-				<button
-					type="submit"
-					className="btn btn-success"
-					onClick={handleSubmit}
-				>
-					Valider
-				</button>
-			</form>
-      <Toaster/>
+		<div className="signIn">
+			<h1 className="signIn__title">Connexion</h1>
+			<input
+				type="email"
+				placeholder="Email"
+				value={login}
+				onChange={(e) => setLogin(e.target.value)}
+			/>
+
+			<input
+				type="password"
+				placeholder="Mot de passe"
+				value={password}
+				onChange={(e) => setPassword(e.target.value)}
+			/>
+			<input type="submit" onClick={handleSubmit} value="Se connecter" />
 		</div>
 	);
 }
