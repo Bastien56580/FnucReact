@@ -43,11 +43,12 @@ export default function DetailOrder() {
 			{myData !== '' ? (
 				<div className="card">
 					<BookDetail book={myData} />
-					token ? (<Order book={myData} />)
+					{token ? (<Order book={myData} />) : (<div></div>)}
 				</div>
 			) : (
 				<p>Loading</p>
 			)}
+			
 			<Toaster />
 		</>
 	);
