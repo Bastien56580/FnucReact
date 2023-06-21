@@ -8,6 +8,8 @@ import '../../css/adminTab.css';
 import mockClient from './mock/mockClient.json'
 
 export default function ClientList() {
+	const [limit] = useState(10);
+	const [offset,setOffset] = useState(0);
 	const [clients, setClients] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 	const mock = sessionStorage.getItem("REACT_APP_MOCK");
@@ -17,7 +19,7 @@ export default function ClientList() {
 			setClients(mockClient);
 		}else {
 		axios
-			.get(baseUrl + '/customers/', {
+			.get(baseUrl + `/customers/?limit=${limit}&offset=${offset}`, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -30,7 +32,7 @@ export default function ClientList() {
 			});
 		}
 
-	}, []);
+	}, [offset]);
 
 	const handleDelete = (id) => {
 		axios
@@ -97,6 +99,9 @@ export default function ClientList() {
 							})}
 						</tbody>
 					</table>
+					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
+					{<b className='me-5'>page {(offset/limit) + 1}</b>}
+					{clients.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 				</div>
 			</div>
 			<Toaster /> {/* Toast container for displaying messages */}

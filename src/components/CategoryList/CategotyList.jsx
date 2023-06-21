@@ -7,6 +7,8 @@ import '../../css/style.css';
 import mockList from './mock/mockList.json';
 
 export default function ProfileList(handleTopicId) {
+	const [limit] = useState(10);
+	const [offset,setOffset] = useState(0);
 	const [myData, setMyData] = useState('');
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const mock = sessionStorage.getItem('REACT_APP_MOCK');
@@ -16,7 +18,7 @@ export default function ProfileList(handleTopicId) {
 			setMyData(mockList);
 		} else if (mock === 'false') {
 			axios
-				.get(baseUrl + '/topics/', {
+				.get(baseUrl + `/topics/?limit=${limit}&offset=${offset}`, {
 					withCredentials: true,
 				})
 				.then((response) => {
@@ -28,7 +30,7 @@ export default function ProfileList(handleTopicId) {
 					toast.error(error.response.data.detail); // Display error toast message with details
 				});
 		}
-	}, []);
+	}, [offset]);
 
 	return (
 		<div className="container mt-5">
@@ -70,6 +72,9 @@ export default function ProfileList(handleTopicId) {
 					)}
 				</tbody>
 			</table>
+			{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
+					{<b className='me-5'>page {(offset/limit) + 1}</b>}
+					{myData.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 			<Toaster /> {/* Toast container for displaying messages */}
 		</div>
 	);
