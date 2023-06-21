@@ -11,30 +11,40 @@ export default function AddBookFormAdmin() {
 	const [price, setPrice] = useState(0);
 	const [stock, setStock] = useState(0);
 
+	const [motCle, setMotCle] = useState('');
+	const [topic, setTopic] = useState('');
+
+	const [keywordList, setKeywordList] = useState('');
+	const [topicList, setTopicList] = useState('');
+
+	const [bookId, setBookId] = useState('');
+
 	const handleCancel = (e) => {
 		e.preventDefault();
 		window.location.href = '/admin/books';
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		// Create user data object
 		const userData = {
 			title: title,
 			author: author,
 			resume: resume,
-			cover_url: coverUrl,
+			image: coverUrl,
 			price: price,
 			stock: stock,
 		};
 
-		// Send a POST request to create a user
-		axios
+		// Send a POST request to create a book
+		await axios
 			.post(baseUrl + '/books/', userData, {
 				withCredentials: true,
 			})
 			.then((response) => {
 				// Handle successful response
+
 				if (response.status === 201) {
+					setBookId(response.data.id);
 					toast.success('Book created!'); // Display success toast message
 				} else {
 					toast.error(response.data.detail); // Display error toast message with details
@@ -44,6 +54,96 @@ export default function AddBookFormAdmin() {
 				// Handle error response
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
+
+		//axios patch or post for topic and mot Cle
+		//we check if we need to work with motCle
+		if (motCle != '') {
+			console.log("motCle is not empty")
+			//we need, so we get all keywords
+			await axios
+				.get(baseUrl + '/keywords/', {
+					withCredentials: true,
+				})
+				.then((response) => {
+					// Handle successful response
+					//setting the keywords list
+					setKeywordList(response.data);
+					console.log("here is keywordList : ");
+					console.log(keywordList);
+				})
+				.catch((error) => {
+					// Handle error response
+					toast.error(error.response.data.detail); // Display error toast message with details
+				});
+			//then we check if what is the id for this topic
+			const matchingKeyword = keywordList.find(keyword => keyword.label === motCle);
+			console.log("matchingKeyword ? : " + matchingKeyword);
+			if (matchingKeyword) {
+				const motCleId = matchingKeyword.id;
+				//then we post the relation book - topic
+				await axios
+					.post(baseUrl + '/books/' + bookId + '/keywords/' + motCleId, {
+						withCredentials: true,
+					})
+					.then((response) => {
+						// Handle successful response
+						if (response.status === 201) {
+							setBookId(response.data.id);
+							toast.success('Keyword added!'); // Display success toast message
+						} else {
+							toast.error(response.data.detail); // Display error toast message with details
+						}
+					})
+					.catch((error) => {
+						// Handle error response
+						toast.error(error.response.data.detail); // Display error toast message with details
+					});
+			}
+		}
+
+		//and now do the same for topic
+		//we check if we need to work with motCle
+		if (topic != '') {
+			//we need, so we get all keywords
+			await axios
+				.get(baseUrl + '/topics/', {
+					withCredentials: true,
+				})
+				.then((response) => {
+					// Handle successful response
+					//setting the keywords list
+					setTopicList(response.data);
+				})
+				.catch((error) => {
+					// Handle error response
+					toast.error(error.response.data.detail); // Display error toast message with details
+				});
+			//then we check if what is the id for this topic
+			const matchingTopic = topicList.find(topic => topic.labels === topic);
+			if (matchingTopic) {
+				const topiId = matchingTopic.id;
+				//then we post the relation book - topic
+				await axios
+					.post(baseUrl + '/books/' + bookId + '/topics/' + topiId, {
+						withCredentials: true,
+					})
+					.then((response) => {
+						// Handle successful response
+						if (response.status === 201) {
+							setBookId(response.data.id);
+							toast.success('Topic added!'); // Display success toast message
+						} else {
+							toast.error(response.data.detail); // Display error toast message with details
+						}
+					})
+					.catch((error) => {
+						// Handle error response
+						toast.error(error.response.data.detail); // Display error toast message with details
+					});
+			}
+
+		}
+
 	};
 
 	return (
@@ -104,6 +204,24 @@ export default function AddBookFormAdmin() {
 								placeholder="Stock"
 								value={stock}
 								onChange={(e) => setStock(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Ajouter un topic"
+								value={topic}
+								onChange={(e) => setTopic(e.target.value)}
+							/>
+						</div>
+						<div className="mb-3">
+							<input
+								type="text"
+								className="form-control"
+								placeholder="Ajouter un mot clé"
+								value={motCle}
+								onChange={(e) => setMotCle(e.target.value)}
 							/>
 						</div>
 						<button className="btn btn-custom-primary me-2" onClick={handleSubmit}>

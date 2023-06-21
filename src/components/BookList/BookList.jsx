@@ -5,9 +5,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../../css/adminTab.css';
+import { Tune } from '@mui/icons-material';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);
+	const [keywordsId, setKeywordsIds] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	useEffect(() => {
@@ -40,7 +42,34 @@ export default function BookList() {
 			.catch((error) => {
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
+
+		axios
+			.get(baseUrl + '/books/' + id + '/keywords', {
+				withCredentials: true,
+			})
+			.then((response) => {
+				const keywords = response.data;
+				const keywordsIds = keywords.map((keyword) => keyword.id);
+				setKeywordsIds(keywordsIds);
+
+				keywordsIds.forEach((keywordId) => {
+					axios
+						.delete(baseUrl + '/books/' + id + '/keywords/' + keywordId, {
+							withCredentials: true,
+						})
+						.then(() => {
+							console.log(`Keyword ${keywordId} deleted successfully.`);
+						})
+						.catch((error) => {
+							toast.error(error.response.data.detail); // Display error toast message with details
+						});
+				});
+			})
+			.catch((error) => {
+				toast.error(error.response.data.detail); // Display error toast message with details
+			});
 	};
+
 
 	const handleEdit = (id) => {
 		window.location.href = `/admin/books/edit/${id}`;
@@ -80,7 +109,7 @@ export default function BookList() {
 										<td>{element.resume}</td>
 										<td>
 											<img
-												src={element.cover_url}
+												src={element.image}
 												alt="Book Cover"
 												className="img-thumbnail"
 												style={{ maxWidth: '160px', maxHeight: '75px' }}

@@ -19,7 +19,7 @@ export default function UpdateTopicFormAdmin() {
 			.then((response) => {
 				// Handle successful response
 				setTopic(response.data.label);
-				setTopicUrl(response.data.topic_url);
+				setTopicUrl(response.data.image);
 			})
 			.catch((error) => {
 				// Handle error response
@@ -32,7 +32,7 @@ export default function UpdateTopicFormAdmin() {
 		// Create user data object
 		const topicData = {
 			label: topic,
-			topic_url: topicUrl,
+			image: topicUrl,
 		};
 
 		// Send a POST request to create a user

@@ -15,19 +15,19 @@ export default function TopicList() {
 	useEffect(() => {
 		if (mock === "true") {
 			setTopics(mockTopic);
-		}else {
-		axios
-			.get(baseUrl + '/topics/', {
-				withCredentials: true,
-			})
-			.then((response) => {
-				// Handle successful response
-				setTopics(response.data);
-			})
-			.catch((error) => {
-				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
-			});
+		} else {
+			axios
+				.get(baseUrl + '/topics/', {
+					withCredentials: true,
+				})
+				.then((response) => {
+					// Handle successful response
+					setTopics(response.data);
+				})
+				.catch((error) => {
+					// Handle error response
+					toast.error(error.response.data.detail); // Display error toast message with details
+				});
 		}
 	}, []);
 
@@ -80,7 +80,7 @@ export default function TopicList() {
 										<td>{element.label}</td>
 										<td>
 											<img
-												src={element.topic_url}
+												src={element.image}
 												alt="Topic Cover"
 												className="img-thumbnail"
 												style={{ maxWidth: '160px', maxHeight: '75px' }}

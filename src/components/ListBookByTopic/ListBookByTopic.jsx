@@ -12,26 +12,27 @@ export default function ListBookByTopic(topicId) {
 
 	useEffect(() => {
 		if (mock === 'true') {
-			setBooks(mockList)}
-			else if (mock === 'false'){
-				if (topicId.topicId) {
-					console.log(baseUrl + '/topics/' + topicId.topicId + '/books/');
-					axios
-						// .get(baseUrl + `/topics/${topicId}/books/`, {
-						.get(baseUrl + '/topics/' + topicId.topicId + '/books/', {
-							withCredentials: true,
-						})
-						.then((response) => {
-							// Handle successful response
-							setBooks(response.data);
-						})
-						.catch((error) => {
-							// Handle error response
-							toast.error(error.response.data.detail); // Display error toast message with details 
-		
-						});
-				}
+			setBooks(mockList)
+		}
+		else if (mock === 'false') {
+			if (topicId.topicId) {
+				console.log(baseUrl + '/topics/' + topicId.topicId + '/books/');
+				axios
+					// .get(baseUrl + `/topics/${topicId}/books/`, {
+					.get(baseUrl + '/topics/' + topicId.topicId + '/books/', {
+						withCredentials: true,
+					})
+					.then((response) => {
+						// Handle successful response
+						setBooks(response.data);
+					})
+					.catch((error) => {
+						// Handle error response
+						toast.error(error.response.data.detail); // Display error toast message with details 
+
+					});
 			}
+		}
 	}, [topicId.topicId]);
 
 	const handleDetailBook = (id) => {
@@ -73,7 +74,7 @@ export default function ListBookByTopic(topicId) {
 										<td>{element.author}</td>
 										<td>
 											<img
-												src={element.cover_url}
+												src={element.image}
 												alt="Book Cover"
 												className="img-thumbnail"
 												style={{
