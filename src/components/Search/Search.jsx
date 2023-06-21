@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import SearchIcon from '@mui/icons-material/Search';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import './Search.scss';
 
 export default function Search() {
+	const [limit] = useState(9);
+	const [offset, setOffset] = useState(0);
 	const [keywords, setKeywords] = useState([]);
 	const [selectedKeywords, setSelectedKeywords] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
@@ -13,7 +14,7 @@ export default function Search() {
 
 	useEffect(() => {
 		axios
-			.get(baseUrl + '/keywords/', {
+			.get(baseUrl + `/keywords/?limit=${limit}&offset=${offset}`, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -24,7 +25,7 @@ export default function Search() {
 				// Handle error response
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
-	}, []);
+	}, [offset]);
 
 	const removeWord = (word) => {
 		const array = [...selectedKeywords]; // make a separate copy of the array
@@ -44,9 +45,9 @@ export default function Search() {
 	};
 
 	return (
-		<>
-			<div>
-				<h2>Liste des mots-clés</h2>
+		<div className="search">
+			<h2 className="search__title">Liste des mots-clés</h2>
+			<div className="search__searchbar">
 				<input
 					type="search"
 					placeholder="Rechercher..."
@@ -55,33 +56,48 @@ export default function Search() {
 				<button onClick={handleSubmit}>
 					<SearchIcon />
 				</button>
-				<select name="option">
+				<select name="option" id="search-option">
 					<option value="">--Option de recherche--</option>
 					<option value="in">OU</option>
 					<option value="with">ET</option>
 					<option value="without">SAUF</option>
 				</select>
-				<div>
-					{keywords.map((item, index) => {
-						return (
-							<>
-								{index % 3 === 0 && (
-									<div key={'sep' + item.label + index}></div>
-								)}
-								<div
-									style={{ display: 'flex', margin: '15px' }}
-								>
-									<KeywordItem
-										key={item.label + index}
-										word={item.label}
-									/>
-								</div>
-							</>
-						);
-					})}
-				</div>
 			</div>
-		</>
+
+			<div className="search__listKeyword">
+				{keywords.map((item, index) => {
+					return (
+						<>
+							{/* {index % 3 === 0 && (
+								<div key={'sep' + item.label + index}></div>
+							)} */}
+							<KeywordItem
+								key={item.label + index}
+								word={item.label}
+								updateSelectedKeywords={handleSelectedKeywords}
+							/>
+						</>
+					);
+				})}
+			</div>
+			<div className="search__pagination">
+				{offset != 0 ? (
+					<button onClick={() => setOffset(offset - limit)}>
+						Page Précédente
+					</button>
+				) : (
+					<button disabled>Page Précédente</button>
+				)}
+				{<b>page {offset / limit + 1}</b>}
+				{keywords.length >= limit ? (
+					<button onClick={() => setOffset(offset + limit)}>
+						Page Suivante
+					</button>
+				) : (
+					<button disabled>Page Suivante</button>
+				)}
+			</div>
+		</div>
 	);
 }
 
@@ -96,11 +112,17 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 	};
 
 	return (
-		<>
-			<button onClick={handleOnClick}>
-				{checked ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />}
-			</button>
-			<p>{word}</p>
-		</>
+		<div className="keyword">
+			<input
+				id={word}
+				name={word}
+				type="checkbox"
+				className="keyword__input"
+				onClick={handleOnClick}
+			/>
+			<label htmlFor={word} className="keyword__label">
+				{word}
+			</label>
+		</div>
 	);
 }

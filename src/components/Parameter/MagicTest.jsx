@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../../css/magic.css';
+import './MagicTest.scss';
 
 const MagicTest = () => {
 	const [renderButton, setRenderButton] = useState(true);
@@ -32,17 +33,13 @@ const MagicTest = () => {
 	}, []);
 
 	return (
-		<div>
-			<div>
-				<div>
-					<h5>Dernier coverage : 97.21%</h5>
-					{renderButton && (
-						<button id="magic-button" className="btn-magic">
-							Lancer les tests
-						</button>
-					)}
-				</div>
-			</div>
+		<div className="test">
+			<h2 className="test__title">Dernier coverage : 97.21%</h2>
+			{renderButton && (
+				<button id="magic-button" className="btn-magic test__button">
+					Lancer les tests
+				</button>
+			)}
 		</div>
 	);
 };

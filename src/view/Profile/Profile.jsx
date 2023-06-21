@@ -5,7 +5,7 @@ import './Profile.scss';
 
 export default function Profile() {
 	return (
-		<div className="Profile">
+		<>
 			<Navbar />
 			<div className="cardList">
 				<div className="cardList__card--short">
@@ -15,6 +15,6 @@ export default function Profile() {
 					<ProfileGraph />
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }
