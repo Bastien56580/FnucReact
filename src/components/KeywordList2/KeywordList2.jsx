@@ -35,9 +35,13 @@ export default function KeywordList2() {
 	}, [offset]);
 
 	const handleDelete = (id) => {
+		let token = sessionStorage.getItem('token');
 		axios
 			.delete(baseUrl + `/keywords/${id}`, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then(() => {
 				// Remove the deleted record from the books array
@@ -47,7 +51,7 @@ export default function KeywordList2() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.detail ||error.response.data.message); // Display error toast message with details
 			});
 	};
 

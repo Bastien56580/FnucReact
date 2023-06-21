@@ -1,24 +1,29 @@
-
 import './ProfileGraph.scss';
 import toast, { Toaster } from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import Plot from 'react-plotly.js';
 import randomColor from 'randomcolor';
 import axios from 'axios';
-import mockGraph from './mock/mockGraph.json'
+import mockGraph from './mock/mockGraph.json';
+import jwt_decode from 'jwt-decode';
 
 export default function ProfileGraph() {
-	const [myData, setMyData] = useState("");
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
-	const mock = sessionStorage.getItem("REACT_APP_MOCK");
+	const [myData, setMyData] = useState('');
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
+	const mock = sessionStorage.getItem('REACT_APP_MOCK');
 
 	useEffect(() => {
-		if (mock === "true") {
+		if (mock === 'true') {
 			setMyData(mockGraph);
-
 		} else {
+			let token = jwt_decode(sessionStorage.getItem('token'));
 			axios
-				.get(baseUrl + '/customers/12/orders') //TODO : Change 12 to user id
+				.get(baseUrl + '/customers/' + token.id + '/orders', {
+					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				})
 				.then((response) => {
 					const orders = response.data;
 					const bookTitles = {};
@@ -38,7 +43,7 @@ export default function ProfileGraph() {
 									bookTitles[book.title] += order.quantity;
 								}
 							} catch (error) {
-								toast.error(error.response.data.detail);
+								toast.error(error.response.data.message || error.response.data.detail);
 							}
 						}
 
@@ -50,11 +55,10 @@ export default function ProfileGraph() {
 					fetchBookData();
 				})
 				.catch((error) => {
-					toast.error(error.response.data.detail);
+					toast.error(error.response.data.message || error.response.data.detail);
 				});
 		}
 	}, []);
-
 
 	const xData = Object.keys(myData);
 	const yData = Object.values(myData);
@@ -65,9 +69,11 @@ export default function ProfileGraph() {
 			<div className="card">
 				<div className="card-body">
 					<h5 className="card-title text-center">
-						{"Quels sont les livres que j'ai achetés et en combien d'exemplaires ?"}
+						{
+							"Quels sont les livres que j'ai achetés et en combien d'exemplaires ?"
+						}
 					</h5>
-					{myData !== "" ? (
+					{myData !== '' ? (
 						<div className="d-flex justify-content-center">
 							<div className="plot-container">
 								<Plot

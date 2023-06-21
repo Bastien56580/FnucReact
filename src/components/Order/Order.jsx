@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import '../../css/style.css'
+import jwt_decode from "jwt-decode";
 
 export default function Order({ book }) {
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
@@ -23,37 +24,45 @@ export default function Order({ book }) {
 	const handleQuantity = (e) => {
 		const newQuantity = parseInt(e.target.value);
 		setQuantity(newQuantity);
-		setTVA((newQuantity * tauxTVA).toPrecision(4));
-		setHT((newQuantity * price).toPrecision(4));
-		setTTC((newQuantity * price + newQuantity * price * tauxTVA).toPrecision(4));
+		setTVA((newQuantity * tauxTVA).toFixed(2));
+		setHT((newQuantity * price).toFixed(2));
+		setTTC((newQuantity * price + newQuantity * price * tauxTVA).toFixed(2));
 	};
 
 
 	//handle the post request
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		let token = sessionStorage.getItem("token");
+
+		let decoded_token = jwt_decode(sessionStorage.getItem("token"));
+		
 		// Create user data object
 		const orderData = {
 			"id_book": id,
-			"id_customer": 12, //TODO : Find user id with authentication system
+			"id_customer": decoded_token.id, 
 			"quantity": quantity,
 		};
 		// Send a POST request to create an order
+		
 		axios
 			.post(baseUrl + '/orders/', orderData, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then((response) => {
 				// Handle successful response
 				if (response.data.id) {
 					toast.success('La commande est bien réalisé !'); // Display success toast message
 				} else {
-					toast.error(response.data.detail); // Display error toast message with details
+					toast.error(response.data.detail ||response.data.message); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.detail ||error.response.data.message); // Display error toast message with details
 			});
 	};
 

@@ -3,6 +3,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import AdminProtectedRoutes from './components/AdminProtectedRoutes/AdminProtectedRoutes'
 
 const ErrorPage = lazy(() => import('./view/PageErreur/PageErreur'));
 const Login = lazy(() => import('./view/Login/Login'));
@@ -38,9 +40,9 @@ const Home = lazy(() => import('./view/Home/Home'));
 const DetailOrder = lazy(() => import('./view/DetailOrder/DetailOrder'));
 import Loading from './view/Loading/Loading';
 import SearchView from './view/SearchView/SearchView';
-import Parameter from './view/Parameter/Parameter'
+import Parameter from './view/Parameter/Parameter';
 
-import { setReactAppBackURL } from "./script/env";
+import { setReactAppBackURL } from './script/env';
 
 setReactAppBackURL();
 
@@ -65,59 +67,59 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/profile',
-		element: <LazyRoute component={Profile} />,
+		element: <ProtectedRoute component={Profile} />,
 	},
 	{
 		path: '/admin',
-		element: <LazyRoute component={Admin} />,
+		element: <AdminProtectedRoutes component={Admin} />,
 	},
 	{
 		path: '/admin/books',
-		element: <LazyRoute component={AdminBooks} />,
+		element: <AdminProtectedRoutes component={AdminBooks} />,
 	},
 	{
 		path: '/admin/clients',
-		element: <LazyRoute component={AdminClients} />,
+		element: <AdminProtectedRoutes component={AdminClients} />,
 	},
 	{
 		path: '/admin/indexes',
-		element: <LazyRoute component={AdminIndexes} />,
+		element: <AdminProtectedRoutes component={AdminIndexes} />,
 	},
 	{
 		path: '/admin/books/create',
-		element: <LazyRoute component={AdminCreateBook} />,
+		element: <AdminProtectedRoutes component={AdminCreateBook} />,
 	},
 	{
 		path: '/admin/clients/create',
-		element: <LazyRoute component={AdminCreateClient} />,
+		element: <AdminProtectedRoutes component={AdminCreateClient} />,
 	},
 	{
 		path: '/admin/keywords/create',
-		element: <LazyRoute component={AdminCreateKeyword} />,
+		element: <AdminProtectedRoutes component={AdminCreateKeyword} />,
 	},
 	{
 		path: '/admin/topics/create',
-		element: <LazyRoute component={AdminCreateTopic} />,
+		element: <AdminProtectedRoutes component={AdminCreateTopic} />,
 	},
 	{
 		path: '/admin/books/edit/:id',
-		element: <LazyRoute component={AdminEditBook} />,
+		element: <AdminProtectedRoutes component={AdminEditBook} />,
 	},
 	{
 		path: '/admin/clients/edit/:id',
-		element: <LazyRoute component={AdminEditClient} />,
+		element: <AdminProtectedRoutes component={AdminEditClient} />,
 	},
 	{
 		path: '/admin/topics/edit/:id',
-		element: <LazyRoute component={AdminEditTopic} />,
+		element: <AdminProtectedRoutes component={AdminEditTopic} />,
 	},
 	{
 		path: '/admin/keywords/edit/:id',
-		element: <LazyRoute component={AdminEditKeyword} />,
+		element: <AdminProtectedRoutes component={AdminEditKeyword} />,
 	},
 	{
 		path: '/admin/parameter/',
-		element: <LazyRoute component={Parameter} />,
+		element: <AdminProtectedRoutes component={Parameter} />,
 	},
 	{
 		path: '/detail-order/:id',
@@ -129,8 +131,8 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/search',
-		element: <LazyRoute component={SearchView} />
-	}
+		element: <LazyRoute component={SearchView} />,
+	},
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
