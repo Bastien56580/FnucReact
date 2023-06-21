@@ -9,10 +9,6 @@ import './Navbar.scss';
 
 // Component for the navigation bar
 export default function Navbar() {
-	// Get the active page URL
-	const activePage = window.location.pathname;
-
-
 
 	// State variables
 	const [isLoggedIn,setIsLoggedIn] = useState(false); // State variable for tracking user login status
