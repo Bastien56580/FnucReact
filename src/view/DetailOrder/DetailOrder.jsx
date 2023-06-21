@@ -38,7 +38,7 @@ export default function DetailOrder() {
 	}, [id]);
 
 	return (
-		<div className="DetailOrder">
+		<>
 			<Navbar />
 			{myData !== '' ? (
 				<div className="card">
@@ -49,6 +49,6 @@ export default function DetailOrder() {
 				<p>Loading</p>
 			)}
 			<Toaster />
-		</div>
+		</>
 	);
 }

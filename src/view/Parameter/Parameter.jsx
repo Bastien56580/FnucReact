@@ -2,36 +2,23 @@ import Navbar from '../../components/Navbar/Navbar';
 import SwitchBack from '../../components/Parameter/SwitchBack';
 import EnableMock from '../../components/Parameter/EnableMock';
 import MagicTest from '../../components/Parameter/MagicTest';
+import './Parameter.scss';
 
 export default function Parameter() {
 	return (
-		<div className="Parameter">
+		<>
 			<Navbar />
-			<div className="container">
-				<div className="row">
-					<div className="col-md-6 mt-5 mb-3">
-						<h1>Paramètres :</h1>
-					</div>
+			<div className="cardList">
+				<div className="cardList__card">
+					<h1 className="cardList__card__title">Paramètres :</h1>
+					<SwitchBack />
+					<EnableMock />
 				</div>
-				<div className="row">
-					<div className="col-md-6">
-						<div className="mb-3">
-							<SwitchBack />
-						</div>
-					</div>
-					<div className="col-md-6">
-						<div className="mb-3">
-							<EnableMock />
-						</div>
-					</div>
-				</div>
-				<div className="row">
-					<div className="col-md-6 mt-5 mb-3">
-						<h1>Tests</h1>
-						<MagicTest />
-					</div>
+				<div className="cardList__card">
+					<h1 className="cardList__card__title">Tests</h1>
+					<MagicTest />
 				</div>
 			</div>
-		</div>
+		</>
 	);
 }

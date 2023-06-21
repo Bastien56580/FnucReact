@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import SearchIcon from '@mui/icons-material/Search';
-import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
+import './Search.scss';
 
 export default function Search() {
 	const [limit] = useState(9);
-	const [offset,setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 	const [keywords, setKeywords] = useState([]);
 	const [selectedKeywords, setSelectedKeywords] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
@@ -46,9 +45,9 @@ export default function Search() {
 	};
 
 	return (
-		<>
-			<div>
-				<h2>Liste des mots-clés</h2>
+		<div className="search">
+			<h2 className="search__title">Liste des mots-clés</h2>
+			<div className="search__searchbar">
 				<input
 					type="search"
 					placeholder="Rechercher..."
@@ -57,7 +56,7 @@ export default function Search() {
 				<button onClick={handleSubmit}>
 					<SearchIcon />
 				</button>
-				<select name="option">
+				<select name="option" id="search-option">
 					<option value="">--Option de recherche--</option>
 					<option value="in">OU</option>
 					<option value="with">ET</option>
@@ -88,7 +87,41 @@ export default function Search() {
 					{<b className='me-5'>page {(offset/limit) + 1}</b>}
 					{keywords.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 			</div>
-		</>
+
+			<div className="search__listKeyword">
+				{keywords.map((item, index) => {
+					return (
+						<>
+							{/* {index % 3 === 0 && (
+								<div key={'sep' + item.label + index}></div>
+							)} */}
+							<KeywordItem
+								key={item.label + index}
+								word={item.label}
+								updateSelectedKeywords={handleSelectedKeywords}
+							/>
+						</>
+					);
+				})}
+			</div>
+			<div className="search__pagination">
+				{offset != 0 ? (
+					<button onClick={() => setOffset(offset - limit)}>
+						Page Précédente
+					</button>
+				) : (
+					<button disabled>Page Précédente</button>
+				)}
+				{<b>page {offset / limit + 1}</b>}
+				{keywords.length >= limit ? (
+					<button onClick={() => setOffset(offset + limit)}>
+						Page Suivante
+					</button>
+				) : (
+					<button disabled>Page Suivante</button>
+				)}
+			</div>
+		</div>
 	);
 }
 
@@ -103,9 +136,17 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 	};
 
 	return (
-		<div>
-			<input id={word} name={word} type="checkbox" onClick={handleOnClick} />
-			<label htmlFor={word}>{word}</label>
+		<div className="keyword">
+			<input
+				id={word}
+				name={word}
+				type="checkbox"
+				className="keyword__input"
+				onClick={handleOnClick}
+			/>
+			<label htmlFor={word} className="keyword__label">
+				{word}
+			</label>
 		</div>
 	);
 }
