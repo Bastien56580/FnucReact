@@ -18,21 +18,25 @@ export default function AddKeywordFormAdmin() {
 
 		// Send a POST request to create a user
 		if (keyword) {
+			let token = sessionStorage.getItem("token")
 			axios
 				.post(baseUrl + '/keywords/', { 'label': keyword }, {
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				})
 				.then((response) => {
 					// Handle successful response
 					if (response.status === 200) {
 						toast.success('Keyword created!'); // Display success toast message
 					} else {
-						toast.error(response.data.detail); // Display error toast message with details
+						toast.error(response.data.detail || response.data.message); // Display error toast message with details
 					}
 				})
 				.catch((error) => {
 					// Handle error response
-					toast.error(error.response.data.detail); // Display error toast message with details
+					toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 				});
 		} else {
 			toast.error('Veuillez remplire le champ')

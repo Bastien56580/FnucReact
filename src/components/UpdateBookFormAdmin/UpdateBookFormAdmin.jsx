@@ -16,9 +16,11 @@ export default function UpdateBookFormAdmin() {
 	const { id } = useParams();
 
 	useEffect(() => {
+		
 		axios
 			.get(baseUrl + '/books/' + id, {
 				withCredentials: true,
+				
 			})
 			.then((response) => {
 				// Handle successful response
@@ -31,7 +33,7 @@ export default function UpdateBookFormAdmin() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 	}, [id]);
 
@@ -48,12 +50,16 @@ export default function UpdateBookFormAdmin() {
 		};
 
 		// Send a POST request to create a user
+		const token = sessionStorage.getItem('token');
 		axios
 			.patch(
 				baseUrl + `/books/${id}`,
 				userData,
 				{
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					  },
 				}
 			)
 			.then((response) => {
@@ -61,12 +67,12 @@ export default function UpdateBookFormAdmin() {
 				if (response.status === 200) {
 					toast.success('Book updated!'); // Display success toast message
 				} else {
-					toast.error(response.data.detail); // Display error toast message with details
+					toast.error(response.data.message || response.data.detail); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 	};
 

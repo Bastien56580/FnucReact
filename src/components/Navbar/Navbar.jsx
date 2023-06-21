@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../css/style.css';
+import jwt_decode from "jwt-decode";
+
 
 // Component for the navigation bar
 export default function Navbar() {
@@ -8,13 +10,25 @@ export default function Navbar() {
 	const activePage = window.location.pathname;
 
 	// State variables
-	const [isLoggedIn] = useState(true); // State variable for tracking user login status
-	const [isAdmin] = useState(true); // State variable for tracking user admin status
+	const [isLoggedIn,setIsLoggedIn] = useState(false); // State variable for tracking user login status
+	const [isAdmin,setIsAdmin] = useState(false); // State variable for tracking user admin status
 
 	useEffect(() => {
-		// TODO: Perform necessary logic to check if the user is logged in or not
-		// Update the isLoggedIn and isAdmin variables accordingly using setIsLoggedIn and setIsAdmin setters.
-	}, []);
+		if(sessionStorage.getItem("token")){
+			setIsLoggedIn(true);
+
+			let decoded_token = jwt_decode(sessionStorage.getItem("token"));
+			if(decoded_token.role==="admin"){
+				setIsAdmin(true)
+			}
+		}
+	}, [sessionStorage.getItem("token")]);
+
+
+	const HandleDisconnect=()=>{
+		sessionStorage.removeItem("token");
+		window.location.reload("/");
+	}
 
 	return (
 		<div>
@@ -158,7 +172,7 @@ export default function Navbar() {
 							<li className="nav-item">
 								<a
 									className="btn btn-danger mr-5"
-									href="/disconnect"
+									onClick={HandleDisconnect}
 								>
 									Déconnexion
 								</a>
