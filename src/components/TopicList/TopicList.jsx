@@ -8,33 +8,39 @@ import '../../css/adminTab.css';
 import mockTopic from './mock/mockTopic.json'
 
 export default function TopicList() {
+	const [limit] = useState(10);
+	const [offset,setOffset] = useState(0);
 	const [topics, setTopics] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 	const mock = sessionStorage.getItem("REACT_APP_MOCK");
 
 	useEffect(() => {
 		if (mock === "true") {
-			setTopics(mockTopic);
-		} else {
-			axios
-				.get(baseUrl + '/topics/', {
-					withCredentials: true,
-				})
-				.then((response) => {
-					// Handle successful response
-					setTopics(response.data);
-				})
-				.catch((error) => {
-					// Handle error response
-					toast.error(error.response.data.detail); // Display error toast message with details
-				});
+			setTopics(mockTopic[offset / limit]);
+		}else {
+		axios
+			.get(baseUrl + `/topics/?limit=${limit}&offset=${offset}`, {
+				withCredentials: true,
+			})
+			.then((response) => {
+				// Handle successful response
+				setTopics(response.data);
+			})
+			.catch((error) => {
+				// Handle error response
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
+			});
 		}
-	}, []);
+	}, [offset]);
 
 	const handleDelete = (id) => {
+		let token = sessionStorage.getItem('token');
 		axios
 			.delete(baseUrl + `/topics/${id}`, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then(() => {
 				// Remove the deleted record from the books array
@@ -44,7 +50,7 @@ export default function TopicList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 			});
 	};
 
@@ -106,6 +112,9 @@ export default function TopicList() {
 							})}
 						</tbody>
 					</table>
+					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
+					{<b className='me-5'>page {(offset/limit) + 1}</b>}
+					{topics.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 					<Toaster /> {/* Toast container for displaying messages */}
 				</div>
 			</div>

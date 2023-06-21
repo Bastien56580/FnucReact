@@ -8,13 +8,15 @@ import '../../css/adminTab.css';
 import { Tune } from '@mui/icons-material';
 
 export default function BookList() {
+	const [limit] = useState(10);
+	const [offset,setOffset] = useState(0);
 	const [books, setBooks] = useState([]);
 	const [keywordsIds, setKeywordsIds] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	useEffect(() => {
 		axios
-			.get(baseUrl + '/books/', {
+			.get(baseUrl + `/books/?limit=${limit}&offset=${offset}`, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -23,14 +25,20 @@ export default function BookList() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
-	}, []);
+	}, [offset]);
 
 	const handleDelete = (id) => {
+		let token = sessionStorage.getItem("token")
+
+
 		axios
 			.delete(baseUrl + `/books/${id}`, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then(() => {
 				// Remove the deleted record from the books array
@@ -40,7 +48,7 @@ export default function BookList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 
 		axios
@@ -136,6 +144,9 @@ export default function BookList() {
 							})}
 						</tbody>
 					</table>
+					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
+					{<b className='me-5'>page {(offset/limit) + 1}</b>}
+					{books.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 					<Toaster /> {/* Toast container for displaying messages */}
 				</div>
 			</div>

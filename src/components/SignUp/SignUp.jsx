@@ -2,12 +2,15 @@ import { useState } from 'react';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
+
 export default function SignUp() {
   // State variables for form inputs
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastName] = useState("");
+
   const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
   const handleSubmit = (e) => {
@@ -18,22 +21,27 @@ export default function SignUp() {
       email: email,
       firstname: firstname,
       lastname: lastname,
-      password: password
+      password: password,
+      confirm_password: confirmPassword,
+
     };
 
+
     // Send a POST request to create a user
-    axios.post(baseUrl + '/customers/', userData, { withCredentials: true })
+    axios.post(baseUrl + '/auth/register', userData, { withCredentials: true })
       .then(response => {
         // Handle successful response
-        if (response.data.email) {
-          toast.success('User created!'); // Display success toast message
+        if (response.data.token) {
+          toast.success(response.data.message || response.data.detail); // Display success toast message
+          sessionStorage.setItem("token",response.data.token)
+          window.location.reload("/");
         } else {
-          toast.error(response.data.detail); // Display error toast message with details
+          toast.error(response.data.message || response.data.detail); // Display error toast message with details
         }
       })
       .catch(error => {
         // Handle error response
-        toast.error(error.response.data.detail); // Display error toast message with details
+        toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
       });
   }
 
@@ -44,6 +52,7 @@ export default function SignUp() {
         <input type="lastname" className="form-control mb-3" placeholder="Nom de Famille" value={lastname} onChange={(e) => setLastName(e.target.value)} />
         <input type="email" className="form-control mb-3" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <input type="password" className="form-control mb-3" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input type="password" className="form-control mb-3" placeholder="Confirmez mot de passe" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
         <button type="submit" className="btn btn-success" onClick={handleSubmit}>Créer un compte</button>
       </div>
       <Toaster /> {/* Toast container for displaying messages */}

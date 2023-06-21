@@ -4,6 +4,8 @@ import toast from 'react-hot-toast';
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function Search() {
+	const [limit] = useState(9);
+	const [offset,setOffset] = useState(0);
 	const [keywords, setKeywords] = useState([]);
 	const [selectedKeywords, setSelectedKeywords] = useState([]);
 	const [searchValue, setSearchValue] = useState('');
@@ -12,7 +14,7 @@ export default function Search() {
 
 	useEffect(() => {
 		axios
-			.get(baseUrl + '/keywords/', {
+			.get(baseUrl + `/keywords/?limit=${limit}&offset=${offset}`, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -23,7 +25,7 @@ export default function Search() {
 				// Handle error response
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
-	}, []);
+	}, [offset]);
 
 	const removeWord = (word) => {
 		const array = [...selectedKeywords]; // make a separate copy of the array
@@ -109,7 +111,9 @@ export default function Search() {
 
 
 					})}
-
+	{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
+					{<b className='me-5'>page {(offset/limit) + 1}</b>}
+					{keywords.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 				</div>
 			</div>
 		</div>

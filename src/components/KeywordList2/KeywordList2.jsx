@@ -8,6 +8,8 @@ import '../../css/adminTab.css';
 import mockKeyword from './mock/mockKeyword.json'
 
 export default function KeywordList2() {
+	const [limit] = useState(10);
+	const [offset,setOffset] = useState(0);
 	const [keywords, setKeywords] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 	const mock = sessionStorage.getItem("REACT_APP_MOCK");
@@ -18,7 +20,7 @@ export default function KeywordList2() {
 			setKeywords(mockKeyword);
 		}else {
 		axios
-			.get(baseUrl + '/keywords/', {
+			.get(baseUrl + `/keywords/?limit=${limit}&offset=${offset}`, {
 				withCredentials: true,
 			})
 			.then((response) => {
@@ -30,12 +32,16 @@ export default function KeywordList2() {
 				toast.error(error.response.data.detail); // Display error toast message with details
 			});
 		}
-	}, []);
+	}, [offset]);
 
 	const handleDelete = (id) => {
+		let token = sessionStorage.getItem('token');
 		axios
 			.delete(baseUrl + `/keywords/${id}`, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then(() => {
 				// Remove the deleted record from the books array
@@ -45,7 +51,7 @@ export default function KeywordList2() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.detail ||error.response.data.message); // Display error toast message with details
 			});
 	};
 
@@ -93,6 +99,9 @@ export default function KeywordList2() {
 							})}
 						</tbody>
 					</table>
+					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
+					{<b className='me-5'>page {(offset/limit) + 1}</b>}
+					{keywords.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 				</div>
 			</div>
 			<Toaster /> {/* Toast container for displaying messages */}

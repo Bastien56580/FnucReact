@@ -22,9 +22,11 @@ export default function UpdateBookFormAdmin() {
 	const { bookId } = useParams();
 
 	useEffect(() => {
+		
 		axios
 			.get(baseUrl + '/books/' + bookId, {
 				withCredentials: true,
+				
 			})
 			.then((response) => {
 				// Handle successful response
@@ -37,7 +39,7 @@ export default function UpdateBookFormAdmin() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 	}, [bookId]);
 
@@ -53,13 +55,18 @@ export default function UpdateBookFormAdmin() {
 			stock: stock,
 		};
 
-		// Send a POST request to create a book
+
+		// Send a POST request to create a user
+		const token = sessionStorage.getItem('token');
 		await axios
 			.patch(
 				baseUrl + `/books/${bookId}`,
 				userData,
 				{
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				}
 			)
 			.then((response) => {
@@ -67,12 +74,12 @@ export default function UpdateBookFormAdmin() {
 				if (response.status === 200) {
 					toast.success('Book updated!'); // Display success toast message
 				} else {
-					toast.error(response.data.detail); // Display error toast message with details
+					toast.error(response.data.message || response.data.detail); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 
 		//axios get to get the list of topics and their id
@@ -82,6 +89,9 @@ export default function UpdateBookFormAdmin() {
 			await axios
 				.get(baseUrl + '/keywords/', {
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				})
 				.then((response) => {
 					// Handle successful response
@@ -103,6 +113,9 @@ export default function UpdateBookFormAdmin() {
 				await axios
 					.post(baseUrl + '/books/' + bookId + '/keywords/' + motCleId, {
 						withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 					})
 					.then((response) => {
 						// Handle successful response
@@ -127,6 +140,9 @@ export default function UpdateBookFormAdmin() {
 			await axios
 				.get(baseUrl + '/topics/', {
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				})
 				.then((response) => {
 					// Handle successful response
@@ -145,6 +161,9 @@ export default function UpdateBookFormAdmin() {
 				await axios
 					.post(baseUrl + '/books/' + bookId + '/topics/' + topiId, {
 						withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 					})
 					.then((response) => {
 						// Handle successful response

@@ -35,10 +35,15 @@ export default function AddBookFormAdmin() {
 			stock: stock,
 		};
 
+
 		// Send a POST request to create a book
+		let token = sessionStorage.getItem("token");
 		await axios
 			.post(baseUrl + '/books/', userData, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then((response) => {
 				// Handle successful response
@@ -47,12 +52,12 @@ export default function AddBookFormAdmin() {
 					setBookId(response.data.id);
 					toast.success('Book created!'); // Display success toast message
 				} else {
-					toast.error(response.data.detail); // Display error toast message with details
+					toast.error(response.data.detail || response.data.message); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 			});
 
 		//axios patch or post for topic and mot Cle
@@ -63,6 +68,9 @@ export default function AddBookFormAdmin() {
 			await axios
 				.get(baseUrl + '/keywords/', {
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				})
 				.then((response) => {
 					// Handle successful response
@@ -84,6 +92,9 @@ export default function AddBookFormAdmin() {
 				await axios
 					.post(baseUrl + '/books/' + bookId + '/keywords/' + motCleId, {
 						withCredentials: true,
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
 					})
 					.then((response) => {
 						// Handle successful response
@@ -108,6 +119,9 @@ export default function AddBookFormAdmin() {
 			await axios
 				.get(baseUrl + '/topics/', {
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				})
 				.then((response) => {
 					// Handle successful response
@@ -126,6 +140,9 @@ export default function AddBookFormAdmin() {
 				await axios
 					.post(baseUrl + '/books/' + bookId + '/topics/' + topiId, {
 						withCredentials: true,
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
 					})
 					.then((response) => {
 						// Handle successful response
