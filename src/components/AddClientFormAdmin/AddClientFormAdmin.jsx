@@ -23,12 +23,13 @@ export default function AddClientFormAdmin() {
 			firstname: firstName,
 			lastname: lastName,
 			password: password,
+			password_confirmation: password,
 		};
 
-		let token = sessionStorage.getItem("token");
+		let token = sessionStorage.getItem('token');
 		// Send a POST request to create a user
 		axios
-			.post(baseUrl + '/customers/', userData, {
+			.post(baseUrl + '/auth/register/', userData, {
 				withCredentials: true,
 				headers: {
 					Authorization: `Bearer ${token}`,
@@ -44,7 +45,9 @@ export default function AddClientFormAdmin() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
+				toast.error(
+					error.response.data.detail || error.response.data.message
+				); // Display error toast message with details
 			});
 	};
 
