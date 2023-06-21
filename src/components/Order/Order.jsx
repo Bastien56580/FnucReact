@@ -24,9 +24,6 @@ export default function Order({ book }) {
 	const handleQuantity = (e) => {
 		const newQuantity = parseInt(e.target.value);
 		setQuantity(newQuantity);
-		setTVA((newQuantity * tauxTVA).toPrecision(4));
-		setHT((newQuantity * price).toPrecision(4));
-		setTTC((newQuantity * price + newQuantity * price * tauxTVA).toPrecision(4));
 		setTVA((newQuantity * tauxTVA).toFixed(2));
 		setHT((newQuantity * price).toFixed(2));
 		setTTC((newQuantity * price + newQuantity * price * tauxTVA).toFixed(2));

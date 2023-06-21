@@ -54,9 +54,8 @@ export default function ClientList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(
-					error.response.data.message || error.response.data.detail
-				); // Display error toast message with details
+
+				toast.error(error.response.data.message || error.response.data.detail); 
 			});
 	};
 
