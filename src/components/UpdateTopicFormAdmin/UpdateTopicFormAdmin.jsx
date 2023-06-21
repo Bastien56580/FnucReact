@@ -34,6 +34,8 @@ export default function UpdateTopicFormAdmin() {
 			topic_url: topicUrl,
 		};
 
+		let token = sessionStorage.getItem("token")
+
 		// Send a POST request to create a user
 		axios
 			.patch(
@@ -41,6 +43,9 @@ export default function UpdateTopicFormAdmin() {
 				topicData,
 				{
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				}
 			)
 			.then((response) => {
@@ -49,12 +54,12 @@ export default function UpdateTopicFormAdmin() {
 				if (response.status === 200) {
 					toast.success('Topic updated!'); // Display success toast message
 				} else {
-					toast.error(response.data.detail); // Display error toast message with details
+					toast.error(response.data.detail || response.data.message); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 			});
 	};
 

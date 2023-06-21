@@ -9,6 +9,7 @@ export default function UpdateClientFormAdmin() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const token = sessionStorage.getItem("token");
 
 	const { id } = useParams();
 
@@ -16,6 +17,9 @@ export default function UpdateClientFormAdmin() {
 		axios
 			.get(baseUrl + '/customers/' + id, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then((response) => {
 				// Handle successful response
@@ -25,7 +29,7 @@ export default function UpdateClientFormAdmin() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 			});
 	}, [id]);
 
@@ -46,6 +50,9 @@ export default function UpdateClientFormAdmin() {
 				userData,
 				{
 					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
 				}
 			)
 			.then((response) => {
@@ -54,12 +61,12 @@ export default function UpdateClientFormAdmin() {
 				if (response.status === 200) {
 					toast.success('User updated!'); // Display success toast message
 				} else {
-					toast.error(response.data.detail); // Display error toast message with details
+					toast.error(response.data.detail || response.data.message); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 			});
 	};
 

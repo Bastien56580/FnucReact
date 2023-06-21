@@ -9,11 +9,17 @@ import '../../css/adminTab.css';
 export default function ClientList() {
 	const [clients, setClients] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
+	const token = sessionStorage.getItem("token");
 
 	useEffect(() => {
+
+
 		axios
 			.get(baseUrl + '/customers/', {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then((response) => {
 				// Handle successful response
@@ -21,7 +27,7 @@ export default function ClientList() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 	}, []);
 
@@ -29,6 +35,9 @@ export default function ClientList() {
 		axios
 			.delete(baseUrl + `/customers/${id}`, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then(() => {
 				// Remove the deleted record from the books array
@@ -38,7 +47,7 @@ export default function ClientList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 	};
 
