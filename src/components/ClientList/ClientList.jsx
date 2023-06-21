@@ -17,7 +17,6 @@ export default function ClientList() {
 	useEffect(() => {
 		if (mock === 'true') {
 			setClients(mockClient);
-
 		} else {
 			const token = sessionStorage.getItem('token');
 			axios
@@ -57,7 +56,6 @@ export default function ClientList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-
 				toast.error(error.response.data.message || error.response.data.detail); 
 			});
 	};
