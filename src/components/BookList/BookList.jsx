@@ -23,14 +23,20 @@ export default function BookList() {
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 	}, [offset]);
 
 	const handleDelete = (id) => {
+		let token = sessionStorage.getItem("token")
+
+
 		axios
 			.delete(baseUrl + `/books/${id}`, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then(() => {
 				// Remove the deleted record from the books array
@@ -40,7 +46,7 @@ export default function BookList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
 	};
 

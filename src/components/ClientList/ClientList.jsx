@@ -5,39 +5,49 @@ import { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import '../../css/adminTab.css';
-import mockClient from './mock/mockClient.json'
+import mockClient from './mock/mockClient.json';
 
 export default function ClientList() {
 	const [limit] = useState(10);
 	const [offset,setOffset] = useState(0);
 	const [clients, setClients] = useState([]);
-	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
-	const mock = sessionStorage.getItem("REACT_APP_MOCK");
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
+	const mock = sessionStorage.getItem('REACT_APP_MOCK');
 
 	useEffect(() => {
-		if (mock === "true") {
+		if (mock === 'true') {
 			setClients(mockClient);
-		}else {
-		axios
-			.get(baseUrl + `/customers/?limit=${limit}&offset=${offset}`, {
-				withCredentials: true,
-			})
-			.then((response) => {
-				// Handle successful response
-				setClients(response.data);
-			})
-			.catch((error) => {
-				// Handle error response
-				toast.error(error.response.data.detail); // Display error toast message with details
-			});
-		}
 
-	}, [offset]);
+		} else {
+			const token = sessionStorage.getItem('token');
+			axios
+				.get(baseUrl + '/customers/', {
+					withCredentials: true,
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				})
+				.then((response) => {
+					// Handle successful response
+					setClients(response.data);
+				})
+				.catch((error) => {
+					// Handle error response
+					toast.error(
+						error.response.data.message ||
+							error.response.data.detail
+					); // Display error toast message with details
+				});
+		}
+	}, []);
 
 	const handleDelete = (id) => {
 		axios
 			.delete(baseUrl + `/customers/${id}`, {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then(() => {
 				// Remove the deleted record from the books array
@@ -47,7 +57,9 @@ export default function ClientList() {
 				toast.success('Enregistrement supprimé !');
 			})
 			.catch((error) => {
-				toast.error(error.response.data.detail); // Display error toast message with details
+				toast.error(
+					error.response.data.message || error.response.data.detail
+				); // Display error toast message with details
 			});
 	};
 
@@ -59,7 +71,9 @@ export default function ClientList() {
 		<div className="container">
 			<div className="row justify-content-center">
 				<div className="col-md-8">
-					<h2 className="text-center pt-5 pb-2">Listes des clients</h2>
+					<h2 className="text-center pt-5 pb-2">
+						Listes des clients
+					</h2>
 					<table className="table table-striped table-bordered border-dark table-responsive">
 						<thead>
 							<tr>
@@ -69,7 +83,10 @@ export default function ClientList() {
 								<th></th>
 								<th>
 									<AddCircleIcon
-										onClick={() => (window.location.href = '/admin/clients/create')}
+										onClick={() =>
+											(window.location.href =
+												'/admin/clients/create')
+										}
 										className="add-icon"
 									/>
 								</th>
@@ -79,18 +96,34 @@ export default function ClientList() {
 							{clients.map((element, index) => {
 								return (
 									<tr key={element + '-' + index}>
-										<td key={element.firstname + '-' + index}>{element.firstname}</td>
-										<td key={element.lastname + '-' + index}>{element.lastname}</td>
-										<td key={element.email + '-' + index}>{element.email}</td>
+										<td
+											key={
+												element.firstname + '-' + index
+											}
+										>
+											{element.firstname}
+										</td>
+										<td
+											key={element.lastname + '-' + index}
+										>
+											{element.lastname}
+										</td>
+										<td key={element.email + '-' + index}>
+											{element.email}
+										</td>
 										<td key={'update-' + index}>
 											<EditIcon
-												onClick={() => { handleEdit(element.id); }}
+												onClick={() => {
+													handleEdit(element.id);
+												}}
 												className="edit-icon"
 											/>
 										</td>
 										<td key={'delete-' + index}>
 											<DeleteIcon
-												onClick={() => handleDelete(element.id)}
+												onClick={() =>
+													handleDelete(element.id)
+												}
 												className="delete-icon"
 											/>
 										</td>
