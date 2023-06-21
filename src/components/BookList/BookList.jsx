@@ -49,8 +49,7 @@ export default function BookList() {
 			})
 			.then((response) => {
 				const keywords = response.data;
-				const keywordsIds = keywords.map((keyword) => keyword.id);
-				setKeywordsIds(keywordsIds);
+				setKeywordsIds(keywords.map((keyword) => keyword.id));
 
 				keywordsIds.forEach((keywordId) => {
 					axios
