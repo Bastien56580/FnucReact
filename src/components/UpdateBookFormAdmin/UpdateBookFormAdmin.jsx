@@ -22,11 +22,11 @@ export default function UpdateBookFormAdmin() {
 	const { bookId } = useParams();
 
 	useEffect(() => {
-		
+
 		axios
 			.get(baseUrl + '/books/' + bookId, {
 				withCredentials: true,
-				
+
 			})
 			.then((response) => {
 				// Handle successful response
@@ -73,6 +73,7 @@ export default function UpdateBookFormAdmin() {
 				// Handle successful response
 				if (response.status === 200) {
 					toast.success('Book updated!'); // Display success toast message
+					handleTopicKeyword(e);
 				} else {
 					toast.error(response.data.message || response.data.detail); // Display error toast message with details
 				}
@@ -81,6 +82,13 @@ export default function UpdateBookFormAdmin() {
 				// Handle error response
 				toast.error(error.response.data.message || error.response.data.detail); // Display error toast message with details
 			});
+
+
+	};
+
+	const handleTopicKeyword = async (e) => {
+		e.preventDefault();
+		const token = sessionStorage.getItem('token');
 
 		//axios get to get the list of topics and their id
 		if (motCle != '') {
@@ -113,9 +121,9 @@ export default function UpdateBookFormAdmin() {
 				await axios
 					.post(baseUrl + '/books/' + bookId + '/keywords/' + motCleId, {
 						withCredentials: true,
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
 					})
 					.then((response) => {
 						// Handle successful response
@@ -161,9 +169,9 @@ export default function UpdateBookFormAdmin() {
 				await axios
 					.post(baseUrl + '/books/' + bookId + '/topics/' + topiId, {
 						withCredentials: true,
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
+						headers: {
+							Authorization: `Bearer ${token}`,
+						},
 					})
 					.then((response) => {
 						// Handle successful response
@@ -181,7 +189,7 @@ export default function UpdateBookFormAdmin() {
 			}
 
 		}
-	};
+	}
 
 	const handleCancel = (e) => {
 		e.preventDefault();

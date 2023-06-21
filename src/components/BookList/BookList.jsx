@@ -9,7 +9,7 @@ import { Tune } from '@mui/icons-material';
 
 export default function BookList() {
 	const [limit] = useState(10);
-	const [offset,setOffset] = useState(0);
+	const [offset, setOffset] = useState(0);
 	const [books, setBooks] = useState([]);
 	const [keywordsIds, setKeywordsIds] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
@@ -54,6 +54,9 @@ export default function BookList() {
 		axios
 			.get(baseUrl + '/books/' + id + '/keywords', {
 				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			})
 			.then((response) => {
 				const keywords = response.data;
@@ -63,6 +66,9 @@ export default function BookList() {
 					axios
 						.delete(baseUrl + '/books/' + id + '/keywords/' + keywordId, {
 							withCredentials: true,
+							headers: {
+								Authorization: `Bearer ${token}`,
+							},
 						})
 						.then(() => {
 							console.log(`Keyword ${keywordId} deleted successfully.`);
@@ -144,9 +150,9 @@ export default function BookList() {
 							})}
 						</tbody>
 					</table>
-					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button>:<button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
-					{<b className='me-5'>page {(offset/limit) + 1}</b>}
-					{books.length >= limit ? <button  className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button>:<button className='btn btn-custom-primary' disabled>Page Suivante</button>}
+					{offset != 0 ? <button className='btn btn-custom-primary me-5' onClick={() => setOffset(offset - limit)}>Page Précédente</button> : <button className='btn btn-custom-primary me-5' disabled>Page Précédente</button>}
+					{<b className='me-5'>page {(offset / limit) + 1}</b>}
+					{books.length >= limit ? <button className='btn btn-custom-primary' onClick={() => setOffset(offset + limit)}>Page Suivante</button> : <button className='btn btn-custom-primary' disabled>Page Suivante</button>}
 					<Toaster /> {/* Toast container for displaying messages */}
 				</div>
 			</div>

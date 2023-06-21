@@ -48,9 +48,11 @@ export default function AddBookFormAdmin() {
 			.then((response) => {
 				// Handle successful response
 
-				if (response.status === 201) {
+				if (response.status === 200) {
+					console.log(response.data.id);
 					setBookId(response.data.id);
 					toast.success('Book created!'); // Display success toast message
+					handleTopicKeyword(e)
 				} else {
 					toast.error(response.data.detail || response.data.message); // Display error toast message with details
 				}
@@ -60,6 +62,10 @@ export default function AddBookFormAdmin() {
 				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 			});
 
+	};
+	const handleTopicKeyword = async (e) => {
+		e.preventDefault();
+		let token = sessionStorage.getItem("token");
 		//axios patch or post for topic and mot Cle
 		//we check if we need to work with motCle
 		if (motCle != '') {
@@ -160,8 +166,7 @@ export default function AddBookFormAdmin() {
 			}
 
 		}
-
-	};
+	}
 
 	return (
 		<div className="container">
