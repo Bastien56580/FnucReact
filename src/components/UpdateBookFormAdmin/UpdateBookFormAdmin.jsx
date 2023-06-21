@@ -59,7 +59,7 @@ export default function UpdateBookFormAdmin() {
 					withCredentials: true,
 					headers: {
 						Authorization: `Bearer ${token}`,
-					  },
+					},
 				}
 			)
 			.then((response) => {

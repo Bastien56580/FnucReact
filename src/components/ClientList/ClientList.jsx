@@ -13,12 +13,13 @@ export default function ClientList() {
 	const [clients, setClients] = useState([]);
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const mock = sessionStorage.getItem('REACT_APP_MOCK');
-
+	const token = sessionStorage.getItem('token');
+	
 	useEffect(() => {
 		if (mock === 'true') {
 			setClients(mockClient);
 		} else {
-			const token = sessionStorage.getItem('token');
+			
 			axios
 				.get(baseUrl + '/customers/', {
 					withCredentials: true,
