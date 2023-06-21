@@ -9,7 +9,7 @@ import { Tune } from '@mui/icons-material';
 
 export default function BookList() {
 	const [books, setBooks] = useState([]);
-	const [keywordsId, setKeywordsIds] = useState([]);
+	const [keywordsIds, setKeywordsIds] = useState([]);
 	const baseUrl = sessionStorage.getItem("REACT_APP_BACK_URL");
 
 	useEffect(() => {
