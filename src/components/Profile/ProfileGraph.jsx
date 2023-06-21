@@ -21,7 +21,9 @@ export default function ProfileGraph() {
 				.get(baseUrl + '/customers/' + token.id + '/orders', {
 					withCredentials: true,
 					headers: {
-						Authorization: `Bearer ${token}`,
+						Authorization: `Bearer ${sessionStorage.getItem(
+							'token'
+						)}`,
 					},
 				})
 				.then((response) => {
@@ -43,7 +45,10 @@ export default function ProfileGraph() {
 									bookTitles[book.title] += order.quantity;
 								}
 							} catch (error) {
-								toast.error(error.response.data.message || error.response.data.detail);
+								toast.error(
+									error.response.data.message ||
+										error.response.data.detail
+								);
 							}
 						}
 
@@ -55,7 +60,10 @@ export default function ProfileGraph() {
 					fetchBookData();
 				})
 				.catch((error) => {
-					toast.error(error.response.data.message || error.response.data.detail);
+					toast.error(
+						error.response.data.message ||
+							error.response.data.detail
+					);
 				});
 		}
 	}, []);
