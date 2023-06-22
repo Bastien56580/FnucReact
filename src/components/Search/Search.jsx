@@ -10,9 +10,9 @@ export default function Search() {
 	const [keywords, setKeywords] = useState([]);
 	const [data, setData] = useState([]);
 	const [selectedKeywords, setSelectedKeywords] = useState([]);
-	const [searchValue, setSearchValue] = useState('');
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const [operator, setOperator] = useState('and');
+	const [searched, setSearched] = useState(false); // State to track if search button is clicked
 
 	useEffect(() => {
 		axios
@@ -57,6 +57,7 @@ export default function Search() {
 			.then((response) => {
 				// Handle successful response
 				setData(response.data);
+				setSearched(true); // Set searched to true when search button is clicked
 			})
 			.catch((error) => {
 				// Handle error response
@@ -73,7 +74,6 @@ export default function Search() {
 					<input
 						type="search"
 						placeholder="Rechercher..."
-						onChange={(e) => setSearchValue(e.target.value)}
 					/>
 					<button onClick={handleSubmit}>
 						<SearchIcon />
@@ -96,23 +96,18 @@ export default function Search() {
 				<div className="search__listKeyword">
 					{keywords.map((item, index) => {
 						return (
-							<>
-								{/* {index % 3 === 0 && (
-								<div key={'sep' + item.label + index}></div>
-							)} */}
-								<KeywordItem
-									key={item.label + index}
-									word={item}
-									updateSelectedKeywords={
-										handleSelectedKeywords
-									}
-								/>
-							</>
+							<KeywordItem
+								key={item.label + index}
+								word={item}
+								updateSelectedKeywords={
+									handleSelectedKeywords
+								}
+							/>
 						);
 					})}
 				</div>
 				<div className="search__pagination">
-					{offset != 0 ? (
+					{offset !== 0 ? (
 						<button onClick={() => setOffset(offset - limit)}>
 							Page Précédente
 						</button>
@@ -129,9 +124,31 @@ export default function Search() {
 					)}
 				</div>
 			</div>
-			<div className="result">
-				{/* Créer un composant de résultat ici */}
-			</div>
+			{searched && (
+				<div className="result">
+					<h2 className='search__title'>Résultats de la recherche</h2>
+					{data.length === 0 ? (
+						<p className='search__title'>Aucun résultat trouvé.</p>
+					) : (
+						<table className='search__table'>
+							<tbody>
+								{data.map((item) => (
+									<tr key={item.id}>
+										<td>
+											<a
+												className='search__lien'
+												href={`/detail-order/${item.id}`}
+											>
+												{item.title}
+											</a>
+										</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					)}
+				</div>
+			)}
 		</>
 	);
 }
@@ -141,9 +158,9 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 
 	const handleOnClick = () => {
 		setChecked(!checked);
-		checked
-			? updateSelectedKeywords(word.id, false)
-			: updateSelectedKeywords(word.id, true);
+			checked
+				? updateSelectedKeywords(word.id, false)
+				: updateSelectedKeywords(word.id, true);
 	};
 
 	return (
