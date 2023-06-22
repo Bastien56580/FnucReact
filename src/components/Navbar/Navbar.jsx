@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt_decode from "jwt-decode";
 import './Navbar.scss';
-
+import axios from "axios";
 
 
 
@@ -13,6 +13,7 @@ export default function Navbar() {
 	// State variables
 	const [isLoggedIn,setIsLoggedIn] = useState(false); // State variable for tracking user login status
 	const [isAdmin,setIsAdmin] = useState(false); // State variable for tracking user admin status
+	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 
 	useEffect(() => {
 		if(sessionStorage.getItem("token")){
@@ -27,7 +28,31 @@ export default function Navbar() {
 
 
 	const HandleDisconnect=()=>{
+
+		let token = sessionStorage.getItem("token");
+		// Send a POST request to create a user
+		axios
+			.post(baseUrl + '/auth/logout/', {
+				withCredentials: true,
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			})
+			.then((response) => {
+				// Handle successful response
+				if (response.status === 200) {
+					toast.success('Logout successful!'); // Display success toast message
+				} else {
+					toast.error(response.data.detail || response.data.message); // Display error toast message with details
+				}
+			})
+			.catch((error) => {
+				// Handle error response
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
+			});
 		sessionStorage.removeItem("token");
+
+
 		window.location.reload("/");
 	}
 
