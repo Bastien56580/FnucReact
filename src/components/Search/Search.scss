@@ -52,4 +52,40 @@
     width: 80%;
     margin: auto;
   }
+
+  &__lien{
+    text-decoration: none;
+    color: black;
+  }
+
+  &__table{
+    width: 90%;
+    margin: auto;
+    overflow: scroll;
+    border: 1px solid;
+    @include tableBorderOutside;
+
+    tbody{
+      tr{
+        max-height: 6vh;
+        overflow: hidden;
+  
+        &:nth-child(odd){
+          @include tableRowOdd
+        }
+  
+        &:nth-child(even){
+          @include tableRowEven
+        }
+
+        td{
+          @include tableBorderInside;
+          display: table-cell;
+          text-align: center;
+        }
+    }
+    
+      
+    }
+  }
 }
