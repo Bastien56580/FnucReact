@@ -21,6 +21,7 @@
     margin: auto;
     &[type="submit"]{
       width: 50%;
+      @include buttonPagination;
     }
   }
 }

@@ -1,91 +1,145 @@
 @import '../../css/constants.scss';
 
-.search{
+.search {
+	width: 80%;
+	height: 80vh;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: space-around;
+	background-color: $background-color;
+	border-radius: 20px;
+
+	&__title {
+		width: fit-content;
+		margin: auto;
+		margin-bottom: 0;
+	}
+
+	&__searchbar {
+		margin: auto 0;
+	}
+
+	&__listKeyword {
+		margin: auto;
+		width: 90%;
+		min-height: 50%;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		text-align: center;
+		.keyword {
+			width: 21%;
+			height: fit-content;
+			padding: 5px;
+			background-color: $secondary-color;
+			color: $primary-color;
+			border-radius: 30px;
+			display: flex;
+			justify-content: flex-start;
+			input {
+				margin: 0 15px;
+			}
+		}
+	}
+
+	&__pagination {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		width: 80%;
+		margin: auto;
+
+		button {
+			@include buttonPagination;
+		}
+	}
+
+	&__table {
+		width: 90%;
+		margin: auto;
+		overflow: scroll;
+		border: 1px solid;
+		@include tableBorderOutside;
+
+		tbody {
+			tr {
+				max-height: 6vh;
+				overflow: hidden;
+
+				&:nth-child(odd) {
+					@include tableRowOdd;
+				}
+
+				&:nth-child(even) {
+					@include tableRowEven;
+				}
+
+				td {
+					@include tableBorderInside;
+					display: table-cell;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+.result {
+  margin: 2% auto;
   width: 80%;
-  height: 80vh;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: space-around;
-  background-color: $background-color;
-  border-radius: 20px;
+	&__title {
+		width: fit-content;
+		margin: auto;
+		margin-bottom: 10px;
+	}
 
-  &__title{
-    width: fit-content;
-    margin: auto;
-    margin-bottom: 0;
-  }
+	&__table {
+		width: 90%;
+		margin: auto;
+		overflow: scroll;
+		border: 1px solid;
+		@include tableBorderOutside;
 
-  &__searchbar{
-    margin: auto 0;
-  }
+		thead {
+			th {
+				@include tableBorderInside;
+				display: table-cell;
+				text-align: center;
+			}
 
-  &__listKeyword{
-    margin: auto;
-    width: 90%;
-    min-height: 50%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    text-align: center;
-    .keyword{
-      width: 21%;
-      height: fit-content;
-      padding: 5px;
-      background-color: $secondary-color;
-      color: $primary-color;
-      border-radius: 30px;
-      display: flex;
-      justify-content: flex-start;
-      input{
-        margin: 0 15px;
-      }
-    }
-  }
+			tr {
+				max-height: 6vh;
+				overflow: hidden;
+				@include tableHeader;
+			}
+		}
 
-  &__pagination{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 80%;
-    margin: auto;
-  }
+		tbody {
+			tr {
+				max-height: 6vh;
+				overflow: hidden;
 
-  &__lien{
-    text-decoration: none;
-    color: black;
-  }
+				&:nth-child(odd) {
+					@include tableRowOdd;
+				}
 
-  &__table{
-    width: 90%;
-    margin: auto;
-    overflow: scroll;
-    border: 1px solid;
-    @include tableBorderOutside;
+				&:nth-child(even) {
+					@include tableRowEven;
+				}
 
-    tbody{
-      tr{
-        max-height: 6vh;
-        overflow: hidden;
-  
-        &:nth-child(odd){
-          @include tableRowOdd
-        }
-  
-        &:nth-child(even){
-          @include tableRowEven
-        }
+				&:hover {
+					@include tableHoverRow;
+				}
 
-        td{
-          @include tableBorderInside;
-          display: table-cell;
-          text-align: center;
-        }
-    }
-    
-      
-    }
-  }
+				td {
+					@include tableBorderInside;
+					display: table-cell;
+					text-align: center;
+				}
+			}
+		}
+	}
 }

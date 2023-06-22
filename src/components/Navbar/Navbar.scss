@@ -10,7 +10,7 @@
 
   &__logo{
     height: 100%;
-    margin-left: 3%;
+    margin-left: 40px;
 
     &--image{
       height: 100%;
@@ -19,10 +19,8 @@
 
   &__menu{
     display: flex;
-    min-width: 40%;
-    column-gap: 7px;
     &--link{
-      margin: auto;
+      margin: auto 15px;
       text-decoration: none;
       color: $background-color;
 
@@ -40,13 +38,11 @@
   }
 
   &__login{
-    margin-right: 3%;
+    margin-right: 40px;
     display: flex;
-    min-width: 20%;
-    column-gap: 7px;
     
     &--link{
-      margin: auto;
+      margin: auto 15px;
       text-decoration: none;
       color: $background-color;
 

@@ -73,8 +73,8 @@ export default function BookList() {
 						<th>
 							<AddCircleIcon
 								onClick={() =>
-								(window.location.href =
-									'/admin/books/create')
+									(window.location.href =
+										'/admin/books/create')
 								}
 							/>
 						</th>
@@ -88,10 +88,7 @@ export default function BookList() {
 								<td>{element.author}</td>
 								<td>{element.resume}</td>
 								<td>
-									<img
-										src={element.image}
-										alt="Book Cover"
-									/>
+									<img src={element.image} alt="Book Cover" />
 								</td>
 
 								<td>{element.price}</td>

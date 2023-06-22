@@ -69,12 +69,9 @@ export default function Search() {
 	return (
 		<>
 			<div className="search">
-				<h2 className="search__title">Liste des mots-clés</h2>
+				<h1 className="search__title">Liste des mots-clés</h1>
 				<div className="search__searchbar">
-					<input
-						type="search"
-						placeholder="Rechercher..."
-					/>
+					<input type="search" placeholder="Rechercher..." />
 					<button onClick={handleSubmit}>
 						<SearchIcon />
 					</button>
@@ -99,9 +96,7 @@ export default function Search() {
 							<KeywordItem
 								key={item.label + index}
 								word={item}
-								updateSelectedKeywords={
-									handleSelectedKeywords
-								}
+								updateSelectedKeywords={handleSelectedKeywords}
 							/>
 						);
 					})}
@@ -126,27 +121,32 @@ export default function Search() {
 			</div>
 			{searched && (
 				<div className="result">
-					<h2 className='search__title'>Résultats de la recherche</h2>
-					{data.length === 0 ? (
-						<p className='search__title'>Aucun résultat trouvé.</p>
-					) : (
-						<table className='search__table'>
-							<tbody>
-								{data.map((item) => (
-									<tr key={item.id}>
-										<td>
-											<a
-												className='search__lien'
-												href={`/detail-order/${item.id}`}
-											>
-												{item.title}
-											</a>
-										</td>
+					<h1 className="result__title">Liste des livres</h1>
+					<table className="result__table">
+						<thead>
+							<tr>
+								<th>Titre</th>
+								<th>Auteur</th>
+								<th>Prix</th>
+							</tr>
+						</thead>
+						<tbody>
+							{data.map((element) => {
+								return (
+									<tr
+										key={element.id}
+										onClick={() =>
+											(window.location.href = `/detail-order/${element.id}`)
+										}
+									>
+										<td>{element.title}</td>
+										<td>{element.author}</td>
+										<td>{element.price}</td>
 									</tr>
-								))}
-							</tbody>
-						</table>
-					)}
+								);
+							})}
+						</tbody>
+					</table>
 				</div>
 			)}
 		</>
@@ -158,9 +158,9 @@ function KeywordItem({ word, updateSelectedKeywords }) {
 
 	const handleOnClick = () => {
 		setChecked(!checked);
-			checked
-				? updateSelectedKeywords(word.id, false)
-				: updateSelectedKeywords(word.id, true);
+		checked
+			? updateSelectedKeywords(word.id, false)
+			: updateSelectedKeywords(word.id, true);
 	};
 
 	return (

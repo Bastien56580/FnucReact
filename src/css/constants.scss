@@ -36,3 +36,20 @@ $background-color: rgb(245, 245, 255);
   border: 2px solid $secondary-color;
   border-collapse: collapse;
 }
+
+@mixin buttonPagination{
+  border-radius: 30px;
+  background-color: $secondary-color;
+  border: none;
+  color: $background-color;
+  padding: 4px 12px;
+  text-align: center;
+  @include buttonAnim;
+}
+
+@mixin buttonAnim{
+  &:active{
+    transform: scaleX(0.8);
+    transition: transform .5S ease-in-out .2s;
+  }
+}

@@ -34,12 +34,12 @@ export default function ProfileList(handleTopicId) {
 
 	return (
 		<div className="categoryList">
-			<h1 className="categoryList__title">Topic List</h1>
+			<h1 className="categoryList__title">Liste des rayons</h1>
 			<table className="categoryList__table">
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Topic URL</th>
+						<th>Rayon</th>
+						<th>Illustration</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,10 +53,7 @@ export default function ProfileList(handleTopicId) {
 							>
 								<td>{item.label}</td>
 								<td>
-									<img
-										src={item.image}
-										alt="Topic Cover"
-									/>
+									<img src={item.image} alt="Topic Cover" />
 								</td>
 							</tr>
 						))
