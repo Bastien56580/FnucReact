@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt_decode from "jwt-decode";
 import './Navbar.scss';
 import axios from "axios";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 
@@ -96,6 +97,7 @@ export default function Navbar() {
 					Déconnexion
 				</a>)}
 			</div>
+			<Toaster/>
 		</nav>
 		// <nav className="navbar navbar-expand-lg navbar-light couleur-4">
 		// 	<a className="navbar-brand" href="/">
