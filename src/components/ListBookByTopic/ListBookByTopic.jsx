@@ -61,7 +61,7 @@ export default function ListBookByTopic(topicId) {
 								<td>{element.author}</td>
 								<td>
 									<img
-										src={element.cover_url}
+										src={element.image}
 										alt="Book Cover"
 									/>
 								</td>

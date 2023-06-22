@@ -23,7 +23,7 @@ export default function AddBookFormAdmin() {
 			title: title,
 			author: author,
 			resume: resume,
-			cover_url: coverUrl,
+			image: coverUrl,
 			price: price,
 			stock: stock,
 		};
@@ -42,12 +42,12 @@ export default function AddBookFormAdmin() {
 				if (response.status === 201) {
 					toast.success('Book created!'); // Display success toast message
 				} else {
-					toast.error(response.data.detail||response.data.message); // Display error toast message with details
+					toast.error(response.data.detail || response.data.message); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail||error.response.data.message); // Display error toast message with details
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 			});
 	};
 

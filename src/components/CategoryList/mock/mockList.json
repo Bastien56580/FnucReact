@@ -1,27 +1,27 @@
 [
     {
         "label": "topic 1",
-        "topic_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsSQex2NXhlSeonO6WNc5xlQNy51efUt7r0MTDbJKJ&s",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsSQex2NXhlSeonO6WNc5xlQNy51efUt7r0MTDbJKJ&s",
         "id": 0
     },
     {
         "label": "topic 2",
-        "topic_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFoTl1FSx6jPlzrANPAYhkHtFlYO55Cia0qTiIdXmR&s",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFoTl1FSx6jPlzrANPAYhkHtFlYO55Cia0qTiIdXmR&s",
         "id": 1
     },
     {
         "label": "topic 3",
-        "topic_url": "https://www.shutterstock.com/image-photo/wooden-blocks-text-topic-magnifying-260nw-1863883072.jpg",
+        "image": "https://www.shutterstock.com/image-photo/wooden-blocks-text-topic-magnifying-260nw-1863883072.jpg",
         "id": 2
     },
     {
         "label": "topic 4",
-        "topic_url": "https://www.topic.com/assets/e6ce2344067a24a745e2f6b62187f407.jpg",
+        "image": "https://www.topic.com/assets/e6ce2344067a24a745e2f6b62187f407.jpg",
         "id": 3
     },
     {
         "label": "topic 5",
-        "topic_url": "https://www.shutterstock.com/image-photo/topic-word-wood-alphabet-shadow-260nw-516065722.jpg",
+        "image": "https://www.shutterstock.com/image-photo/topic-word-wood-alphabet-shadow-260nw-516065722.jpg",
         "id": 4
     }
 ]

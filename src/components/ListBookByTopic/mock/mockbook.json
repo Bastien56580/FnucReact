@@ -3,7 +3,7 @@
     "title": "Pierre le Grand",
     "author": "X",
     "resume": "Ce livre parle de la splendeur de Pierre.",
-    "cover_url": "https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec",
+    "image": "https://play-lh.googleusercontent.com/8ddL1kuoNUB5vUvgDVjYY3_6HwQcrg1K2fd_R8soD-e2QYj8fT9cfhfh3G0hnSruLKec",
     "price": "30",
     "stock": "12"
 },
@@ -12,7 +12,7 @@
     "title": "Apprendre à programmer avec Python",
     "author": "Frederic Laroche",
     "resume": "Apprenez à coder avec Python",
-    "cover_url": "https://m.media-amazon.com/images/I/81M5wWQmjDL._AC_UF1000,1000_QL80_.jpg",
+    "image": "https://m.media-amazon.com/images/I/81M5wWQmjDL._AC_UF1000,1000_QL80_.jpg",
     "price": "45",
     "stock": "15"
 },
@@ -21,7 +21,7 @@
     "title": "Apprennez PHP avec les nuls",
     "author": "Les Nuls",
     "resume": "Partez de 0 sur le langage informatique PHP et devenez un monstre de puissance",
-    "cover_url": "https://static.fnac-static.com/multimedia/Images/FR/NR/6f/33/86/8794991/1507-1/tsp20230401075729/PHP-MySQL-Pour-les-Nuls-6ed.jpg",
+    "image": "https://static.fnac-static.com/multimedia/Images/FR/NR/6f/33/86/8794991/1507-1/tsp20230401075729/PHP-MySQL-Pour-les-Nuls-6ed.jpg",
     "price": "38",
     "stock": "149"
 }]

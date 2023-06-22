@@ -30,7 +30,7 @@ export default function TopicList() {
 					// Handle error response
 					toast.error(
 						error.response.data.detail ||
-							error.response.data.message
+						error.response.data.message
 					); // Display error toast message with details
 				});
 		}
@@ -75,8 +75,8 @@ export default function TopicList() {
 						<th>
 							<AddCircleIcon
 								onClick={() =>
-									(window.location.href =
-										'/admin/topics/create')
+								(window.location.href =
+									'/admin/topics/create')
 								}
 								className="add-icon"
 							/>
@@ -90,7 +90,7 @@ export default function TopicList() {
 								<td>{element.label}</td>
 								<td>
 									<img
-										src={element.topic_url}
+										src={element.image}
 										alt="Topic Cover"
 										className="img-thumbnail"
 										style={{

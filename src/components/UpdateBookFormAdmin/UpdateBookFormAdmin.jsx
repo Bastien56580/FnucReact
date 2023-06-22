@@ -16,18 +16,18 @@ export default function UpdateBookFormAdmin() {
 	const { id } = useParams();
 
 	useEffect(() => {
-		
+
 		axios
 			.get(baseUrl + '/books/' + id, {
 				withCredentials: true,
-				
+
 			})
 			.then((response) => {
 				// Handle successful response
 				setTitle(response.data.title);
 				setAuthor(response.data.author);
 				setResume(response.data.resume);
-				setCoverUrl(response.data.cover_url);
+				setCoverUrl(response.data.image);
 				setPrice(response.data.price);
 				setStock(response.data.stock);
 			})
@@ -44,7 +44,7 @@ export default function UpdateBookFormAdmin() {
 			title: title,
 			author: author,
 			resume: resume,
-			cover_url: coverUrl,
+			image: coverUrl,
 			price: price,
 			stock: stock,
 		};

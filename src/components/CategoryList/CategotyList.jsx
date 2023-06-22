@@ -54,7 +54,7 @@ export default function ProfileList(handleTopicId) {
 								<td>{item.label}</td>
 								<td>
 									<img
-										src={item.topic_url}
+										src={item.image}
 										alt="Topic Cover"
 									/>
 								</td>
