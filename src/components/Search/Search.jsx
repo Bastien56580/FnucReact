@@ -10,7 +10,6 @@ export default function Search() {
 	const [keywords, setKeywords] = useState([]);
 	const [data, setData] = useState([]);
 	const [selectedKeywords, setSelectedKeywords] = useState([]);
-	const [searchValue, setSearchValue] = useState('');
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const [operator, setOperator] = useState('and');
 	const [searched, setSearched] = useState(false); // State to track if search button is clicked
@@ -75,7 +74,6 @@ export default function Search() {
 					<input
 						type="search"
 						placeholder="Rechercher..."
-						onChange={(e) => setSearchValue(e.target.value)}
 					/>
 					<button onClick={handleSubmit}>
 						<SearchIcon />
