@@ -1,5 +1,7 @@
 # FnucReact - Composant front-end de l'application FNUC
 
+![Logo Fnuc](public/fnuc_favicon.ico)
+
 FnucReact est un site web où les utilisateurs peuvent commander des livres en grande quantité.
 
 ## L'équipe
@@ -12,11 +14,11 @@ FnucReact est un site web où les utilisateurs peuvent commander des livres en g
 
 ## Gestion de projet
 
-Nous suivons la méthodologie Agile pour la gestion de notre projet. Agile est une approche itérative et collaborative qui nous permet de nous adapter aux exigences changeantes et de fournir de la valeur dans des cycles de développement plus courts. Cette approche favorise la communication et les retours fréquents au sein de l'équipe et avec les parties prenantes, ce qui nous permet de mieux répondre aux besoins des utilisateurs.
+Nous suivons la méthodologie Agile SCRUM pour la gestion de notre projet. SCRUM est une approche itérative et collaborative qui nous permet de nous adapter aux exigences changeantes et de fournir de la valeur dans des cycles de développement plus courts. Cette approche favorise la communication et les retours fréquents au sein de l'équipe et avec les parties prenantes, ce qui nous permet de mieux répondre aux besoins des utilisateurs.
 
 ### Réunions quotidiennes
 
-Chaque jour, notre équipe tient une réunion quotidienne, également appelée "Daily Stand-up". Ces réunions sont généralement courtes et se déroulent souvent à distance si les membres de l'équipe travaillent à distance ou dans des fuseaux horaires différents. Lors de ces réunions, chaque membre partage ce qu'il a accompli depuis la dernière réunion, ce qu'il prévoit de faire ensuite et s'il rencontre des obstacles ou des problèmes.
+Chaque jour, notre équipe tient une réunion quotidienne, également appelée "Daily Meeting". Ces réunions sont généralement courtes et se déroulent soit à distance si les membres de l'équipe travaillent à distance ou debout autour d'un café. Lors de ces réunions, chaque membre partage ce qu'il a accompli depuis la dernière réunion, ce qu'il prévoit de faire ensuite et s'il rencontre des obstacles ou des problèmes.
 
 ### Sprints
 
@@ -44,7 +46,7 @@ Pour démarrer le projet en local, suivez ces étapes :
 
 ### Production
 
-Nous n'avons pas de déploiement en production pour FnucReact pour le moment. Le service d'hébergement gratuit GitHub Pages ne prend pas en charge l'hébergement de routeurs, uniquement les applications monopages.
+Nous n'avons pas de déploiement en production pour FnucReact pour le moment. Le service d'hébergement gratuit GitHub Pages ne prend pas en charge l'hébergement de routeurs, uniquement les applications monopages. Et ne n'étions pas résolut à prendre une solution payante.
 
 ## Dépôt GitHub
 
@@ -70,4 +72,17 @@ FnucReact est construit en utilisant les technologies suivantes :
 
 ## Fonctionnalité clés
 
-- flemme de finir mtn
+- Authentification, admin ou user.
+- Page d'acceuil avec recherche par topic (rayon)
+- Recherche via mot clé
+- Profile de l'utilisateur
+- Détail d'un ouvrage et formulaire de commande
+- Page de paramètre
+  - changement de back (mongo, sql)
+  - activation/désactivations des mocks
+- Menu d'adminisatration
+  - Liste clients
+    - Ajout / Suppression / Edition
+  - Liste livres
+    - Ajout / Suppression / Edition
+  - Indexation
