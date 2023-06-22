@@ -130,7 +130,16 @@ export default function Search() {
 				</div>
 			</div>
 			<div className="result">
-				{/* Créer un composant de résultat ici */}
+				<h2>Résultats de la recherche</h2>
+				{data.length === 0 ? (
+					<p>Aucun résultat trouvé.</p>
+				) : (
+					<ul>
+						{data.map((item) => (
+							<li key={item.id}>{item.title}</li>
+						))}
+					</ul>
+				)}
 			</div>
 		</>
 	);
