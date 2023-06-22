@@ -39,7 +39,7 @@ export default function AddBookFormAdmin() {
 			})
 			.then((response) => {
 				// Handle successful response
-				if (response.status === 201) {
+				if (response.status === 200) {
 					toast.success('Book created!'); // Display success toast message
 				} else {
 					toast.error(response.data.detail || response.data.message); // Display error toast message with details

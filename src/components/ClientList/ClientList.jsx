@@ -20,7 +20,7 @@ export default function ClientList() {
 			setClients(mockClient);
 		} else {
 			axios
-				.get(baseUrl + `/customers?limit=${limit}&offset=${offset}`, {
+				.get(baseUrl + `/customers/?limit=${limit}&offset=${offset}`, {
 					withCredentials: true,
 					headers: {
 						Authorization: `Bearer ${token}`,
