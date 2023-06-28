@@ -6,6 +6,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import './KeywordList.scss';
 
+/**
+ * Liste des mot clés enregistrés
+ */
 export default function KeywordList() {
 	const [limit] = useState(10);
 	const [offset, setOffset] = useState(0);

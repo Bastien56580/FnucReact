@@ -3,6 +3,9 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import './AddClientFormAdmin.scss';
 
+/**
+ * Formuaire d'ajout d'un client
+ */
 export default function AddClientFormAdmin() {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');

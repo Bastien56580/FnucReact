@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { SwitchMock } from './script/SwitchMock';
 import './EnableMock.scss';
 
+/**
+ * Bouton d'activation des mocks
+ */
 const EnableMock = () => {
 	const [mock, setMock] = useState(sessionStorage.getItem('REACT_APP_MOCK'));
 

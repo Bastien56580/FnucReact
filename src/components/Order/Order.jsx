@@ -4,6 +4,15 @@ import toast, { Toaster } from 'react-hot-toast';
 import jwt_decode from "jwt-decode";
 import './Order.scss';
 
+/**
+ * Formulaire de commande
+ * @param {object} param0 
+ * 	book {
+ * 	  id: number
+ *    price : number
+ * 	  stock : number
+ * }
+ */
 export default function Order({ book }) {
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const price = book.price;
@@ -34,15 +43,15 @@ export default function Order({ book }) {
 		let token = sessionStorage.getItem("token");
 
 		let decoded_token = jwt_decode(sessionStorage.getItem("token"));
-		
+
 		// Create user data object
 		const orderData = {
 			"id_book": id,
-			"id_customer": decoded_token.id, 
+			"id_customer": decoded_token.id,
 			"quantity": quantity,
 		};
 		// Send a POST request to create an order
-		
+
 		axios
 			.post(baseUrl + '/orders/', orderData, {
 				withCredentials: true,
@@ -55,12 +64,12 @@ export default function Order({ book }) {
 				if (response.data.id) {
 					toast.success('La commande est bien réalisé !'); // Display success toast message
 				} else {
-					toast.error(response.data.detail ||response.data.message); // Display error toast message with details
+					toast.error(response.data.detail || response.data.message); // Display error toast message with details
 				}
 			})
 			.catch((error) => {
 				// Handle error response
-				toast.error(error.response.data.detail ||error.response.data.message); // Display error toast message with details
+				toast.error(error.response.data.detail || error.response.data.message); // Display error toast message with details
 			});
 	};
 

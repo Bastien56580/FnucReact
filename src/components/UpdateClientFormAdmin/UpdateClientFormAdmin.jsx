@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import './UpdateClientFromAdmin.scss';
 
+/**
+ * Formulaire de mise à jour des clients
+ */
 export default function UpdateClientFormAdmin() {
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');

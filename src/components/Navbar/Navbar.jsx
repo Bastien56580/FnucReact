@@ -8,7 +8,9 @@ import toast, { Toaster } from 'react-hot-toast';
 
 
 
-// Component for the navigation bar
+/**
+ * Barre de navigation
+ */
 export default function Navbar() {
 
 	// State variables

@@ -4,6 +4,9 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 import './UpdateBookFromAdmin.scss';
 
+/**
+ * Formulaire de mise à jour des livres
+ */
 export default function UpdateBookFormAdmin() {
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const [title, setTitle] = useState('');

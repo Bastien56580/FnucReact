@@ -7,6 +7,9 @@ import axios from 'axios';
 import mockClient from './mock/mockClient.json';
 import './ClientList.scss';
 
+/**
+ * Liste des clients enregistrés
+ */
 export default function ClientList() {
 	const [limit] = useState(10);
 	const [offset, setOffset] = useState(0);

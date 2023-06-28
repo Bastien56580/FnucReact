@@ -6,6 +6,9 @@ import './CategoryList.scss';
 // Mock list since you don't have a backend to test with yet
 import mockList from './mock/mockList.json';
 
+/**
+ * Liste des livres enregistrés
+ */
 export default function ProfileList(handleTopicId) {
 	const [limit] = useState(10);
 	const [offset, setOffset] = useState(0);

@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import './UpdateKeywordFromAdmin.scss';
 
+/**
+ * Formulaire de mise à jour des mot clés
+ */
 export default function UpdateKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
 	const { id } = useParams();

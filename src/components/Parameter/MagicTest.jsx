@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import '../../css/magic.css';
 import './MagicTest.scss';
 
+/**
+ * Bouton magique
+ */
 const MagicTest = () => {
 	const [renderButton, setRenderButton] = useState(true);
 

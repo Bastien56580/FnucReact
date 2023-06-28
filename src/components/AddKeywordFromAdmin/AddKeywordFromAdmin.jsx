@@ -3,6 +3,9 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import './AddKeywordFromAdmin.scss';
 
+/**
+ * Formuaire d'ajout d'un mot clé
+ */
 export default function AddKeywordFormAdmin() {
 	const [keyword, setKeyword] = useState('');
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');

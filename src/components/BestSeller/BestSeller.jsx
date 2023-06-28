@@ -1,5 +1,8 @@
 import './BestSeller.scss';
 
+/**
+ * Affichge du BestSeller
+ */
 export default function BestSeller() {
 	return (
 		<div className="bestseller">
