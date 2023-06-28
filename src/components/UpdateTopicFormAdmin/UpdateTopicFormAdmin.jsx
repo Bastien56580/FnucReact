@@ -4,6 +4,9 @@ import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import './UpdateTopicFormAdmin.scss';
 
+/**
+ * Formulaire de mise à jour des rayons
+ */
 export default function UpdateTopicFormAdmin() {
 	const [topic, setTopic] = useState('');
 	const [topicUrl, setTopicUrl] = useState('');

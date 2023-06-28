@@ -4,6 +4,10 @@ import axios from 'axios';
 import mockList from './mock/mockbook.json';
 import './ListBookByTopic.scss';
 
+/**
+ * Liste des livres par rayons
+ * @param {number} topicId id du rayon
+ */
 export default function ListBookByTopic(topicId) {
 	const [books, setBooks] = useState([]);
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');

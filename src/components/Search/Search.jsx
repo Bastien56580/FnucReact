@@ -4,6 +4,9 @@ import toast from 'react-hot-toast';
 import SearchIcon from '@mui/icons-material/Search';
 import './Search.scss';
 
+/**
+ * Barre de recherche par mot clé
+ */
 export default function Search() {
 	const [limit] = useState(9);
 	const [offset, setOffset] = useState(0);
@@ -153,6 +156,14 @@ export default function Search() {
 	);
 }
 
+/**
+ * List de mot clé
+ * @param {object} param0
+ * 	{
+ * 	 word : string
+ * 	 updateSelectedKeywords : function
+ * }
+ */
 function KeywordItem({ word, updateSelectedKeywords }) {
 	const [checked, setChecked] = useState(false);
 

@@ -3,6 +3,9 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 import './SignIn.scss';
 
+/**
+ * Formulaire de connection
+ */
 export default function SignIn() {
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');

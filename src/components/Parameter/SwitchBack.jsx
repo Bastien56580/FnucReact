@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { SwitchEnv } from './script/SwitchEnv';
 import './SwitchBack.scss';
 
+/**
+ * Bouton de changement de backend
+ */
 const SwitchBack = () => {
 	const [currentValue, setCurrentValue] = useState(
 		sessionStorage.getItem('REACT_APP_BACK_URL')

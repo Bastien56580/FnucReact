@@ -1,4 +1,16 @@
 import './BookDetail.scss';
+
+/**
+ * Apperçu du détail d'un livre
+ * @param {object} param0 
+ *  - book  : {
+ * 				author : string
+ * 				title : string,
+ * 				resume : string
+ *  			image : string
+ * 			}
+ * @returns 
+ */
 export default function BookDetail({ book }) {
 	return (
 		<div className="bookDetail">

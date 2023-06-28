@@ -3,6 +3,9 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import './SignUp.scss';
 
+/**
+ * Formulaire d'inscription
+ */
 export default function SignUp() {
 	// State variables for form inputs
 	const [email, setEmail] = useState('');

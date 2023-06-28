@@ -1,5 +1,8 @@
 import './PanelAdmin.scss';
 
+/**
+ * Panel d'Administration
+ */
 export default function PanelAdmin() {
 	return (
 		<div className="panelAdmin">

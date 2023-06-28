@@ -7,6 +7,10 @@ import axios from 'axios';
 import mockTopic from './mock/mockTopic.json';
 import './TopicList.scss';
 
+
+/**
+ * Liste des rayons
+ */
 export default function TopicList() {
 	const [limit] = useState(10);
 	const [offset, setOffset] = useState(0);

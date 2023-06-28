@@ -3,6 +3,9 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import './AddTopicFormAdmin.scss';
 
+/**
+ * Formuaire d'ajout d'un rayon
+ */
 export default function AddBookFormAdmin() {
 	const baseUrl = sessionStorage.getItem('REACT_APP_BACK_URL');
 	const [topic, setTopic] = useState('');

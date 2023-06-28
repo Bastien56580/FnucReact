@@ -6,6 +6,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './BookList.scss';
 
+/**
+ * Liste des livres enregistrés
+ */
 export default function BookList() {
 	const [limit] = useState(10);
 	const [offset, setOffset] = useState(0);
